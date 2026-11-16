@@ -38,7 +38,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 ## Sound / no|yes label (with page)
 
 - No `sound.png` image on the with page (removed)
-- Between columns **5–6** (`data-col="5" data-span="2"`, centered), ~**20px above** the hero line
+- Between columns **5–6** (`data-col="5" data-span="2"`, centered), ~**20px above** the hero line (label top **156px**)
 - Font: **Oswald** (regular), ~**10px** (≈2px smaller than before)
 - Always shows **sound**
 - Under it: **no** while the link shows **with**; **yes** while hovering/focusing (link reads **without**)
@@ -49,7 +49,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
 - Hero line on **with**: `wild with frame` (linked word = **with**)
   - Starts flush with **column 3** (`data-col="3" data-span="10"`, left-aligned)
-  - Vertical position: **top 340px** inside hero
+  - Vertical position: **top 190px** inside hero (raised 150px from 340)
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
   - Link size (smaller on purpose): ~13–15px clamp on `.without-link`
   - Split-flap tiles are near-square (`~1em × 1.05em`), not tall/vertical
