@@ -7,20 +7,8 @@
     const to = tile.dataset.to ?? "";
     const showFrom = from === " " || from === "" ? "\u00a0" : from;
     const showTo = to === " " || to === "" ? "\u00a0" : to;
-    const isOut = tile.classList.contains("tile-out");
 
-    if (!isOut) {
-      // „with”: obrót całej litery wokół własnej osi
-      tile.innerHTML = `
-        <span class="spin">
-          <span class="spin-face front"><span class="glyph">${showFrom}</span></span>
-          <span class="spin-face back"><span class="glyph">${showFrom}</span></span>
-        </span>
-      `;
-      return;
-    }
-
-    // „out”: klapka z pustego → litera (with → without)
+    // Klapki (kwadraty): with zawsze, out wlatuje na hoverze
     tile.innerHTML = `
       <span class="half bottom current"><span class="glyph">${showFrom}</span></span>
       <span class="half top current"><span class="glyph">${showFrom}</span></span>

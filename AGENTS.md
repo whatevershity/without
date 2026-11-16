@@ -39,7 +39,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 - No `sound.png` image on the with page (removed)
 - Between columns **5–6** (`data-col="5" data-span="2"`, centered); label top **126px** (above the hero line at 190px)
-- Font: **Oswald** (regular), ~**10px** (≈2px smaller than before)
+- Font: **Oswald** (regular), **12px**
 - Always shows **sound**
 - Under it: **no** while the link shows **with**; **yes** while hovering/focusing (link reads **without**)
 - Non-interactive (`.sound-meta`)
@@ -63,8 +63,9 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mec
 ### On **with** (`/` — current) — LOCKED
 
 - Resting linked word: **with** (form-blank underline under it only; the line does not flip)
+- **with** letters are **klapki** (square split-flap tiles with hinge) at rest
 - Hover: word becomes **without**
-  - **with** letters: full **rotateX(-360deg)** around their own horizontal axis
+  - **with** letters: klapka flip (same glyph → same glyph tick)
   - **out** letters: split-flap in from blank → `o u t` (stagger); tiles collapsed at rest so resting “with” stays clean
 - No strikethrough / no blacking-out of letters on this page
 - Word spacing in the hero line: `word-spacing: 0.85em`

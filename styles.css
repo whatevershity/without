@@ -126,7 +126,7 @@ body::before {
   text-align: center;
   font-family: Oswald, "Arial Narrow", Arial, sans-serif;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   line-height: 1.2;
   text-transform: lowercase;
@@ -363,49 +363,23 @@ body::before {
   opacity: 1;
 }
 
-/* —— „with”: obrót litery wokół własnej osi (efekt z początku) —— */
-.spin {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  transform-style: preserve-3d;
-  transition: transform 560ms cubic-bezier(0.45, 0.05, 0.2, 1);
-}
-
-.spin-face {
-  grid-area: 1 / 1;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  background: var(--flap-card);
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
-  line-height: 1;
-}
-
-.spin-face.back {
-  transform: rotateX(-180deg);
-}
-
-.without-link:hover .tile-keep .spin,
-.without-link:focus-visible .tile-keep .spin {
-  transform: rotateX(-360deg);
-}
-
-/* —— „out”: klapka z pustego → litera, po kolei —— */
+/* —— with + out: klapki (kwadraty) —— */
+.without-link:hover .tile-keep .flip,
+.without-link:focus-visible .tile-keep .flip,
 .without-link:hover .tile-out .flip,
 .without-link:focus-visible .tile-out .flip {
   transform: rotateX(-180deg);
 }
 
+.without-link:hover .tile-keep .half.top.current,
+.without-link:focus-visible .tile-keep .half.top.current,
 .without-link:hover .tile-out .half.top.current,
 .without-link:focus-visible .tile-out .half.top.current {
   visibility: hidden;
 }
 
+.without-link:hover .tile-keep .half.bottom.current,
+.without-link:focus-visible .tile-keep .half.bottom.current,
 .without-link:hover .tile-out .half.bottom.current,
 .without-link:focus-visible .tile-out .half.bottom.current {
   transition: opacity 1ms linear calc(var(--i, 0) * var(--flap-stagger) + var(--flap-ms) * 0.5);
@@ -418,16 +392,8 @@ body::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flip,
-  .spin {
+  .flip {
     transition: none;
-  }
-
-  .without-link:hover .tile-keep .spin,
-  .without-link:focus-visible .tile-keep .spin,
-  .without-link:hover .tile-out .flip,
-  .without-link:focus-visible .tile-out .flip {
-    transform: none;
   }
 
   .without-link:hover .tile-out,
@@ -436,12 +402,16 @@ body::before {
     opacity: 1;
   }
 
+  .without-link:hover .tile-keep .half.current,
+  .without-link:focus-visible .tile-keep .half.current,
   .without-link:hover .tile-out .half.current,
   .without-link:focus-visible .tile-out .half.current {
     visibility: hidden;
     opacity: 0;
   }
 
+  .without-link:hover .tile-keep .flip,
+  .without-link:focus-visible .tile-keep .flip,
   .without-link:hover .tile-out .flip,
   .without-link:focus-visible .tile-out .flip {
     transform: rotateX(-180deg);
