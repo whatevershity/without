@@ -24,12 +24,16 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 - Side margins: **360px** left and right (`--side: 360px`) → content width **720px** at 1440
 - Inside the content area: **12 columns**, numbered **1 → 12 from the left**
+- **8 rows**, numbered **1 → 8 from the top** (`--rows: 8`)
 - Gutter between columns: `--gutter: 16px`
-- Thin guide lines + faint column numbers are drawn for placement (`.col-guides`); not part of the final art direction
+- Thin guide lines + faint numbers: `.col-guides` (columns) and `.row-guides` (rows); placement aids, not final art
 - Placement API for items in `.hero-grid`:
   - `class="place" data-col="N" data-span="S"` → starts at column N, spans S columns
+  - `data-row="R" data-row-span="T"` → starts at row R, spans T rows
   - Example: `data-col="3" data-span="2"` = columns **3–4**
+  - Example: `data-row="2" data-row-span="1"` = row **2**
   - User will say e.g. “zdjęcie na kolumnach 2–5” → set `data-col="2" data-span="4"`
+  - User will say e.g. “na rzędzie 3” → set `data-row="3"`
 
 ## Surface
 

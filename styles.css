@@ -7,6 +7,7 @@
   --gutter: 16px;
   --hero-h: 1024px;
   --cols: 12;
+  --rows: 8;
   --flap-ms: 420ms;
   --flap-stagger: 90ms;
   --tile-w: 1em;
@@ -63,6 +64,7 @@ body::before {
   position: relative;
   display: grid;
   grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
   column-gap: var(--gutter);
   min-height: var(--hero-h);
   align-content: start;
@@ -98,7 +100,34 @@ body::before {
   position: relative;
 }
 
-.hero-grid > :not(.col-guides) {
+/* Cienkie prowadnice rzędów 1–8 (od góry) */
+.row-guides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  pointer-events: none;
+}
+
+.row-guides span {
+  position: relative;
+  border-top: 1px solid var(--guide);
+  border-bottom: 1px solid var(--guide);
+}
+
+.row-guides span::after {
+  content: attr(data-n);
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  font-family: "Special Elite", "Courier New", Courier, monospace;
+  font-size: 10px;
+  line-height: 1;
+  color: rgb(26 26 26 / 28%);
+}
+
+.hero-grid > :not(.col-guides):not(.row-guides) {
   position: relative;
   z-index: 1;
 }
@@ -117,9 +146,18 @@ body::before {
 .place[data-col="11"] { grid-column-start: 11; }
 .place[data-col="12"] { grid-column-start: 12; }
 
+.place[data-row="1"] { grid-row-start: 1; }
+.place[data-row="2"] { grid-row-start: 2; }
+.place[data-row="3"] { grid-row-start: 3; }
+.place[data-row="4"] { grid-row-start: 4; }
+.place[data-row="5"] { grid-row-start: 5; }
+.place[data-row="6"] { grid-row-start: 6; }
+.place[data-row="7"] { grid-row-start: 7; }
+.place[data-row="8"] { grid-row-start: 8; }
+
 /* „sound” / no|yes — między kol. 5–6, ~20px nad napisem */
 .sound-meta {
-  grid-row: 1;
+  grid-row: 1 / -1;
   margin: 126px 0 0;
   justify-self: center;
   width: max-content;
@@ -184,7 +222,7 @@ body::before {
 }
 
 .line {
-  grid-row: 1;
+  grid-row: 1 / -1;
   margin: 190px 0 0;
   justify-self: start;
   width: max-content;
