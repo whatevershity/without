@@ -119,10 +119,10 @@ body::before {
 
 .line {
   margin: 300px 0 0;
-  justify-self: center;
+  justify-self: start;
   width: max-content;
   max-width: 100%;
-  text-align: center;
+  text-align: left;
   font-size: clamp(14px, 1.05vw + 0.55rem, 16px);
   font-weight: 400;
   letter-spacing: 0.04em;
