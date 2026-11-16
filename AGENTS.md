@@ -34,8 +34,9 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 ## Hero photo — adelka
 
-- `adelka2.png`: columns **9–12** (full width of those cols), starts around row **5** (zone, not a crop box); height from image aspect — **no crop**
-- Row numbers for photos are approximate start anchors; do not disturb the locked link when moving this image
+- Center stack (cols **5–8**): **wild…** line directly above `adelka2.png`, **10px** gap
+- Photo starts at row **3** (3rd guide); full width of that stack; height from aspect — **no crop**
+- Do **not** change the link / flap markup or styles when moving this stack — only placement
 
 ## Surface
 

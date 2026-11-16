@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Special+Elite&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=hero-grid36" />
+    <link rel="stylesheet" href="styles.css?v=hero-grid37" />
   </head>
   <body>
     <main class="page">
@@ -45,15 +45,6 @@
             <span data-n="8"></span>
           </div>
 
-          <figure
-            class="adelka place"
-            data-col="9"
-            data-span="4"
-            data-row="5"
-          >
-            <img src="adelka2.png" alt="Adelka" />
-          </figure>
-
           <div
             class="sound-meta place"
             data-col="5"
@@ -67,21 +58,31 @@
             </span>
           </div>
 
-          <p class="line place" data-col="3" data-span="10">
-            wild
-            <a class="without-link" href="/without/" aria-label="with">
-              <span class="board" aria-hidden="true">
-                <span class="tile tile-keep" style="--i: 0" data-from="w" data-to="w"></span>
-                <span class="tile tile-keep" style="--i: 1" data-from="i" data-to="i"></span>
-                <span class="tile tile-keep" style="--i: 2" data-from="t" data-to="t"></span>
-                <span class="tile tile-keep" style="--i: 3" data-from="h" data-to="h"></span>
-                <span class="tile tile-out" style="--i: 0" data-from="black" data-to="o"></span>
-                <span class="tile tile-out" style="--i: 1" data-from="black" data-to="u"></span>
-                <span class="tile tile-out" style="--i: 2" data-from="black" data-to="t"></span>
-              </span>
-            </a>
-            frames
-          </p>
+          <div
+            class="hero-stack place"
+            data-col="5"
+            data-span="4"
+            data-row="3"
+          >
+            <p class="line">
+              wild
+              <a class="without-link" href="/without/" aria-label="with">
+                <span class="board" aria-hidden="true">
+                  <span class="tile tile-keep" style="--i: 0" data-from="w" data-to="w"></span>
+                  <span class="tile tile-keep" style="--i: 1" data-from="i" data-to="i"></span>
+                  <span class="tile tile-keep" style="--i: 2" data-from="t" data-to="t"></span>
+                  <span class="tile tile-keep" style="--i: 3" data-from="h" data-to="h"></span>
+                  <span class="tile tile-out" style="--i: 0" data-from="black" data-to="o"></span>
+                  <span class="tile tile-out" style="--i: 1" data-from="black" data-to="u"></span>
+                  <span class="tile tile-out" style="--i: 2" data-from="black" data-to="t"></span>
+                </span>
+              </a>
+              frames
+            </p>
+            <figure class="adelka">
+              <img src="adelka2.png" alt="Adelka" />
+            </figure>
+          </div>
         </div>
       </section>
     </main>
