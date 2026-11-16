@@ -37,7 +37,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 ## Hero photo — adelka
 
-- `adelka.png` on rows **3–5** (`data-row="3" data-row-span="3"`), columns **7–12** (flush to last column / right edge)
+- `adelka.png` on rows **3–4** (`data-row="3" data-row-span="2"` → through the **5th** horizontal guide, not the 6th), columns **7–12** (flush to last column / right edge)
 - `object-fit: cover`; do not disturb the locked link when moving this image
 
 ## Surface
