@@ -165,20 +165,20 @@ body::before {
 .place[data-row="11"] { grid-row-start: 11; }
 .place[data-row="12"] { grid-row-start: 12; }
 
-/* Stack: napis nad zdjęciem, 10px przerwy; zdjęcie od 3. linii, środek */
+/* Zdjęcie od 3. linii (środek); napis 10px nad zdjęciem — bez zmian w linku */
 .hero-stack {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 10px;
+  position: relative;
   align-self: start;
   width: 100%;
   z-index: 2;
 }
 
 .hero-stack .line {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  margin: 0 0 10px;
   grid-row: auto;
-  margin: 0;
   justify-self: auto;
 }
 
