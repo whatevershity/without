@@ -37,9 +37,11 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 ## Hero image (with page)
 
-- Waveform image `assets/wave.jpg` on columns **4–6** (`data-col="4" data-span="3"`)
-- Same top offset as the hero line (**340px**)
-- **opacity: 0.33**, `mix-blend-mode: multiply`, behind the text, non-interactive
+- Image: **`sound.png`** (repo root) on columns **4–6** (`data-col="4" data-span="3"`)
+- Sits **under** the hero line (grid row below) — do not overlap or move the text
+- Hero line stays at **top 340px**, unchanged
+- **opacity: 0.33**, non-interactive
+- Do not use `assets/wave.jpg`
 
 ## Typography
 
