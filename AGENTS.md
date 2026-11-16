@@ -42,6 +42,13 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 - Image top offset **298px** (slightly above the line); hero line stays at **340px**
 - **opacity: 0.33**, non-interactive
 
+## Sound / yes label (with page)
+
+- Between columns **5–6** (`data-col="5" data-span="2"`, centered), ~**20px above** the hero line
+- Font: **Oswald** (regular), not Special Elite
+- Always shows **sound**; **yes** appears under it only while hovering/focusing the with→without link
+- Non-interactive (`.sound-meta`)
+
 ## Typography
 
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.

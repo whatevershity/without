@@ -135,6 +135,40 @@ body::before {
   height: auto;
 }
 
+/* „sound” / „yes” — między kol. 5–6, ~20px nad napisem; yes tylko na hover linku */
+.sound-meta {
+  grid-row: 1;
+  margin: 306px 0 0;
+  justify-self: center;
+  width: max-content;
+  text-align: center;
+  font-family: Oswald, "Arial Narrow", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: lowercase;
+  color: var(--ink);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sound-meta .sound-word,
+.sound-meta .yes {
+  display: block;
+}
+
+.sound-meta .yes {
+  margin-top: 2px;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.hero-grid:has(.without-link:hover) .sound-meta .yes,
+.hero-grid:has(.without-link:focus-visible) .sound-meta .yes {
+  opacity: 1;
+}
+
 .line {
   grid-row: 1;
   margin: 340px 0 0;
