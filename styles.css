@@ -351,8 +351,8 @@ body::before {
   opacity: 0;
 }
 
-.tile-out .half.current.next-black,
-.tile-out .flip-face.front.back-black {
+.tile-out .half.is-black,
+.tile-out .flip-face.is-black {
   background: var(--flap-black);
   color: var(--flap-black);
   box-shadow: none;
