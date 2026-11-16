@@ -516,7 +516,8 @@ body::before {
     white-space: normal;
   }
 
-  .col-guides span::after {
+  .col-guides span::after,
+  .row-guides span::after {
     display: none;
   }
 }
