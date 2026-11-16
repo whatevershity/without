@@ -10,30 +10,50 @@
       href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=out-black2" />
+    <link rel="stylesheet" href="styles.css?v=hero-grid2" />
   </head>
   <body>
     <main class="page">
-      <p class="line">
-        wild
-        <a class="without-link" href="/" aria-label="without">
-          <!--
-            Resting: ładne „without” bez zmian.
-            Hover: „with” zostaje; końcówka „out” klapie w czarne klapki.
-          -->
-          <span class="board" aria-hidden="true">
-            <span class="tile tile-keep" style="--i: 0" data-from="w" data-to="w"></span>
-            <span class="tile tile-keep" style="--i: 1" data-from="i" data-to="i"></span>
-            <span class="tile tile-keep" style="--i: 2" data-from="t" data-to="t"></span>
-            <span class="tile tile-keep" style="--i: 3" data-from="h" data-to="h"></span>
-            <span class="tile tile-out" style="--i: 4" data-from="o" data-to="black"></span>
-            <span class="tile tile-out" style="--i: 5" data-from="u" data-to="black"></span>
-            <span class="tile tile-out" style="--i: 6" data-from="t" data-to="black"></span>
-          </span>
-        </a>
-        frame
-      </p>
+      <!--
+        HERO 1440×1024: marginesy 360px | środek = 12 kolumn (1→12 od lewej).
+        Umieszczanie: class="place" + data-col="3" data-span="2"  ⇒ kolumny 3–4.
+      -->
+      <section class="hero" aria-label="Hero">
+        <div class="hero-grid">
+          <div class="col-guides" aria-hidden="true">
+            <span data-n="1"></span>
+            <span data-n="2"></span>
+            <span data-n="3"></span>
+            <span data-n="4"></span>
+            <span data-n="5"></span>
+            <span data-n="6"></span>
+            <span data-n="7"></span>
+            <span data-n="8"></span>
+            <span data-n="9"></span>
+            <span data-n="10"></span>
+            <span data-n="11"></span>
+            <span data-n="12"></span>
+          </div>
+
+          <p class="line place" data-col="1" data-span="12">
+            wild
+            <a class="without-link" href="/" aria-label="without">
+              <span class="board" aria-hidden="true">
+                <span class="tile tile-keep" style="--i: 0" data-from="w" data-to="w"></span>
+                <span class="tile tile-keep" style="--i: 1" data-from="i" data-to="i"></span>
+                <span class="tile tile-keep" style="--i: 2" data-from="t" data-to="t"></span>
+                <span class="tile tile-keep" style="--i: 3" data-from="h" data-to="h"></span>
+                <span class="tile tile-out" style="--i: 0" data-from="o" data-to="black"></span>
+                <span class="tile tile-out" style="--i: 1" data-from="u" data-to="black"></span>
+                <span class="tile tile-out" style="--i: 2" data-from="t" data-to="black"></span>
+              </span>
+            </a>
+            frame
+          </p>
+        </div>
+      </section>
     </main>
     <script src="splitflap.js"></script>
+    <script src="grid.js"></script>
   </body>
 </html>
