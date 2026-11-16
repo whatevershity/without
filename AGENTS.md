@@ -34,7 +34,7 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 ## Hero photo
 
-- Center stack (cols **5–8**): **wild…** line directly above `elephant.png`, **10px** gap
+- Center stack (cols **5–8**): **wild…** line directly above `sun.png`, **10px** gap
 - Photo starts at row **3** (3rd guide); full width of that stack; height from aspect — **no crop**
 - Do **not** change the link / flap markup or styles when moving this stack — only placement
 
