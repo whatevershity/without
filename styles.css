@@ -7,7 +7,7 @@
   --gutter: 16px;
   --hero-h: 1024px;
   --cols: 12;
-  --rows: 8;
+  --rows: 12;
   --flap-ms: 420ms;
   --flap-stagger: 90ms;
   --tile-w: 1em;
@@ -100,7 +100,7 @@ body::before {
   position: relative;
 }
 
-/* Cienkie prowadnice rzędów 1–8 (od góry) */
+/* Cienkie prowadnice rzędów 1–12 (od góry) */
 .row-guides {
   position: absolute;
   inset: 0;
@@ -154,6 +154,10 @@ body::before {
 .place[data-row="6"] { grid-row-start: 6; }
 .place[data-row="7"] { grid-row-start: 7; }
 .place[data-row="8"] { grid-row-start: 8; }
+.place[data-row="9"] { grid-row-start: 9; }
+.place[data-row="10"] { grid-row-start: 10; }
+.place[data-row="11"] { grid-row-start: 11; }
+.place[data-row="12"] { grid-row-start: 12; }
 
 /* adelka: rzędy 3–5, do prawej (koniec kol. 12) */
 .adelka {
