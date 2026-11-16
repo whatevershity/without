@@ -55,21 +55,20 @@ Artboard reference: **1440 × 1024** (Figma HERO).
   - Link size (smaller on purpose): ~13–15px clamp on `.without-link`
   - Split-flap tiles are near-square (`~1em × 1.05em`), not tall/vertical
 
-## Link mechanism — LOCKED (do not regress)
+## Link mechanism — FINAL LOCK (do not touch)
 
-Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mechanism**, not board colors/fonts.
+**2026-11-16 — user: „zapisz to !! i nie ruszaj już tego pod żadnym pozorem”.**
 
-**Approved hover — keep intact through later page changes** unless the user explicitly asks to change the mechanism.
+Do **not** edit `splitflap.js`, `.without-link` / `.tile-*` / `.spin` / `.flip` / `.hinge` link rules in `styles.css`, or the link tile markup in `index.html`, unless the user **explicitly** asks to change the link animation. Layout / sound / other page work must leave this alone.
 
-### On **with** (`/` — current) — LOCKED (do not regress)
+Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 
-The saved hybrid from when the user said „zapisz i nie ruszaj”, **inverted** for the with page (link starts as **with**):
+### On **with** (`/` — current) — frozen
 
-- Resting: **with** + **three visible out klapki** (`#454545`) — leave klapki alone at rest
+- Resting: **with** + **three visible out klapki** (`#454545`)
 - Hover reads **without**:
-  - **with** letters: **rotateX(-360deg)** around own axis
-  - **out** klapki flip **`#454545` → `o u t`** (stagger)
+  - **with**: **rotateX(-360deg)** on own axis
+  - **out**: klapki **`#454545` → `o u t`** (stagger); after settle, letters are clean (no hinge / no strikethrough look)
 - Underline fixed, a bit longer than “without”
-- No strikethrough / crossing-out — ever
-- Link goes to `/without/`
-- Do not touch `.sound-meta` when changing the link
+- Link → `/without/`
+- Also leave `.sound-meta` alone unless asked
