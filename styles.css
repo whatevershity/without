@@ -214,6 +214,11 @@ body::before {
   transform: translateY(-50%);
 }
 
+/* Szew tylko na klapkających „out” — na „with” wyglądał jak przekreślenie */
+.tile-keep .hinge {
+  display: none;
+}
+
 /* Tylko końcówka „out” klapie — „with” i resting „without” bez ruszania */
 .without-link:hover .tile-out .flip,
 .without-link:focus-visible .tile-out .flip {
