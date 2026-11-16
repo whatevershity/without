@@ -35,6 +35,11 @@ Artboard reference: **1440 × 1024** (Figma HERO).
   - User will say e.g. “zdjęcie na kolumnach 2–5” → set `data-col="2" data-span="4"`
   - User will say e.g. “na rzędzie 3” → set `data-row="3"`
 
+## Hero photo — adelka
+
+- `adelka.png` on rows **3–5** (`data-row="3" data-row-span="3"`), columns **7–12** (flush to last column / right edge)
+- `object-fit: cover`; do not disturb the locked link when moving this image
+
 ## Surface
 
 - Page background: near-white `#FDFDFD` with very light **paper grain** (opacity ~0.08)
