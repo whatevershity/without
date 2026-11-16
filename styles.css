@@ -120,7 +120,7 @@ body::before {
 /* Tło napisu: ta sama wysokość, kolumny 4–6, za tekstem */
 .hero-fig {
   grid-row: 1;
-  margin: 310px 0 0;
+  margin: 298px 0 0;
   padding: 0;
   justify-self: stretch;
   width: 100%;
