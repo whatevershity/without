@@ -35,18 +35,13 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 - Page background: flat `#FAFAFA` with subtle **paper grain / noise** overlay
 
-## Hero image (with page)
+## Sound / no|yes label (with page)
 
-- Image: **`sound.png`** (repo root) on columns **4–6** (`data-col="4" data-span="3"`)
-- Behind the text as its background (lower z-index), columns **4–6**
-- Image top offset **298px** (slightly above the line); hero line stays at **340px**
-- **opacity: 0.33**, non-interactive
-
-## Sound / yes label (with page)
-
+- No `sound.png` image on the with page (removed)
 - Between columns **5–6** (`data-col="5" data-span="2"`, centered), ~**20px above** the hero line
-- Font: **Oswald** (regular), not Special Elite
-- Always shows **sound**; **yes** appears under it only while hovering/focusing the with→without link
+- Font: **Oswald** (regular), ~**10px** (≈2px smaller than before)
+- Always shows **sound**
+- Under it: **no** while the link shows **with**; **yes** while hovering/focusing (link reads **without**)
 - Non-interactive (`.sound-meta`)
 
 ## Typography

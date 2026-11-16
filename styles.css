@@ -117,25 +117,7 @@ body::before {
 .place[data-col="11"] { grid-column-start: 11; }
 .place[data-col="12"] { grid-column-start: 12; }
 
-/* Tło napisu: ta sama wysokość, kolumny 4–6, za tekstem */
-.hero-fig {
-  grid-row: 1;
-  margin: 298px 0 0;
-  padding: 0;
-  justify-self: stretch;
-  width: 100%;
-  opacity: 0.33;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-fig img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* „sound” / „yes” — między kol. 5–6, ~20px nad napisem; yes tylko na hover linku */
+/* „sound” / no|yes — między kol. 5–6, ~20px nad napisem */
 .sound-meta {
   grid-row: 1;
   margin: 306px 0 0;
@@ -144,7 +126,7 @@ body::before {
   text-align: center;
   font-family: Oswald, "Arial Narrow", Arial, sans-serif;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   line-height: 1.2;
   text-transform: lowercase;
@@ -153,15 +135,33 @@ body::before {
   pointer-events: none;
 }
 
-.sound-meta .sound-word,
-.sound-meta .yes {
+.sound-meta .sound-word {
   display: block;
 }
 
-.sound-meta .yes {
+.sound-meta .answer {
+  display: grid;
   margin-top: 2px;
-  opacity: 0;
+}
+
+.sound-meta .no,
+.sound-meta .yes {
+  grid-area: 1 / 1;
   transition: opacity 180ms ease;
+}
+
+/* Resting (with visible): no. Hover → without: yes */
+.sound-meta .no {
+  opacity: 1;
+}
+
+.sound-meta .yes {
+  opacity: 0;
+}
+
+.hero-grid:has(.without-link:hover) .sound-meta .no,
+.hero-grid:has(.without-link:focus-visible) .sound-meta .no {
+  opacity: 0;
 }
 
 .hero-grid:has(.without-link:hover) .sound-meta .yes,
