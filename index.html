@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=splitflap1" />
+    <link rel="stylesheet" href="styles.css?v=splitflap3" />
   </head>
   <body>
     <main class="page">
@@ -18,63 +18,22 @@
         wild
         <a class="without-link" href="/" aria-label="without">
           <!--
-            Mechanizm jak tablica klapkowa / pragotron:
-            litery klapią w dół po kolei (without → with).
+            Anatomia tablicy klapkowej: górna połowa klapie w dół
+            i odsłania nową literę (without → with), wszystkie naraz.
           -->
           <span class="board" aria-hidden="true">
-            <span class="tile" style="--i: 0">
-              <span class="flap">
-                <span class="face front">w</span>
-                <span class="face back">w</span>
-              </span>
-              <span class="hinge"></span>
-            </span>
-            <span class="tile" style="--i: 1">
-              <span class="flap">
-                <span class="face front">i</span>
-                <span class="face back">i</span>
-              </span>
-              <span class="hinge"></span>
-            </span>
-            <span class="tile" style="--i: 2">
-              <span class="flap">
-                <span class="face front">t</span>
-                <span class="face back">t</span>
-              </span>
-              <span class="hinge"></span>
-            </span>
-            <span class="tile" style="--i: 3">
-              <span class="flap">
-                <span class="face front">h</span>
-                <span class="face back">h</span>
-              </span>
-              <span class="hinge"></span>
-            </span>
-            <span class="tile" style="--i: 4">
-              <span class="flap">
-                <span class="face front">o</span>
-                <span class="face back">&nbsp;</span>
-              </span>
-              <span class="hinge"></span>
-            </span>
-            <span class="tile" style="--i: 5">
-              <span class="flap">
-                <span class="face front">u</span>
-                <span class="face back">&nbsp;</span>
-              </span>
-              <span class="hinge"></span>
-            </span>
-            <span class="tile" style="--i: 6">
-              <span class="flap">
-                <span class="face front">t</span>
-                <span class="face back">&nbsp;</span>
-              </span>
-              <span class="hinge"></span>
-            </span>
+            <span class="tile" style="--i: 0" data-from="w" data-to="w"></span>
+            <span class="tile" style="--i: 1" data-from="i" data-to="i"></span>
+            <span class="tile" style="--i: 2" data-from="t" data-to="t"></span>
+            <span class="tile" style="--i: 3" data-from="h" data-to="h"></span>
+            <span class="tile" style="--i: 4" data-from="o" data-to=" "></span>
+            <span class="tile" style="--i: 5" data-from="u" data-to=" "></span>
+            <span class="tile" style="--i: 6" data-from="t" data-to=" "></span>
           </span>
         </a>
         frame
       </p>
     </main>
+    <script src="splitflap.js"></script>
   </body>
 </html>

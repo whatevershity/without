@@ -23,6 +23,6 @@ When the user gives durable prototype-specific design feedback, preferences, or 
 Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mechanism**, not board colors/fonts.
 
 - **without** is a link with a **form-blank underline** under it only (`imię: ________`); the line does **not** flip
-- Hover/focus: each letter is a **klapka** that flips **down** on the horizontal axis (`rotateX`), staggered left→right, revealing **with** (trailing letters become blank)
+- Hover/focus: each letter is a **klapka** that flips **down** on the horizontal axis (`rotateX`) **all at once** (no stagger), revealing **with** (trailing letters become blank)
 - Visible **horizontal hinge seam** through the middle of each tile (classic split-flap look)
-- Not a sideways spin; not one smooth whole-word card without the flap seam/stagger
+- Not a sideways spin; top half of each tile drops like a real board flap
