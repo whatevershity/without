@@ -65,12 +65,11 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mec
 
 The saved hybrid from when the user said „zapisz i nie ruszaj”, **inverted** for the with page (link starts as **with**):
 
-- Resting: **with** + **three visible out klapki** (`#454545`) already shown — not collapsed
-- Underline is **fixed**, a bit longer than “without” (not full-width / half-page)
-- Hover:
-  - **with** letters: full **rotateX(-360deg)** around their own horizontal axis
-  - **out** klapki: **`#454545` → letter** `o u t` (stagger)
-- Word spacing: `word-spacing: 0.85em`
+- Resting: **with** + **three visible out klapki** (`#454545`) — leave klapki alone at rest
+- Hover reads **without**:
+  - **with** letters: **rotateX(-360deg)** around own axis
+  - **out** klapki flip **`#454545` → `o u t`** (stagger)
+- Underline fixed, a bit longer than “without”
+- No strikethrough / crossing-out — ever
 - Link goes to `/without/`
-- Implementation: `splitflap.js` + `.tile-keep` / `.tile-out` in `styles.css`
 - Do not touch `.sound-meta` when changing the link
