@@ -39,7 +39,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 - Image: **`sound.png`** (repo root) on columns **4–6** (`data-col="4" data-span="3"`)
 - Behind the text as its background (lower z-index), columns **4–6**
-- Image top offset **280px** (a bit above the line); hero line stays at **340px**
+- Image top offset **310px** (slightly above the line); hero line stays at **340px**
 - **opacity: 0.33**, non-interactive
 
 ## Typography
