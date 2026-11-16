@@ -7,15 +7,22 @@ When the user gives durable prototype-specific design feedback, preferences, or 
 ## Layout
 
 - Side margins: **360px** left and right on desktop (`--side: 360px`). Narrower viewports scale down with `clamp`.
-- Page background: flat `#F5F5F5` “dirtied” with subtle **paper grain / noise** (SVG `feTurbulence` overlay) — not a photo texture
+- Page background: flat `#FAFAFA` (closer to white than gray) with subtle **paper grain / noise** overlay
 
 ## Typography
 
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
 - Hero line: `wild without frame`
   - Centered horizontally
-  - Vertical position: **top 300px** (was previously `100vw / 3`)
-  - **without** is a link with a **form-blank underline** under it only — like `imię: ________` (straight 1px rule under the blank, never above)
-  - The blank line sits on the link shell and does **not** flip; **only the text** flips down on hover (`rotateX(-180deg)`), revealing **with**
+  - Vertical position: **top 300px**
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
   - Link size (smaller on purpose): `clamp(12px, 0.9vw + 0.5rem, 14px)` (~12–14px)
+
+## Link mechanism (reference: split-flap / “pragotron” / tablice klapkowe)
+
+Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mechanism**, not board colors/fonts.
+
+- **without** is a link with a **form-blank underline** under it only (`imię: ________`); the line does **not** flip
+- Hover/focus: each letter is a **klapka** that flips **down** on the horizontal axis (`rotateX`), staggered left→right, revealing **with** (trailing letters become blank)
+- Visible **horizontal hinge seam** through the middle of each tile (classic split-flap look)
+- Not a sideways spin; not one smooth whole-word card without the flap seam/stagger
