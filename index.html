@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=splitflap4" />
+    <link rel="stylesheet" href="styles.css?v=out-black1" />
   </head>
   <body>
     <main class="page">
@@ -18,17 +18,17 @@
         wild
         <a class="without-link" href="/" aria-label="without">
           <!--
-            Anatomia tablicy klapkowej: górna połowa klapie w dół
-            i odsłania nową literę (without → with), wszystkie naraz.
+            Resting: ładne „without” bez zmian.
+            Hover: „with” zostaje; końcówka „out” klapie w czarne klapki.
           -->
           <span class="board" aria-hidden="true">
-            <span class="tile" style="--i: 0" data-from="w" data-to="w"></span>
-            <span class="tile" style="--i: 1" data-from="i" data-to="i"></span>
-            <span class="tile" style="--i: 2" data-from="t" data-to="t"></span>
-            <span class="tile" style="--i: 3" data-from="h" data-to="h"></span>
-            <span class="tile" style="--i: 4" data-from="o" data-to=" "></span>
-            <span class="tile" style="--i: 5" data-from="u" data-to=" "></span>
-            <span class="tile" style="--i: 6" data-from="t" data-to=" "></span>
+            <span class="tile tile-keep" style="--i: 0" data-from="w" data-to="w"></span>
+            <span class="tile tile-keep" style="--i: 1" data-from="i" data-to="i"></span>
+            <span class="tile tile-keep" style="--i: 2" data-from="t" data-to="t"></span>
+            <span class="tile tile-keep" style="--i: 3" data-from="h" data-to="h"></span>
+            <span class="tile tile-out" style="--i: 4" data-from="o" data-to="black"></span>
+            <span class="tile tile-out" style="--i: 5" data-from="u" data-to="black"></span>
+            <span class="tile tile-out" style="--i: 6" data-from="t" data-to="black"></span>
           </span>
         </a>
         frame

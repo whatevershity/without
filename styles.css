@@ -2,6 +2,7 @@
   --ink: #1a1a1a;
   --paper: #fafafa;
   --flap-card: #f3f1ed;
+  --flap-black: #141414;
   --side: 360px;
   --flap-ms: 420ms;
   --tile-w: 0.85em;
@@ -101,7 +102,6 @@ body::before {
   box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
 }
 
-/* Połówki litery — pełny glyf, przycięty do góry/dołu */
 .half {
   position: absolute;
   left: 0;
@@ -143,15 +143,11 @@ body::before {
   z-index: 0;
 }
 
-.half.top.next {
-  z-index: 0;
+.half.next-black {
+  background: var(--flap-black);
+  color: var(--flap-black);
 }
 
-.half.bottom.next {
-  z-index: 0;
-}
-
-/* Klapka: tylko GÓRNA połowa spada w dół (jak na dworcu) */
 .flip {
   position: absolute;
   left: 0;
@@ -199,6 +195,12 @@ body::before {
   transform: rotateX(-180deg);
 }
 
+.flip-face.back-black {
+  background: var(--flap-black);
+  color: var(--flap-black);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 8%);
+}
+
 .hinge {
   position: absolute;
   left: 0;
@@ -212,19 +214,19 @@ body::before {
   transform: translateY(-50%);
 }
 
-/* Hover: górna klapka spada — widać kartę, nie „znikanie” */
-.without-link:hover .flip,
-.without-link:focus-visible .flip {
+/* Tylko końcówka „out” klapie — „with” i resting „without” bez ruszania */
+.without-link:hover .tile-out .flip,
+.without-link:focus-visible .tile-out .flip {
   transform: rotateX(-180deg);
 }
 
-.without-link:hover .half.top.current,
-.without-link:focus-visible .half.top.current {
+.without-link:hover .tile-out .half.top.current,
+.without-link:focus-visible .tile-out .half.top.current {
   visibility: hidden;
 }
 
-.without-link:hover .half.bottom.current,
-.without-link:focus-visible .half.bottom.current {
+.without-link:hover .tile-out .half.bottom.current,
+.without-link:focus-visible .tile-out .half.bottom.current {
   transition: opacity 1ms linear calc(var(--flap-ms) * 0.5);
   opacity: 0;
 }
@@ -239,15 +241,13 @@ body::before {
     transition: none;
   }
 
-  .without-link:hover .flip,
-  .without-link:focus-visible .flip {
+  .without-link:hover .tile-out .flip,
+  .without-link:focus-visible .tile-out .flip {
     transform: none;
   }
 
-  .without-link:hover .half.top.current,
-  .without-link:focus-visible .half.top.current,
-  .without-link:hover .half.bottom.current,
-  .without-link:focus-visible .half.bottom.current {
+  .without-link:hover .tile-out .half.current,
+  .without-link:focus-visible .tile-out .half.current {
     visibility: hidden;
     opacity: 0;
   }
