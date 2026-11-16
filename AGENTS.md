@@ -35,7 +35,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 - Page background: flat `#FAFAFA` with subtle **paper grain / noise** overlay
 
-## Sound / no|yes label (with page)
+## Sound / no|yes label (with page) — leave alone unless asked
 
 - No `sound.png` image on the with page (removed)
 - Between columns **5–6** (`data-col="5" data-span="2"`, centered); label top **126px** (above the hero line at 190px)
@@ -43,6 +43,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 - Always shows **sound**
 - Under it: **no** while the link shows **with**; **yes** while hovering/focusing (link reads **without**)
 - Non-interactive (`.sound-meta`)
+- Do not move, restyle, or rewrite this block when changing the link flip
 
 ## Typography
 
@@ -62,14 +63,13 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mec
 
 ### On **with** (`/` — current) — LOCKED (do not regress)
 
-Approved hybrid — restore this if broken:
+The saved hybrid from when the user said „zapisz i nie ruszaj”, **inverted** for the with page (link starts as **with**):
 
 - Resting linked word: **with** (form-blank underline under it only; the line does not flip)
-- Hover: word becomes **without**
-  - **with** letters: full **rotateX(-360deg)** around their own horizontal axis (NOT klapki)
-  - **out** letters: square **klapki** (split-flap) from blank → `o u t` (stagger); collapsed at rest
-- Do not turn **with** into hinge/half flaps — only **out** uses klapki
-- No strikethrough / no blacking-out of letters on this page
-- Word spacing in the hero line: `word-spacing: 0.85em`
-- Link still goes to `/without/`
-- Implementation: `splitflap.js` + `.tile-keep` / `.tile-out` in `styles.css` — touch only for bugfixes or explicit mechanism changes
+- Hover:
+  - **with** letters: full **rotateX(-360deg)** around their own horizontal axis
+  - **out**: square **klapki** falling **`#454545` → letter** `o u t` (stagger) — inverse of the original letter → `#454545`; tiles collapsed at rest
+- Do not replace this with all-klapki on with, or letter→black on this page
+- Word spacing: `word-spacing: 0.85em`
+- Link goes to `/without/`
+- Implementation: `splitflap.js` + `.tile-keep` / `.tile-out` in `styles.css`

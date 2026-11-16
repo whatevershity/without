@@ -336,7 +336,7 @@ body::before {
   transform: translateY(-50%);
 }
 
-/* —— „out”: ukryte w spoczynku (widać „with”); na hoverze wchodzą → „without” —— */
+/* —— „out”: ukryte w spoczynku; na hoverze klapki #454545 → litera —— */
 .tile-out {
   width: 0;
   overflow: hidden;
@@ -349,6 +349,13 @@ body::before {
 
 .tile-out .hinge {
   opacity: 0;
+}
+
+.tile-out .half.current.next-black,
+.tile-out .flip-face.front.back-black {
+  background: var(--flap-black);
+  color: var(--flap-black);
+  box-shadow: none;
 }
 
 .without-link:hover .tile-out,
@@ -395,7 +402,7 @@ body::before {
   transform: rotateX(-360deg);
 }
 
-/* —— „out”: klapki (kwadraty) z pustego → litera —— */
+/* —— „out”: klapki (kwadraty) #454545 → litera, po kolei —— */
 .without-link:hover .tile-out .flip,
 .without-link:focus-visible .tile-out .flip {
   transform: rotateX(-180deg);
