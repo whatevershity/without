@@ -282,6 +282,33 @@ body::before {
   transform: translateY(-50%);
 }
 
+/* —— „out”: ukryte w spoczynku (widać „with”); na hoverze wchodzą → „without” —— */
+.tile-out {
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  box-shadow: none;
+  transition:
+    width 220ms ease,
+    opacity 160ms ease;
+}
+
+.tile-out .hinge {
+  opacity: 0;
+}
+
+.without-link:hover .tile-out,
+.without-link:focus-visible .tile-out {
+  width: var(--tile-w);
+  opacity: 1;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
+}
+
+.without-link:hover .tile-out .hinge,
+.without-link:focus-visible .tile-out .hinge {
+  opacity: 1;
+}
+
 /* —— „with”: obrót litery wokół własnej osi (efekt z początku) —— */
 .spin {
   position: absolute;
@@ -314,7 +341,7 @@ body::before {
   transform: rotateX(-360deg);
 }
 
-/* —— „out”: klapka spada w panel #454545, po kolei —— */
+/* —— „out”: klapka z pustego → litera, po kolei —— */
 .without-link:hover .tile-out .flip,
 .without-link:focus-visible .tile-out .flip {
   transform: rotateX(-180deg);
@@ -349,10 +376,21 @@ body::before {
     transform: none;
   }
 
+  .without-link:hover .tile-out,
+  .without-link:focus-visible .tile-out {
+    width: var(--tile-w);
+    opacity: 1;
+  }
+
   .without-link:hover .tile-out .half.current,
   .without-link:focus-visible .tile-out .half.current {
     visibility: hidden;
     opacity: 0;
+  }
+
+  .without-link:hover .tile-out .flip,
+  .without-link:focus-visible .tile-out .flip {
+    transform: rotateX(-180deg);
   }
 }
 

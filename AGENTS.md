@@ -51,14 +51,13 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mec
 
 **Approved hover — keep intact through later page changes** unless the user explicitly asks to change the mechanism.
 
-### On **with** (`/` — current)
+### On **with** (`/` — current) — LOCKED
 
-- Linked word shows **with** (form-blank underline under it only; the line does not flip)
-- Hover: each letter full **rotateX(-360deg)** around its own horizontal axis
-- Resting look stays; no strikethrough
+- Resting linked word: **with** (form-blank underline under it only; the line does not flip)
+- Hover: word becomes **without**
+  - **with** letters: full **rotateX(-360deg)** around their own horizontal axis
+  - **out** letters: split-flap in from blank → `o u t` (stagger); tiles collapsed at rest so resting “with” stays clean
+- No strikethrough / no blacking-out of letters on this page
 - Word spacing in the hero line: `word-spacing: 0.85em`
-
-### Shared / for **without** later
-
-- Hybrid still available in code: **with**-letters spin + **out** split-flap into `#454545` klapki (stagger) — use when the linked word is **without**
+- Link still goes to `/without/`
 - Implementation: `splitflap.js` + `.tile-keep` / `.tile-out` in `styles.css` — touch only for bugfixes or explicit mechanism changes
