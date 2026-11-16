@@ -118,7 +118,7 @@ body::before {
 .place[data-col="12"] { grid-column-start: 12; }
 
 .line {
-  margin: 360px 0 0;
+  margin: 340px 0 0;
   justify-self: start;
   width: max-content;
   max-width: 100%;

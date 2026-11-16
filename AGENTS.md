@@ -26,14 +26,16 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
 - Hero line: `wild without frame`
   - Starts flush with **column 3** (`data-col="3" data-span="10"`, left-aligned)
-  - Vertical position: **top 360px** inside hero (a bit lower than 300px)
+  - Vertical position: **top 340px** inside hero
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
   - Link size (smaller on purpose): ~13–15px clamp on `.without-link`
   - Split-flap tiles are near-square (`~1em × 1.05em`), not tall/vertical
 
-## Link mechanism (reference: split-flap / “pragotron” / tablice klapkowe)
+## Link mechanism — LOCKED (do not regress)
 
 Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mechanism**, not board colors/fonts.
+
+**Approved hybrid hover — keep this intact through later page changes** (layout, assets, copy elsewhere). Do not replace, simplify, or restyle the link flip unless the user explicitly asks to change the mechanism.
 
 - **without** is a link with a **form-blank underline** under it only (`imię: ________`); the line does **not** flip
 - Resting **without** stays as-is (do not restyle the word)
@@ -42,3 +44,4 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mec
   - **out** ending: split-flap top halves fall into **`#454545` klapki**, one after another (stagger)
 - No strikethrough; resting **without** look stays
 - Word spacing in the hero line is enlarged (`word-spacing: 0.85em`)
+- Implementation lives in `splitflap.js` + `.tile-keep` / `.tile-out` rules in `styles.css` — touch only for bugfixes or explicit mechanism changes
