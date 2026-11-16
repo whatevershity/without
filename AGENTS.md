@@ -26,7 +26,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 - Inside the content area: **12 columns**, numbered **1 → 12 from the left**
 - **8 rows**, numbered **1 → 8 from the top** (`--rows: 8`)
 - Gutter between columns: `--gutter: 16px`
-- Thin guide lines + faint numbers: `.col-guides` (columns) and `.row-guides` (rows); placement aids, not final art
+- Thin guide lines + faint numbers: `.col-guides` (columns) and `.row-guides` (rows); placement aids, **not final art** — may be removed later when layout is locked; keep placement via `data-col` / `data-row` so content survives without guides
 - Placement API for items in `.hero-grid`:
   - `class="place" data-col="N" data-span="S"` → starts at column N, spans S columns
   - `data-row="R" data-row-span="T"` → starts at row R, spans T rows
