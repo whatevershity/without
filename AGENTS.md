@@ -7,6 +7,7 @@ When the user gives durable prototype-specific design feedback, preferences, or 
 ## Layout
 
 - Side margins: **360px** left and right on desktop (`--side: 360px`). Narrower viewports scale down with `clamp`.
+- Page background: light gray paper grain texture (`assets/paper.png`), `cover` + fixed — not a flat cream gradient
 
 ## Typography
 
