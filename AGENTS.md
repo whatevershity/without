@@ -4,6 +4,19 @@ Run the local server yourself and open the preview in the browser available to t
 
 When the user gives durable prototype-specific design feedback, preferences, or decisions, record them here.
 
+## Site variants — with / without
+
+Two versions of the site, like a language switch (`pl` / `en`):
+
+| Path | Variant | Role |
+|------|---------|------|
+| `/` (`index.html`) | **with** | **Default.** Static. Build this first. |
+| `/without/` (`without/index.html`) | **without** | Motion, sound, more unease. Stub only for now — fill in later. |
+
+- The hero link on **with** points to `/without/`
+- Do not invent without content until the user asks
+- When changing the page later, keep the locked link hover on **with** intact
+
 ## Layout — Hero grid
 
 Artboard reference: **1440 × 1024** (Figma HERO).
