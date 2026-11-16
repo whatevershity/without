@@ -7,7 +7,7 @@ When the user gives durable prototype-specific design feedback, preferences, or 
 ## Layout
 
 - Side margins: **360px** left and right on desktop (`--side: 360px`). Narrower viewports scale down with `clamp`.
-- Page background: flat `#F3F1ED` “dirtied” with subtle **paper grain / noise** (SVG `feTurbulence` overlay) — not a photo texture
+- Page background: flat `#F5F5F5` “dirtied” with subtle **paper grain / noise** (SVG `feTurbulence` overlay) — not a photo texture
 
 ## Typography
 
