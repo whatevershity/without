@@ -38,10 +38,9 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 ## Hero image (with page)
 
 - Image: **`sound.png`** (repo root) on columns **4–6** (`data-col="4" data-span="3"`)
-- Sits **under** the hero line (grid row below) — do not overlap or move the text
-- Hero line stays at **top 340px**, unchanged
+- Same height as the hero line (**340px**) — **behind** the text as its background (lower z-index), not below it
+- Hero line stays at **top 340px**, unchanged and readable on top
 - **opacity: 0.33**, non-interactive
-- Do not use `assets/wave.jpg`
 
 ## Typography
 
