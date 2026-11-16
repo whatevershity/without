@@ -120,7 +120,7 @@ body::before {
 /* „sound” / no|yes — między kol. 5–6, ~20px nad napisem */
 .sound-meta {
   grid-row: 1;
-  margin: 156px 0 0;
+  margin: 126px 0 0;
   justify-self: center;
   width: max-content;
   text-align: center;

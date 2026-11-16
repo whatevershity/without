@@ -38,7 +38,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 ## Sound / no|yes label (with page)
 
 - No `sound.png` image on the with page (removed)
-- Between columns **5–6** (`data-col="5" data-span="2"`, centered), ~**20px above** the hero line (label top **156px**)
+- Between columns **5–6** (`data-col="5" data-span="2"`, centered); label top **126px** (above the hero line at 190px)
 - Font: **Oswald** (regular), ~**10px** (≈2px smaller than before)
 - Always shows **sound**
 - Under it: **no** while the link shows **with**; **yes** while hovering/focusing (link reads **without**)
