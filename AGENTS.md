@@ -13,9 +13,10 @@ Two versions of the site, like a language switch (`pl` / `en`):
 | `/` (`index.html`) | **with** | **Default.** Static. Build this first. |
 | `/without/` (`without/index.html`) | **without** | Motion, sound, more unease. Stub only for now — fill in later. |
 
-- The hero link on **with** points to `/without/`
+- On **with** (`/`), the linked word reads **with** (not “without”) and points to `/without/` — click to switch variant
+- On **without** (later): linked word will read **without** and point back to `/`
 - Do not invent without content until the user asks
-- When changing the page later, keep the locked link hover on **with** intact
+- When changing the page later, keep the locked link hover intact
 
 ## Layout — Hero grid
 
@@ -37,7 +38,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 ## Typography
 
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
-- Hero line: `wild without frame`
+- Hero line on **with**: `wild with frame` (linked word = **with**)
   - Starts flush with **column 3** (`data-col="3" data-span="10"`, left-aligned)
   - Vertical position: **top 340px** inside hero
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
@@ -48,13 +49,16 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mechanism**, not board colors/fonts.
 
-**Approved hybrid hover — keep this intact through later page changes** (layout, assets, copy elsewhere). Do not replace, simplify, or restyle the link flip unless the user explicitly asks to change the mechanism.
+**Approved hover — keep intact through later page changes** unless the user explicitly asks to change the mechanism.
 
-- **without** is a link with a **form-blank underline** under it only (`imię: ________`); the line does **not** flip
-- Resting **without** stays as-is (do not restyle the word)
-- Hover combines both mechanisms:
-  - **with** letters: full **rotateX(-360deg)** around their own horizontal axis (early flip effect)
-  - **out** ending: split-flap top halves fall into **`#454545` klapki**, one after another (stagger)
-- No strikethrough; resting **without** look stays
-- Word spacing in the hero line is enlarged (`word-spacing: 0.85em`)
-- Implementation lives in `splitflap.js` + `.tile-keep` / `.tile-out` rules in `styles.css` — touch only for bugfixes or explicit mechanism changes
+### On **with** (`/` — current)
+
+- Linked word shows **with** (form-blank underline under it only; the line does not flip)
+- Hover: each letter full **rotateX(-360deg)** around its own horizontal axis
+- Resting look stays; no strikethrough
+- Word spacing in the hero line: `word-spacing: 0.85em`
+
+### Shared / for **without** later
+
+- Hybrid still available in code: **with**-letters spin + **out** split-flap into `#454545` klapki (stagger) — use when the linked word is **without**
+- Implementation: `splitflap.js` + `.tile-keep` / `.tile-out` in `styles.css` — touch only for bugfixes or explicit mechanism changes
