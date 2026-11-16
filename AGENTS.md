@@ -35,6 +35,12 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 - Page background: flat `#FAFAFA` with subtle **paper grain / noise** overlay
 
+## Hero image (with page)
+
+- Waveform image `assets/wave.jpg` on columns **4–6** (`data-col="4" data-span="3"`)
+- Same top offset as the hero line (**340px**)
+- **opacity: 0.33**, `mix-blend-mode: multiply`, behind the text, non-interactive
+
 ## Typography
 
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
