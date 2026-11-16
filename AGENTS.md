@@ -33,7 +33,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 
 ## Surface
 
-- Page background: flat `#FAFAFA` with subtle **paper grain / noise** overlay
+- Page background: near-white `#FDFDFD` with very light **paper grain** (opacity ~0.08)
 
 ## Sound / no|yes label (with page) — leave alone unless asked
 
