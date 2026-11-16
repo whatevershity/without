@@ -42,6 +42,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 - Font: **Oswald** (regular), **12px**
 - Always shows **sound**
 - Under it: **no** while the link shows **with**; **yes** while hovering/focusing (link reads **without**)
+- yes/no: soft crossfade (~420ms) with slight vertical drift + light blur — not a hard cut
 - Non-interactive (`.sound-meta`)
 - Do not move, restyle, or rewrite this block when changing the link flip
 

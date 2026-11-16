@@ -142,31 +142,45 @@ body::before {
 .sound-meta .answer {
   display: grid;
   margin-top: 2px;
+  min-height: 1.2em;
 }
 
 .sound-meta .no,
 .sound-meta .yes {
   grid-area: 1 / 1;
-  transition: opacity 180ms ease;
+  justify-self: center;
+  transition:
+    opacity 420ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 420ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform, filter;
 }
 
-/* Resting (with visible): no. Hover → without: yes */
+/* Resting: no. Hover link → yes (miękki crossfade + lekki ruch) */
 .sound-meta .no {
   opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
 }
 
 .sound-meta .yes {
   opacity: 0;
+  transform: translateY(5px);
+  filter: blur(1.5px);
 }
 
 .hero-grid:has(.without-link:hover) .sound-meta .no,
 .hero-grid:has(.without-link:focus-visible) .sound-meta .no {
   opacity: 0;
+  transform: translateY(-5px);
+  filter: blur(1.5px);
 }
 
 .hero-grid:has(.without-link:hover) .sound-meta .yes,
 .hero-grid:has(.without-link:focus-visible) .sound-meta .yes {
   opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
 }
 
 .line {
@@ -422,6 +436,13 @@ body::before {
   .flip,
   .spin {
     transition: none;
+  }
+
+  .sound-meta .no,
+  .sound-meta .yes {
+    transition: opacity 120ms linear;
+    transform: none !important;
+    filter: none !important;
   }
 
   .without-link:hover .tile-keep .spin,
