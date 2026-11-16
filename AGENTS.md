@@ -34,7 +34,7 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 ## Hero photo — adelka
 
-- `adelka.png` on rows **3–4** (`data-row="3" data-row-span="2"` → through the **5th** horizontal guide, not the 6th), columns **9–12**
+- `adelka2.png` on rows **3–4** (`data-row="3" data-row-span="2"` → through the **5th** horizontal guide, not the 6th), columns **9–12**
 - Image **fills the width of columns 9–12** (`width: 100%`, height auto, no crop); row start 3; do not disturb the locked link when moving this image
 
 ## Surface
