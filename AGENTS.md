@@ -14,7 +14,7 @@ When the user gives durable prototype-specific design feedback, preferences, or 
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
 - Hero line: `wild without frame`
   - Centered horizontally
-  - Vertical position: **1/3 of `100vw`** (`top: calc(100vw / 3)`)
+  - Vertical position: **top 300px** (was previously `100vw / 3`)
   - **without** is a link with a **form-blank underline** under it only — like `imię: ________` (straight 1px rule under the blank, never above)
   - The blank line sits on the link shell and does **not** flip; **only the text** flips down on hover (`rotateX(-180deg)`), revealing **with**
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)

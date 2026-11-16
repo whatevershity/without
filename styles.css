@@ -36,10 +36,10 @@ body {
 
 .line {
   position: absolute;
-  top: calc(100vw / 3);
+  top: 300px;
   left: 50%;
   margin: 0;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: max-content;
   max-width: 100%;
   text-align: center;
