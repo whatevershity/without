@@ -16,4 +16,5 @@ When the user gives durable prototype-specific design feedback, preferences, or 
   - Vertical position: **1/3 of `100vw`** (`top: calc(100vw / 3)`)
   - **without** is a link with a **delicate thin underline** under the word (1px, slight print tilt) — not a thick bar
   - Hover/focus: the link flips **down** around its own horizontal axis (`rotateX(-180deg)`), revealing **with** on the back face — not a sideways (`rotateY`) spin
-  - Type size on `.line`: `clamp(1.35rem, 2.4vw, 2.15rem)` (~21.6px–34.4px; at 1440px viewport ≈ 34.4px / 2.15rem)
+  - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
+  - Link size (smaller on purpose): `clamp(12px, 0.9vw + 0.5rem, 14px)` (~12–14px)
