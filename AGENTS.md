@@ -48,7 +48,7 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 ## Typography
 
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
-- Hero line on **with**: `wild with frame` (linked word = **with**)
+- Hero line on **with**: `wild with frames` (linked word = **with**)
   - Starts flush with **column 3** (`data-col="3" data-span="10"`, left-aligned)
   - Vertical position: **top 190px** inside hero (raised 150px from 340)
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
