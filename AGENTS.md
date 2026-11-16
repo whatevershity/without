@@ -14,6 +14,5 @@ When the user gives durable prototype-specific design feedback, preferences, or 
 - Hero line: `wild without frame`
   - Centered horizontally
   - Vertical position: **1/3 of `100vw`** (`top: calc(100vw / 3)`)
-  - **without** is a link
-  - Underline on **without** / **with** is print-style (thick, slightly skewed/uneven rule), not a default CSS `text-decoration` line
+  - **without** is a link — **no underline / no line under the link**
   - Hover/focus: the link flips **down** around its own horizontal axis (`rotateX(-180deg)`), revealing **with** on the back face — not a sideways (`rotateY`) spin
