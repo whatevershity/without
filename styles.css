@@ -9,8 +9,8 @@
   --cols: 12;
   --flap-ms: 420ms;
   --flap-stagger: 90ms;
-  --tile-w: 0.85em;
-  --tile-h: 1.35em;
+  --tile-w: 1em;
+  --tile-h: 1.05em;
   --guide: rgb(26 26 26 / 14%);
 }
 
@@ -118,7 +118,7 @@ body::before {
 .place[data-col="12"] { grid-column-start: 12; }
 
 .line {
-  margin: 300px 0 0;
+  margin: 360px 0 0;
   justify-self: start;
   width: max-content;
   max-width: 100%;

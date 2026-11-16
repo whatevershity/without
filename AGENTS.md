@@ -26,9 +26,10 @@ Artboard reference: **1440 × 1024** (Figma HERO).
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
 - Hero line: `wild without frame`
   - Starts flush with **column 3** (`data-col="3" data-span="10"`, left-aligned)
-  - Vertical position: **top 300px** inside hero
+  - Vertical position: **top 360px** inside hero (a bit lower than 300px)
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
   - Link size (smaller on purpose): ~13–15px clamp on `.without-link`
+  - Split-flap tiles are near-square (`~1em × 1.05em`), not tall/vertical
 
 ## Link mechanism (reference: split-flap / “pragotron” / tablice klapkowe)
 
