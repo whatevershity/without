@@ -194,6 +194,8 @@ body::before {
   vertical-align: baseline;
   font-size: clamp(13px, 0.95vw + 0.55rem, 15px);
   perspective: 800px;
+  /* stała kreska: trochę dłuższa niż „without” (7 płytek), nie na pół strony */
+  min-width: calc(7 * var(--tile-w) + 6px + 0.55em);
 }
 
 .without-link::after {
@@ -336,38 +338,12 @@ body::before {
   transform: translateY(-50%);
 }
 
-/* —— „out”: ukryte w spoczynku; na hoverze klapki #454545 → litera —— */
-.tile-out {
-  width: 0;
-  overflow: hidden;
-  opacity: 0;
-  box-shadow: none;
-  transition:
-    width 220ms ease,
-    opacity 160ms ease;
-}
-
-.tile-out .hinge {
-  opacity: 0;
-}
-
+/* —— „out”: trzy klapki widoczne od razu (#454545 → litera na hoverze) —— */
 .tile-out .half.is-black,
 .tile-out .flip-face.is-black {
   background: var(--flap-black);
   color: var(--flap-black);
   box-shadow: none;
-}
-
-.without-link:hover .tile-out,
-.without-link:focus-visible .tile-out {
-  width: var(--tile-w);
-  opacity: 1;
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
-}
-
-.without-link:hover .tile-out .hinge,
-.without-link:focus-visible .tile-out .hinge {
-  opacity: 1;
 }
 
 /* —— „with”: obrót litery wokół własnej osi (LOCKED) —— */
@@ -431,16 +407,8 @@ body::before {
   }
 
   .without-link:hover .tile-keep .spin,
-  .without-link:focus-visible .tile-keep .spin,
-  .without-link:hover .tile-out .flip,
-  .without-link:focus-visible .tile-out .flip {
+  .without-link:focus-visible .tile-keep .spin {
     transform: none;
-  }
-
-  .without-link:hover .tile-out,
-  .without-link:focus-visible .tile-out {
-    width: var(--tile-w);
-    opacity: 1;
   }
 
   .without-link:hover .tile-out .half.current,
