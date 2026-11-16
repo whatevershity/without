@@ -20,20 +20,17 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 ## Layout — Hero grid
 
-Artboard reference: **1440 × 1024** (Figma HERO).
-
-- Side margins: **360px** left and right (`--side: 360px`) → content width **720px** at 1440
-- Inside the content area: **12 columns**, numbered **1 → 12 from the left**
-- **12 rows**, numbered **1 → 12 from the top** (`--rows: 12`)
+- Hero section: **100vw × 100vh** (full first viewport; not taller — rows are dense inside)
+- Content inset: **360px** left/right (`--side`) inside the hero
+- **12 columns**, numbered **1 → 12 from the left**
+- **8 rows**, numbered **1 → 8 from the top** (`--rows: 8`) — denser bands within 100vh, not a longer page
 - Gutter between columns: `--gutter: 16px`
-- Thin guide lines + faint numbers: `.col-guides` (columns) and `.row-guides` (rows); placement aids, **not final art** — may be removed later when layout is locked; keep placement via `data-col` / `data-row` so content survives without guides
-- Placement API for items in `.hero-grid`:
-  - `class="place" data-col="N" data-span="S"` → starts at column N, spans S columns
-  - `data-row="R" data-row-span="T"` → starts at row R, spans T rows
-  - Example: `data-col="3" data-span="2"` = columns **3–4**
-  - Example: `data-row="2" data-row-span="1"` = row **2**
-  - User will say e.g. “zdjęcie na kolumnach 2–5” → set `data-col="2" data-span="4"`
-  - User will say e.g. “na rzędzie 3” → set `data-row="3"`
+- Thin guide lines + faint numbers: `.col-guides` / `.row-guides`; placement aids, **not final art** — may be removed later; keep `data-col` / `data-row`
+- Placement API:
+  - `data-col="N" data-span="S"` → column N, span S
+  - `data-row="R" data-row-span="T"` → row R, span T
+  - Example: “zdjęcie na kolumnach 2–5” → `data-col="2" data-span="4"`
+  - Example: “na rzędzie 3” → `data-row="3"`
 
 ## Hero photo — adelka
 

@@ -5,9 +5,9 @@
   --flap-black: #454545;
   --side: 360px;
   --gutter: 16px;
-  --hero-h: 1024px;
+  --hero-h: 100vh;
   --cols: 12;
-  --rows: 12;
+  --rows: 8;
   --flap-ms: 420ms;
   --flap-stagger: 90ms;
   --tile-w: 1em;
@@ -25,6 +25,7 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -53,11 +54,14 @@ body::before {
   min-height: 100vh;
 }
 
-/* —— HERO: 1440 artboard, 360px margins, 12 kolumn w środku —— */
+/* —— HERO: 100vw × 100vh, 12 kolumn + 8 gęstych rzędów —— */
 .hero {
   position: relative;
+  width: 100vw;
+  height: var(--hero-h);
   min-height: var(--hero-h);
-  margin: 0 var(--side);
+  margin: 0;
+  overflow: hidden;
 }
 
 .hero-grid {
@@ -66,8 +70,10 @@ body::before {
   grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
   grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
   column-gap: var(--gutter);
-  min-height: var(--hero-h);
-  align-content: start;
+  height: 100%;
+  min-height: 100%;
+  margin: 0 var(--side);
+  align-content: stretch;
 }
 
 /* Cienkie prowadnice kolumn 1–12 (od lewej) */
@@ -100,7 +106,7 @@ body::before {
   position: relative;
 }
 
-/* Cienkie prowadnice rzędów 1–12 (od góry) */
+/* Cienkie prowadnice rzędów 1–8 (od góry) — gęste w wysokości hero */
 .row-guides {
   position: absolute;
   inset: 0;
@@ -159,7 +165,7 @@ body::before {
 .place[data-row="11"] { grid-row-start: 11; }
 .place[data-row="12"] { grid-row-start: 12; }
 
-/* adelka: rzędy 3–5, do prawej (koniec kol. 12) */
+/* adelka: rzędy 3–4 (do 5. kreski), do prawej (koniec kol. 12) */
 .adelka {
   margin: 0;
   padding: 0;
@@ -528,12 +534,13 @@ body::before {
   :root {
     --side: clamp(24px, 8vw, 360px);
     --gutter: 8px;
-    --hero-h: auto;
+    --hero-h: 100vh;
   }
 
-  .hero,
-  .hero-grid {
-    min-height: 100vh;
+  .hero {
+    width: 100vw;
+    height: var(--hero-h);
+    min-height: var(--hero-h);
   }
 
   .line {
