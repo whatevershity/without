@@ -196,11 +196,10 @@ body::before {
   object-fit: contain;
 }
 
-/* „sound” / no|yes — między kol. 5–6, ~20px nad napisem */
+/* „sound” / no|yes — wyżej, w prawo (kol. 11–12, rząd 1) */
 .sound-meta {
-  grid-row: 1 / -1;
-  margin: 126px 0 0;
-  justify-self: center;
+  margin: 16px 0 0;
+  justify-self: end;
   width: max-content;
   text-align: center;
   font-family: Oswald, "Arial Narrow", Arial, sans-serif;

@@ -45,7 +45,7 @@ Two versions of the site, like a language switch (`pl` / `en`):
 ## Sound / no|yes label (with page) — leave alone unless asked
 
 - No `sound.png` image on the with page (removed)
-- Between columns **5–6** (`data-col="5" data-span="2"`, centered); label top **126px** (above the hero line at 190px)
+- Top-right: columns **11–12**, row **1** (`justify-self: end`, small top margin)
 - Font: **Oswald** (regular), **12px**
 - Always shows **sound**
 - Under it: **no** while the link shows **with**; **yes** while hovering/focusing (link reads **without**)
