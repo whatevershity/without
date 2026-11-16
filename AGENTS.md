@@ -37,6 +37,6 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mec
 
 - **without** is a link with a **form-blank underline** under it only (`imię: ________`); the line does **not** flip
 - Resting **without** stays as-is (do not restyle the word)
-- Hover/focus: **with** stays put; only the **out** ending flaps **down** into pure **black (`#000`) klapki**, one after another (stagger) — no strikethrough, no empty disappearance
+- Hover/focus: **with** stays put; only the **out** ending flaps **down** into **`#454545` klapki**, one after another (stagger) — no strikethrough, no empty disappearance
 - Visible **horizontal hinge seam** on out tiles only (hidden on `with` so it doesn’t look crossed out)
 - Word spacing in the hero line is enlarged (`word-spacing: 0.85em`)
