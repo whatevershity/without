@@ -60,13 +60,15 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — focus on **change mec
 
 **Approved hover — keep intact through later page changes** unless the user explicitly asks to change the mechanism.
 
-### On **with** (`/` — current) — LOCKED
+### On **with** (`/` — current) — LOCKED (do not regress)
+
+Approved hybrid — restore this if broken:
 
 - Resting linked word: **with** (form-blank underline under it only; the line does not flip)
-- **with** letters are **klapki** (square split-flap tiles with hinge) at rest
 - Hover: word becomes **without**
-  - **with** letters: klapka flip (same glyph → same glyph tick)
-  - **out** letters: split-flap in from blank → `o u t` (stagger); tiles collapsed at rest so resting “with” stays clean
+  - **with** letters: full **rotateX(-360deg)** around their own horizontal axis (NOT klapki)
+  - **out** letters: square **klapki** (split-flap) from blank → `o u t` (stagger); collapsed at rest
+- Do not turn **with** into hinge/half flaps — only **out** uses klapki
 - No strikethrough / no blacking-out of letters on this page
 - Word spacing in the hero line: `word-spacing: 0.85em`
 - Link still goes to `/without/`
