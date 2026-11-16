@@ -79,8 +79,28 @@ body {
   transform-style: preserve-3d;
 }
 
+.face-front,
+.face-back {
+  position: relative;
+}
+
 .face-back {
   transform: rotateX(-180deg);
+}
+
+/* Delikatna kreska pod linkiem (cienka, drukarska — nie gruba belka) */
+.face-front::after,
+.face-back::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.06em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.75;
+  transform: rotate(-0.3deg);
+  pointer-events: none;
 }
 
 .without-link:focus-visible {
