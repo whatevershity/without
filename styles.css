@@ -617,21 +617,24 @@ body::before {
 }
 
 /*
-  Lit shout — krzyk przez hałas / światło:
-  duże CAPS, smear jak Neue Pangram, kilka wersji w chaosie —
-  jakbyś chciał przekrzyczeć straszny hałas.
-  Font na start: Clash Display (Fontshare); potem ewentualnie Neue Pangram-like.
+  Lit shout — HEY! zostaje; reszta wchodzi po nim.
+  Pop małe→duże + szybki smear-cień za napisem (zostaje).
+  Pozycja: środek, lekko w prawo. Font: Clash Display na start.
 */
-.lit-shout {
+.hero-grid > .lit-shout {
   position: absolute;
   inset: 0;
   z-index: 3;
   display: grid;
-  place-items: center;
-  padding: 8vh 0;
+  /* środek + z prawej */
+  justify-items: end;
+  align-items: center;
+  padding: 6vh 4% 6vh 18%;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
 }
 
 .page-without.is-lit .lit-shout {
@@ -641,115 +644,80 @@ body::before {
 
 .lit-shout-stack {
   position: relative;
-  width: min(92vw, 14ch);
-  text-align: center;
+  width: min(78vw, 13ch);
+  text-align: right;
+  margin-right: clamp(0px, 6vw, 4rem);
 }
 
-.lit-shout-ghost,
-.lit-shout-lines {
+.lit-shout-hey,
+.lit-shout-rest {
   margin: 0;
   font-family: "Clash Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
-  font-size: clamp(2.6rem, 10vw, 7rem);
+  font-size: clamp(1.6rem, 5.5vw, 3.6rem);
   line-height: 0.92;
   letter-spacing: 0.01em;
   text-transform: uppercase;
   color: #0a0a0a;
 }
 
-.lit-shout-ghost {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-}
-
-.lit-shout-ghost.is-echo {
-  animation: lit-ghost 0.7s ease-out both;
-}
-
-.lit-shout-lines {
-  position: relative;
-  z-index: 1;
-}
-
-.lit-shout-lines.is-shaking {
-  animation: lit-shake 0.28s steps(2, end) infinite;
-}
-
-.lit-shout-lines .lit-line {
+.lit-shout-hey {
   display: block;
+  transform-origin: 85% 50%;
 }
 
-.lit-shout-lines.is-smearing .lit-line {
-  animation: lit-smear 0.48s cubic-bezier(0.12, 0.9, 0.2, 1) both;
-  animation-delay: calc(var(--i, 0) * 40ms);
+.lit-shout-rest {
+  display: block;
+  margin-top: 0.08em;
 }
 
-@keyframes lit-smear {
+.lit-shout-rest .lit-line {
+  display: block;
+  transform-origin: 85% 50%;
+}
+
+/* pop małe→duże + szybki cień/smear za napisem */
+.lit-shout-hey.is-popping,
+.lit-shout-rest.is-popping .lit-line {
+  animation: lit-pop 0.52s cubic-bezier(0.12, 0.9, 0.2, 1) both;
+}
+
+.lit-shout-rest.is-popping .lit-line {
+  animation-delay: calc(var(--i, 1) * 70ms);
+}
+
+@keyframes lit-pop {
   0% {
-    opacity: 0.25;
-    transform: translateX(-14vw) skewX(-12deg) scale(1.06);
-    filter: blur(18px);
+    opacity: 0.3;
+    transform: scale(0.18) skewX(-6deg);
+    filter: blur(12px);
     text-shadow:
-      -64px 0 0 rgb(0 0 0 / 10%),
-      -48px 0 0 rgb(0 0 0 / 14%),
-      -32px 0 0 rgb(0 0 0 / 20%),
-      -16px 0 0 rgb(0 0 0 / 32%),
-      -8px 0 0 rgb(0 0 0 / 45%),
+      -48px 0 0 rgb(0 0 0 / 12%),
+      -36px 0 0 rgb(0 0 0 / 16%),
+      -24px 0 0 rgb(0 0 0 / 22%),
+      -12px 0 0 rgb(0 0 0 / 35%),
+      -6px 0 0 rgb(0 0 0 / 45%),
       10px 0 0 rgb(0 0 0 / 22%),
-      24px 0 0 rgb(0 0 0 / 14%),
-      40px 0 0 rgb(0 0 0 / 8%);
+      22px 0 0 rgb(0 0 0 / 14%),
+      36px 0 0 rgb(0 0 0 / 8%);
   }
-  40% {
+  42% {
     opacity: 1;
-    filter: blur(4px);
+    filter: blur(3px);
     text-shadow:
-      -22px 0 0 rgb(0 0 0 / 22%),
+      -20px 0 0 rgb(0 0 0 / 22%),
       -10px 0 0 rgb(0 0 0 / 28%),
-      14px 0 0 rgb(0 0 0 / 16%);
+      12px 0 0 rgb(0 0 0 / 16%);
   }
   72% {
-    transform: translateX(1.2vw) skewX(2deg) scale(1.01);
-    filter: blur(1px);
+    transform: scale(1.06) skewX(1.5deg);
+    filter: blur(0.6px);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) skewX(0) scale(1);
+    transform: scale(1) skewX(0);
     filter: blur(0);
     text-shadow: none;
-  }
-}
-
-@keyframes lit-shake {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(-0.35vw, 0.15vh) rotate(-0.4deg);
-  }
-  50% {
-    transform: translate(0.4vw, -0.1vh) rotate(0.35deg);
-  }
-  75% {
-    transform: translate(-0.2vw, 0.2vh) rotate(0.2deg);
-  }
-  100% {
-    transform: translate(0.15vw, -0.05vh) rotate(-0.15deg);
-  }
-}
-
-@keyframes lit-ghost {
-  0% {
-    opacity: 0.45;
-    filter: blur(6px);
-    transform: translateX(4vw) scale(1.04);
-  }
-  100% {
-    opacity: 0;
-    filter: blur(18px);
-    transform: translateX(12vw) scale(1.1);
   }
 }
 
@@ -827,9 +795,8 @@ body::before {
     animation: none;
   }
 
-  .lit-shout-lines.is-smearing .lit-line,
-  .lit-shout-lines.is-shaking,
-  .lit-shout-ghost.is-echo {
+  .lit-shout-hey.is-popping,
+  .lit-shout-rest.is-popping .lit-line {
     animation: none;
     filter: none;
     text-shadow: none;

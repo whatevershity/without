@@ -16,95 +16,128 @@
   clickFx.preload = "auto";
   clickFx.volume = 0.7;
 
+  const heyFx = new Audio("../sound/hey.mp3");
+  heyFx.preload = "auto";
+  heyFx.volume = 0.85;
+  /* zwolnione — w sensie dźwięk */
+  heyFx.playbackRate = 0.72;
+  try {
+    heyFx.preservesPitch = false;
+  } catch (_) {}
+
   let lit = false;
   let unlocked = false;
 
-  /* Krzyk przez hałas — jakbyś chciał go trochę przekrzyczeć */
+  /*
+    Krzyk na bieli:
+    HEY! zostaje; reszta wchodzi po nim (pop małe→duże + smear-cień).
+    Pozycja: środek / lekko w prawo.
+  */
   const shoutRoot = document.querySelector(".lit-shout");
-  const shoutLines = document.querySelector(".lit-shout-lines");
-  const shoutGhost = document.querySelector(".lit-shout-ghost");
-  const shoutVariants = [
-    ["HEY, TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"],
+  const shoutHey = document.querySelector(".lit-shout-hey");
+  const shoutRest = document.querySelector(".lit-shout-rest");
+  const restVariants = [
+    ["TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"],
     ["TURN OFF", "THE LIGHT!", "TOO LOUD!"],
-    ["HEY!", "TOO LOUD!", "TURN IT OFF!"],
-    ["THE LIGHT!", "IT'S TOO LOUD!", "HEY!"],
+    ["TOO LOUD!", "TURN IT OFF!"],
+    ["THE LIGHT!", "IT'S TOO LOUD!"],
     ["TURN IT OFF!", "TOO LOUD!", "THE LIGHT!"],
-    ["HEY—", "TOO LOUD!", "TURN IT OFF!"],
-    ["IT'S TOO LOUD!", "HEY!", "THE LIGHT!"],
+    ["IT'S TOO LOUD!", "TURN IT OFF!"],
   ];
   let shoutIndex = 0;
   let shoutTimer = 0;
-  let lastLinesHtml = "";
+  let restTimer = 0;
 
-  const linesToHtml = (lines) =>
+  const linesToHtml = (lines, startI = 0) =>
     lines
-      .map((line, i) => `<span class="lit-line" style="--i:${i}">${line}</span>`)
+      .map(
+        (line, i) =>
+          `<span class="lit-line" style="--i:${startI + i}">${line}</span>`
+      )
       .join("");
 
-  const renderShout = (lines) => {
-    if (!shoutLines) return;
-    if (shoutGhost && lastLinesHtml) {
-      shoutGhost.innerHTML = lastLinesHtml;
-      shoutGhost.classList.remove("is-echo");
-      void shoutGhost.offsetWidth;
-      shoutGhost.classList.add("is-echo");
-    }
-    const html = linesToHtml(lines);
-    lastLinesHtml = html;
-    shoutLines.classList.remove("is-smearing", "is-shaking");
-    shoutLines.innerHTML = html;
-    void shoutLines.offsetWidth;
-    shoutLines.classList.add("is-smearing", "is-shaking");
+  const playHey = () => {
+    heyFx.currentTime = 0;
+    heyFx.playbackRate = 0.72;
+    const p = heyFx.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
+  };
+
+  const renderRest = (lines) => {
+    if (!shoutRest) return;
+    shoutRest.classList.remove("is-popping");
+    shoutRest.innerHTML = linesToHtml(lines, 1);
+    void shoutRest.offsetWidth;
+    shoutRest.classList.add("is-popping");
   };
 
   const nextDelay = () => {
-    /* nierówne tempo — jak krzyczenie przez hałas */
     const roll = Math.random();
-    if (roll < 0.15) return 320 + Math.random() * 180; /* staccato */
-    if (roll < 0.55) return 520 + Math.random() * 280;
-    return 780 + Math.random() * 420;
+    if (roll < 0.15) return 420 + Math.random() * 200;
+    if (roll < 0.55) return 700 + Math.random() * 320;
+    return 980 + Math.random() * 480;
   };
 
-  const scheduleNext = () => {
+  const scheduleRestCycle = () => {
     window.clearTimeout(shoutTimer);
     shoutTimer = window.setTimeout(() => {
-      /* czasem powtórz tę samą frazę — jakby nie dosłyszeli */
-      if (Math.random() > 0.22) {
-        shoutIndex = (shoutIndex + 1 + Math.floor(Math.random() * 2)) % shoutVariants.length;
+      if (Math.random() > 0.2) {
+        shoutIndex =
+          (shoutIndex + 1 + Math.floor(Math.random() * 2)) % restVariants.length;
       }
-      renderShout(shoutVariants[shoutIndex]);
-      scheduleNext();
+      renderRest(restVariants[shoutIndex]);
+      scheduleRestCycle();
     }, nextDelay());
   };
 
   const stopShout = () => {
     window.clearTimeout(shoutTimer);
+    window.clearTimeout(restTimer);
     shoutTimer = 0;
-    lastLinesHtml = "";
+    restTimer = 0;
+    heyFx.pause();
+    heyFx.currentTime = 0;
     if (shoutRoot) shoutRoot.setAttribute("aria-hidden", "true");
-    if (shoutLines) {
-      shoutLines.classList.remove("is-smearing", "is-shaking");
-      shoutLines.innerHTML = "";
+    if (shoutHey) {
+      shoutHey.classList.remove("is-popping");
+      shoutHey.textContent = "";
     }
-    if (shoutGhost) {
-      shoutGhost.classList.remove("is-echo");
-      shoutGhost.innerHTML = "";
+    if (shoutRest) {
+      shoutRest.classList.remove("is-popping");
+      shoutRest.innerHTML = "";
     }
   };
 
   const startShout = () => {
-    if (!shoutRoot || !shoutLines) return;
+    if (!shoutRoot || !shoutHey || !shoutRest) return;
     shoutRoot.setAttribute("aria-hidden", "false");
     shoutIndex = 0;
-    lastLinesHtml = "";
-    renderShout(shoutVariants[0]);
-    scheduleNext();
+
+    /* 1) HEY! — zostaje; dźwięk zwolniony */
+    shoutHey.classList.remove("is-popping");
+    shoutHey.textContent = "HEY!";
+    void shoutHey.offsetWidth;
+    shoutHey.classList.add("is-popping");
+    playHey();
+
+    /* 2) reszta wchodzi po nim */
+    shoutRest.innerHTML = "";
+    shoutRest.classList.remove("is-popping");
+    window.clearTimeout(restTimer);
+    restTimer = window.setTimeout(() => {
+      renderRest(restVariants[0]);
+      scheduleRestCycle();
+    }, 520);
   };
 
-  /* Im niżej scroll, tym dalej / ciszej lampa — miejsce na inne dźwięki */
+  /* Im niżej scroll, tym dalej / ciszej lampa — na bieli wycisz */
   const fadeRange = () => Math.max(window.innerHeight * 0.9, 420);
 
   const updateSwayDistance = () => {
+    if (lit) {
+      sway.volume = 0;
+      return;
+    }
     const t = Math.min(1, Math.max(0, window.scrollY / fadeRange()));
     const gain = (1 - t) * (1 - t);
     sway.volume = SWAY_VOL_MAX * gain;
@@ -136,6 +169,7 @@
     clickFx.currentTime = 0;
     const p = clickFx.play();
     if (p && typeof p.catch === "function") p.catch(() => {});
+    updateSwayDistance();
     if (on) startShout();
     else stopShout();
   };
@@ -180,6 +214,7 @@
   btn.setAttribute("aria-pressed", lit ? "true" : "false");
   btn.classList.toggle("is-on", lit);
   document.body.classList.toggle("is-lit", lit);
+  updateSwayDistance();
   if (lit) startShout();
   else stopShout();
 })();

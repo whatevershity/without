@@ -107,8 +107,9 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 - Acts as a **light switch** on `/without/` (does **not** navigate between pages)
 - Sways harder: **right→left in 2s**, back in 2s (full **4s**); creak on each side (~every 2s); **keeps swaying on hover/click**; no lamp2 image swap
 - Sound (`sound/`):
-  - `lamp-swaying.mp3` — loop on enter; keeps playing on hover; **volume falls with scroll** (farther = quieter, room for other sounds)
+  - `lamp-swaying.mp3` — loop on enter; keeps playing on hover; **volume falls with scroll**; **muted while lit (white)**
   - `lamp-switch.mp3` — plays on dark↔light (and back)
+  - `hey.mp3` — plays (slowed) when **HEY!** pops on lit
   - may need first gesture if autoplay blocked
 - State: `aria-pressed` + `body.is-lit` via `lamp.js`; lit uses hash `#lit` so browser **Back** returns to dark `/without/`, not to **with**
 - Do not change the locked tytuł flap when editing the lamp
@@ -120,11 +121,11 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
 - Lit ≈ sensory overload: light bursting from mid-hero via `clip-path` + **glowing** `radial-gradient` / inset `box-shadow` wash; tytuł/opcje/guides fade
 - Lamp art stays **`lamp.png`**, visible and clickable (never under the wash)
 - Flood has `pointer-events: none` so the second click always reaches the lamp
-- On lit: **shout** copy (EN), all caps, large — *“Hey, turn off the light! It’s too loud!”* in 2–3 lines
-  - Dynamic: several variants cycle (~0.9s) with **horizontal smear / blur** entrance (krzyk przez hałas)
-  - Font for now: **Clash Display** Bold (Fontshare); may swap later (Neue Pangram–like)
-  - Lamp stays above the shout
+- On lit: **shout** (EN), caps, smaller Clash Display — **HEY!** stays; other lines enter after it
+  - Entrance: **pop small→large** + keep the **fast smear/shadow trail** behind the type
+  - Placement: center-right in the hero
+  - Rest lines cycle chaotically after HEY; `hey.mp3` (slowed) on HEY
+  - Lamp stays above the shout; sway audio muted on white
 - Only way back: click lamp → darkness
 - Tone: empathy for sensory overload / light+noise; site is about that experience
-- Sound may reinforce on/off later
 
