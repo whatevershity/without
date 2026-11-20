@@ -570,9 +570,8 @@ body::before {
 }
 
 /*
-  Lampa — switch na /without/.
-  Click: lamp → lamp2 + światło wychodzi szybko ze środka hero.
-  Lampa zawsze nad światłem (nie bieleje, klikalna żeby zgasić).
+  Lampa — switch na /without/ (tylko lamp.png).
+  Click: światło ze środka hero. Lampa zostaje nad światłem (klikalna).
 */
 .page-without .hero {
   overflow: visible;
@@ -649,63 +648,13 @@ body::before {
   transform-origin: top center;
 }
 
-.lamp-switch img {
+.lamp-switch .lamp {
   display: block;
+  width: 78px;
+  height: auto;
   max-width: none;
   pointer-events: none;
   user-select: none;
-}
-
-.lamp-off {
-  position: relative;
-  width: 78px;
-  height: auto;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 180ms ease, visibility 180ms ease;
-}
-
-.lamp-on {
-  position: absolute;
-  top: 0;
-  /* wychodzi w stronę kolumny 2 */
-  right: 0;
-  width: 93px;
-  height: auto;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 180ms ease, visibility 180ms ease;
-}
-
-/* Hover: podgląd lamp2. Click/is-lit: obrót razem ze światłem (zostaje). */
-.lamp-switch:hover .lamp-off,
-.lamp-switch:focus-visible .lamp-off,
-.page-without.is-lit .lamp-off {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.lamp-switch:hover .lamp-on,
-.lamp-switch:focus-visible .lamp-on,
-.page-without.is-lit .lamp-on {
-  opacity: 1;
-  visibility: visible;
-}
-
-.page-without.is-lit .lamp-face {
-  animation: lamp-turn 0.36s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-@keyframes lamp-turn {
-  from {
-    transform: rotate(0deg);
-  }
-  40% {
-    transform: rotate(-14deg);
-  }
-  to {
-    transform: rotate(-4deg);
-  }
 }
 
 /* Idle: lekki sway + pulse — jedyna podpowiedź „kliknij mnie” */

@@ -103,9 +103,8 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 
 ## Lamp switch (only on **without**)
 
-- Asset: `lamp.png` (rest) / `lamp2.png` (hover + pressed) — hangs from **top edge**, ~**column 3**
+- Asset: **`lamp.png` only** (no lamp2 swap) — hangs from **top edge**, ~**column 3**
 - Acts as a **light switch** on `/without/` (does **not** navigate between pages)
-- Hover / pressed: show `lamp2`, may overhang toward **column 2**
 - Idle (before click): noticeable sway (~±2–3°) + brightness pulse — only affordance on the page; sound TBD
 - State: `aria-pressed` + `body.is-lit` via `lamp.js`
 - Do not change the locked tytuł flap when editing the lamp
@@ -115,7 +114,7 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-path` circle, `body.is-lit`) — not navigation. Hover does **not** flood.
 
 - Lit ≈ sensory overload: white expanding quickly from mid-hero; tytuł/opcje/guides fade
-- Lamp **turns to lamp2 with the light**, stays visible and clickable (never under the wash)
+- Lamp art stays **`lamp.png`**, visible and clickable (never under the wash)
 - Flood has `pointer-events: none` so the second click always reaches the lamp
 - Copy TBD (PL draft: *„hej, zgaś to światło nie mogę się skupić”*; **EN later**)
 - Only way back: click lamp → darkness
