@@ -50,7 +50,7 @@ Two versions of the site, like a language switch (`pl` / `en`):
 |-----------|------|--------|
 | **tytuł** | `wild with frames` (link flap) | `.line` |
 | **opcje** | `sound` · `interactive` · `story` | `.status-label` |
-| **wybór** | `no`/`yes`/`who know` under each option | `.status-answer` (`.rest` / `.hover`) |
+| **wybór** | `no`/`yes`/`who knows` under each option | `.status-answer` (`.rest` / `.hover`) |
 
 Use these names in chat and notes when talking about spacing or copy.
 
@@ -63,8 +63,8 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 - Gap **opcje → wybór**: within each column (`gap` ~0.7em)
 - Opcje always visible; wybór crossfades on link hover
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
-- **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who know**
-- **On without** (`/without/`, later): rest **yes** / **yes** / **who know** → hover/focus (link reads **with**) **no** / **no** / **yes**
+- **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**
+- **On without** (`/without/`, later): rest **yes** / **yes** / **who knows** → hover/focus (link reads **with**) **no** / **no** / **yes**
 
 ## Typography
 

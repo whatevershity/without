@@ -190,7 +190,7 @@ body::before {
 /*
   Opcje + wybór (pod tytułem) — crossfade jak dawny sound (no↔yes):
   opacity + lekki drift + blur ~420ms. Kolumny ze staggerem (--i).
-  On with: rest no/no/yes → hover yes/yes/who know
+  On with: rest no/no/yes → hover yes/yes/who knows
 */
 .status-meta {
   display: grid;
