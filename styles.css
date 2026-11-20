@@ -446,6 +446,14 @@ body::before {
   box-shadow: none;
 }
 
+/*
+  WITHOUT: rest pokazuje litery o u t — bez kreski/hinge (jak settled letters).
+  Hover (→ with) używa tego samego flipu co locked mechanizm.
+*/
+.page-without .tile-out .hinge {
+  opacity: 0;
+}
+
 /* —— „with”: obrót litery wokół własnej osi (LOCKED) —— */
 .spin {
   position: absolute;

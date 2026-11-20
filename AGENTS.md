@@ -10,13 +10,12 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 | Path | Variant | Role |
 |------|---------|------|
-| `/` (`index.html`) | **with** | **Default.** Static. Build this first. |
-| `/without/` (`without/index.html`) | **without** | Motion, sound, more unease. Stub only for now — fill in later. |
+| `/` (`index.html`) | **with** | **Default.** Static. |
+| `/without/` (`without/index.html`) | **without** | Mirror layout; later: motion, sound, more unease. |
 
-- On **with** (`/`), the linked word reads **with** (not “without”) and points to `/without/` — click to switch variant
-- On **without** (later): linked word will read **without** and point back to `/`
-- Do not invent without content until the user asks
-- When changing the page later, keep the locked link hover intact
+- On **with** (`/`): linked word reads **with**, points to `/without/`
+- On **without** (`/without/`): linked word reads **without**, points to `/`
+- Same dark hero, tytuł / opcje / wybór; keep the locked link *mechanism* (reuse via inverted `data-from` / `data-to`, do not rewrite `splitflap.js`)
 
 ## Layout — Hero grid
 
@@ -64,7 +63,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 - Opcje always visible; wybór crossfades on link hover
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**
-- **On without** (`/without/`, later): rest **yes** / **yes** / **who knows** → hover/focus (link reads **with**) **no** / **no** / **yes**
+- **On without** (`/without/`): rest **yes** / **yes** / **who knows** → hover/focus (link reads **with**) **no** / **no** / **yes**
 
 ## Typography
 
@@ -85,10 +84,20 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 
 ### On **with** (`/` — current) — frozen
 
-- Resting: **with** + **three visible out klapki** (`#454545`)
+- Resting: **with** + **three visible out klapki** (blank light flaps)
 - Hover reads **without**:
   - **with**: **rotateX(-360deg)** on own axis
-  - **out**: klapki **`#454545` → `o u t`** (stagger); after settle, letters are clean (no hinge / no strikethrough look)
+  - **out**: klapki **blank → `o u t`** (stagger); after settle, letters are clean (no hinge / no strikethrough look)
 - Underline fixed, a bit longer than “without”
 - Link → `/without/`
 - Leave `.status-meta` alone when changing the link flip unless asked
+
+### On **without** (`/without/`)
+
+- Resting: **without** (letters `o u t` clean — hinge hidden at rest via `.page-without`)
+- Hover reads **with**:
+  - **with** tiles: same **rotateX(-360deg)**
+  - **out**: letters **`o u t` → blank** (same flip CSS; inverted `data-from` / `data-to`)
+- Link → `/`
+- Wybór inverted (see above)
+- Motion / sound / unease extras — later; do not invent until asked
