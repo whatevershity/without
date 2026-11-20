@@ -569,7 +569,99 @@ body::before {
   outline-offset: 4px;
 }
 
+/*
+  Lampa — switch na /without/ (kol. 3, od górnej krawędzi).
+  Rest: lamp.png + delikatny sway/pulse. Hover + włączona: lamp2 (w stronę kol. 2).
+*/
+.page-without .hero {
+  overflow: visible;
+}
+
+.lamp-switch {
+  align-self: start;
+  justify-self: center;
+  z-index: 4;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  width: 78px;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lamp-switch:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.lamp-face {
+  position: relative;
+  display: block;
+  width: 78px;
+  transform-origin: top center;
+}
+
+.lamp-switch img {
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.lamp-off {
+  position: relative;
+  width: 78px;
+  height: auto;
+  transition: opacity 220ms ease;
+}
+
+.lamp-on {
+  position: absolute;
+  top: 0;
+  /* wychodzi w stronę kolumny 2 */
+  right: 0;
+  width: 93px;
+  height: auto;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.lamp-switch:hover .lamp-off,
+.lamp-switch:focus-visible .lamp-off,
+.lamp-switch[aria-pressed="true"] .lamp-off {
+  opacity: 0;
+}
+
+.lamp-switch:hover .lamp-on,
+.lamp-switch:focus-visible .lamp-on,
+.lamp-switch[aria-pressed="true"] .lamp-on {
+  opacity: 1;
+}
+
+/* Idle: lekki sway + pulse — jedyna podpowiedź „kliknij mnie” */
+@keyframes lamp-call {
+  0%,
+  100% {
+    transform: rotate(0.55deg);
+    filter: brightness(1);
+  }
+  50% {
+    transform: rotate(-0.85deg);
+    filter: brightness(1.22);
+  }
+}
+
+.page-without:not(.is-lit) .lamp-switch:not(:hover):not(:focus-visible) .lamp-face {
+  animation: lamp-call 3.4s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .page-without:not(.is-lit) .lamp-switch:not(:hover):not(:focus-visible) .lamp-face {
+    animation: none;
+  }
+
   .flip,
   .spin {
     transition: none;

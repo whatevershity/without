@@ -100,4 +100,12 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
   - **out**: letters **`o u t` → blank** (same flip CSS; inverted `data-from` / `data-to`)
 - Link → `/`
 - Wybór inverted (see above)
-- Motion / sound / unease extras — later; do not invent until asked
+
+## Lamp switch (only on **without**)
+
+- Asset: `lamp.png` (rest) / `lamp2.png` (hover + pressed) — hangs from **top edge**, ~**column 3**
+- Acts as a **light switch** on `/without/` (does **not** navigate between pages)
+- Hover / pressed: show `lamp2`, may overhang toward **column 2**
+- Idle (before click): delicate sway + brightness pulse — only affordance on the page
+- State: `aria-pressed` + `body.is-lit` via `lamp.js` — destination link TBD (user will provide)
+- Do not change the locked tytuł flap when editing the lamp

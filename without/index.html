@@ -14,7 +14,7 @@
       href="https://api.fontshare.com/v2/css?f[]=synonym@400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css?v=without-flat-rest2" />
+    <link rel="stylesheet" href="../styles.css?v=without-lamp1" />
   </head>
   <body class="page-without">
     <main class="page">
@@ -22,6 +22,7 @@
         WITHOUT variant — ten sam hero co with.
         Tytuł: rest without → hover with. Link → /.
         Wybór: rest yes/yes/who knows → hover no/no/yes.
+        Lampa: switch światła (zostaje na /without/).
       -->
       <section class="hero" aria-label="Hero">
         <div class="hero-grid">
@@ -49,6 +50,21 @@
             <span data-n="7"></span>
             <span data-n="8"></span>
           </div>
+
+          <button
+            type="button"
+            class="lamp-switch place"
+            data-col="3"
+            data-span="1"
+            data-row="1"
+            aria-pressed="false"
+            aria-label="Light"
+          >
+            <span class="lamp-face">
+              <img class="lamp-off" src="../lamp.png" width="78" height="309" alt="" />
+              <img class="lamp-on" src="../lamp2.png" width="93" height="368" alt="" />
+            </span>
+          </button>
 
           <div
             class="hero-stack place"
@@ -103,5 +119,6 @@
     </main>
     <script src="../splitflap.js"></script>
     <script src="../grid.js"></script>
+    <script src="../lamp.js"></script>
   </body>
 </html>
