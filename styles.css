@@ -670,12 +670,12 @@ body::before {
   }
 }
 
-.page-without:not(.is-lit) .lamp-switch:not(:hover):not(:focus-visible) .lamp-face {
+.lamp-switch .lamp-face {
   animation: lamp-call 2.8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-without:not(.is-lit) .lamp-switch:not(:hover):not(:focus-visible) .lamp-face {
+  .lamp-switch .lamp-face {
     animation: none;
   }
 
