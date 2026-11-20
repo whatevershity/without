@@ -188,7 +188,7 @@ body::before {
 }
 
 /*
-  Status meta — dokładny crossfade jak dawny sound (no↔yes):
+  Opcje + wybór (pod tytułem) — crossfade jak dawny sound (no↔yes):
   opacity + lekki drift + blur ~420ms. Kolumny ze staggerem (--i).
   On with: rest no/no/yes → hover yes/yes/who know
 */
@@ -196,7 +196,7 @@ body::before {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem 2.25rem;
-  margin-top: 1.75rem;
+  margin-top: 3.25rem;
   width: max-content;
   max-width: 100%;
   text-align: center;

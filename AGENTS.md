@@ -44,12 +44,24 @@ Two versions of the site, like a language switch (`pl` / `en`):
 - Blank out-klapki use the same light flap tone (not dark panels on dark bg)
 - Soft grain via `soft-light`
 
-## Status meta (sound / interactive / story)
+## Naming — tytuł / opcje / wybór
 
-Exact same crossfade as the old sound yes/no: two stacked answers, opacity + slight vertical drift + light blur ~420ms. Columns one after another (`--i` × `--status-stagger` ~320ms) — not all at once.
+| Name (PL) | What | Markup |
+|-----------|------|--------|
+| **tytuł** | `wild with frames` (link flap) | `.line` |
+| **opcje** | `sound` · `interactive` · `story` | `.status-label` |
+| **wybór** | `no`/`yes`/`who know` under each option | `.status-answer` (`.rest` / `.hover`) |
 
-- Placement: under the hero line, centered in the hero stack (cols **5–8**), smaller than the line (**Roboto** ~11px)
-- Labels always: `sound` · `interactive` · `story`
+Use these names in chat and notes when talking about spacing or copy.
+
+## Opcje + wybór (status meta)
+
+Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, opacity + slight vertical drift + light blur ~420ms. Columns one after another (`--i` × `--status-stagger` ~320ms) — not all at once.
+
+- Placement: under the **tytuł**, centered in the hero stack (cols **5–8**), smaller (**Roboto** ~11px)
+- Gap **tytuł → opcje**: larger (`margin-top` ~3.25rem on `.status-meta`)
+- Gap **opcje → wybór**: within each column (`gap` ~0.7em)
+- Opcje always visible; wybór crossfades on link hover
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who know**
 - **On without** (`/without/`, later): rest **yes** / **yes** / **who know** → hover/focus (link reads **with**) **no** / **no** / **yes**
@@ -57,9 +69,8 @@ Exact same crossfade as the old sound yes/no: two stacked answers, opacity + sli
 ## Typography
 
 - Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
-- Hero line on **with**: `wild with frames` (linked word = **with**)
-  - Starts flush with **column 3** (`data-col="3" data-span="10"`, left-aligned)
-  - Vertical position: **top 190px** inside hero (raised 150px from 340)
+- **Tytuł** on **with**: `wild with frames` (linked word = **with**)
+  - Centered in hero stack (cols **5–8**)
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
   - Link size (smaller on purpose): ~13–15px clamp on `.without-link`
   - Split-flap tiles are near-square (`~1em × 1.05em`), not tall/vertical
