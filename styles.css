@@ -570,39 +570,63 @@ body::before {
 }
 
 /*
-  Lampa — switch na /without/ (kol. 3, od górnej krawędzi).
-  Rest: lamp.png + sway. Hover: lamp2. Click (is-lit): biel/światło; lampa zostaje na wierzchu.
+  Lampa — switch na /without/.
+  Click: lamp → lamp2 + światło wychodzi szybko ze środka hero.
+  Lampa zawsze nad światłem (nie bieleje, klikalna żeby zgasić).
 */
 .page-without .hero {
   overflow: visible;
 }
 
-.light-flood {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  pointer-events: none;
+.page-without.is-lit {
+  background-color: #fafafa;
+}
+
+.page-without.is-lit::before {
   opacity: 0;
-  visibility: hidden;
-  background:
-    radial-gradient(ellipse 75% 60% at 22% 0%, #ffffff 0%, #f5f5f5 42%, #ebebeb 100%);
-  box-shadow: inset 0 0 100px rgb(255 252 220 / 40%);
+}
+
+.light-flood {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: #ffffff;
+  clip-path: circle(0% at 50% 50%);
+  opacity: 0;
   transition:
-    opacity 480ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 480ms linear;
+    clip-path 0.36s cubic-bezier(0.15, 0.85, 0.25, 1),
+    opacity 0.12s ease;
 }
 
 .page-without.is-lit .light-flood {
+  clip-path: circle(165% at 50% 50%);
   opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+}
+
+.page-without .hero-grid {
+  z-index: 2;
+}
+
+.page-without .col-guides,
+.page-without .row-guides,
+.page-without .hero-stack {
+  transition: opacity 0.22s ease;
+}
+
+.page-without.is-lit .col-guides,
+.page-without.is-lit .row-guides,
+.page-without.is-lit .hero-stack {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .lamp-switch {
   align-self: start;
   justify-self: center;
   position: relative;
-  z-index: 50;
+  z-index: 10;
+  isolation: isolate;
   margin: 0;
   padding: 0;
   border: 0;
@@ -638,7 +662,7 @@ body::before {
   height: auto;
   opacity: 1;
   visibility: visible;
-  transition: opacity 220ms ease, visibility 220ms ease;
+  transition: opacity 180ms ease, visibility 180ms ease;
 }
 
 .lamp-on {
@@ -650,13 +674,12 @@ body::before {
   height: auto;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 220ms ease, visibility 220ms ease;
+  transition: opacity 180ms ease, visibility 180ms ease;
 }
 
+/* Hover: podgląd lamp2. Click/is-lit: obrót razem ze światłem (zostaje). */
 .lamp-switch:hover .lamp-off,
 .lamp-switch:focus-visible .lamp-off,
-.lamp-switch.is-on .lamp-off,
-.lamp-switch[aria-pressed="true"] .lamp-off,
 .page-without.is-lit .lamp-off {
   opacity: 0;
   visibility: hidden;
@@ -664,11 +687,25 @@ body::before {
 
 .lamp-switch:hover .lamp-on,
 .lamp-switch:focus-visible .lamp-on,
-.lamp-switch.is-on .lamp-on,
-.lamp-switch[aria-pressed="true"] .lamp-on,
 .page-without.is-lit .lamp-on {
   opacity: 1;
   visibility: visible;
+}
+
+.page-without.is-lit .lamp-face {
+  animation: lamp-turn 0.36s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes lamp-turn {
+  from {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-14deg);
+  }
+  to {
+    transform: rotate(-4deg);
+  }
 }
 
 /* Idle: lekki sway + pulse — jedyna podpowiedź „kliknij mnie” */

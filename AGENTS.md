@@ -112,10 +112,11 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 
 ### Joke / sensory concept (autism experience)
 
-Clicking the lamp **floods the page with light** (`.light-flood` via `body.is-lit`) — not navigation. Hover does **not** flood.
+Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-path` circle, `body.is-lit`) — not navigation. Hover does **not** flood.
 
-- Lit ≈ sensory overload: white / soft glow wash
-- **Lamp stays visible on top** of the flood (not whitened) so the user can click again to turn it off
+- Lit ≈ sensory overload: white expanding quickly from mid-hero; tytuł/opcje/guides fade
+- Lamp **turns to lamp2 with the light**, stays visible and clickable (never under the wash)
+- Flood has `pointer-events: none` so the second click always reaches the lamp
 - Copy TBD (PL draft: *„hej, zgaś to światło nie mogę się skupić”*; **EN later**)
 - Only way back: click lamp → darkness
 - Tone: empathy for light sensitivity / focus; site is about that experience
