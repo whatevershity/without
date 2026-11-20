@@ -200,7 +200,7 @@ body::before {
   width: max-content;
   max-width: 100%;
   text-align: center;
-  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 11px;
   letter-spacing: 0.08em;

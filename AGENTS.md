@@ -48,7 +48,7 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 Exact same crossfade as the old sound yes/no: two stacked answers, opacity + slight vertical drift + light blur ~420ms. Columns one after another (`--i` × `--status-stagger` ~320ms) — not all at once.
 
-- Placement: under the hero line, centered in the hero stack (cols **5–8**), smaller than the line (**Lato** ~11px)
+- Placement: under the hero line, centered in the hero stack (cols **5–8**), smaller than the line (**Roboto** ~11px)
 - Labels always: `sound` · `interactive` · `story`
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who know**
