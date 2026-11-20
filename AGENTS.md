@@ -58,7 +58,7 @@ Use these names in chat and notes when talking about spacing or copy.
 
 Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, opacity + slight vertical drift + light blur ~420ms. Columns one after another (`--i` × `--status-stagger` ~320ms) — not all at once.
 
-- Placement: under the **tytuł**, centered in the hero stack (cols **5–8**), smaller (**Roboto** ~11px)
+- Placement: under the **tytuł**, centered in the hero stack (cols **5–8**), smaller (**Synonym Regular** ~11px, [Fontshare](https://www.fontshare.com/fonts/synonym))
 - Gap **tytuł → opcje**: larger (`margin-top` ~3.25rem on `.status-meta`)
 - Gap **opcje → wybór**: within each column (`gap` ~0.7em)
 - Opcje always visible; wybór crossfades on link hover
