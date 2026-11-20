@@ -105,7 +105,7 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 
 - Asset: **`lamp.png` only** (no lamp2 swap) — hangs from **top edge**, ~**column 3**
 - Acts as a **light switch** on `/without/` (does **not** navigate between pages)
-- Sways (~±5–6°, **~3.6s** cycle); **pauses on hover**; no lamp2 image swap
+- Sways harder: **right→left in 2s**, back in 2s (full **4s**); creak on each side (~every 2s); **pauses on hover**; no lamp2 image swap
 - Sound (`sound/`):
   - `lamp-swaying.mp3` — loop on enter; pauses with hover
   - `lamp-switch.mp3` — plays on dark↔light (and back)

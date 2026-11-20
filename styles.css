@@ -659,8 +659,8 @@ body::before {
   display: block;
   width: 78px;
   transform-origin: top center;
-  /* szybciej niż pełna długość mp3 — audio zostaje w loop */
-  animation: lamp-call 3.6s ease-in-out infinite;
+  /* 2s prawa→lewa, 2s lewa→prawa; dźwięk co ~2s na krańcach */
+  animation: lamp-call 4s ease-in-out infinite;
 }
 
 .lamp-switch:hover .lamp-face,
@@ -679,15 +679,15 @@ body::before {
   user-select: none;
 }
 
-/* Sway + pulse — dopasowane do lamp-swaying.mp3 */
+/* mocniej: prawa (+) → lewa (−) w 2s, z powrotem w 2s */
 @keyframes lamp-call {
   0%,
   100% {
-    transform: rotate(4.5deg);
+    transform: rotate(9deg);
     filter: brightness(1);
   }
   50% {
-    transform: rotate(-6.5deg);
+    transform: rotate(-11deg);
     filter: brightness(1.28);
   }
 }
