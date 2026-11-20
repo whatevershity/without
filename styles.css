@@ -167,109 +167,86 @@ body::before {
 .place[data-row="11"] { grid-row-start: 11; }
 .place[data-row="12"] { grid-row-start: 12; }
 
-/* Zdjęcie od 3. linii (środek); napis 10px nad zdjęciem — bez zmian w linku */
+/* Środek: linia + status (sound / interactive / story) */
 .hero-stack {
   position: relative;
   align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   z-index: 2;
 }
 
 .hero-stack .line {
-  position: absolute;
-  left: 0;
-  bottom: 100%;
-  margin: 0 0 10px;
+  position: static;
+  margin: 0;
   grid-row: auto;
   justify-self: auto;
-}
-
-.adelka {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow: visible;
-}
-
-.adelka img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* „sound” / no|yes — wyżej, w prawo (kol. 11–12, rząd 1) */
-.sound-meta {
-  margin: 16px 0 0;
-  justify-self: end;
-  width: max-content;
   text-align: center;
-  font-family: Oswald, "Arial Narrow", Arial, sans-serif;
+}
+
+/*
+  Status meta — ten sam mechanizm co dawny sound (opacity + drift + blur).
+  Rest: same etykiety. Hover linku: odpowiedzi kolejno (stagger).
+  with → yes / yes / who know | without → no / no / yes
+*/
+.status-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem 2.25rem;
+  margin-top: 1.75rem;
+  width: max-content;
+  max-width: 100%;
+  text-align: center;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
   text-transform: lowercase;
   color: var(--ink);
-  z-index: 2;
   pointer-events: none;
 }
 
-.sound-meta .sound-word {
+.status-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  min-width: 4.5em;
+}
+
+.status-label {
   display: block;
 }
 
-.sound-meta .answer {
-  display: grid;
-  margin-top: 2px;
-  min-height: 1.2em;
-}
-
-.sound-meta .no,
-.sound-meta .yes {
-  grid-area: 1 / 1;
-  justify-self: center;
+.status-answer {
+  display: block;
+  min-height: 1.25em;
+  opacity: 0;
+  transform: translateY(5px);
+  filter: blur(1.5px);
   transition:
     opacity 420ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
     filter 420ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
   will-change: opacity, transform, filter;
 }
 
-/* Resting: no. Hover link → yes (miękki crossfade + lekki ruch) */
-.sound-meta .no {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
-
-.sound-meta .yes {
-  opacity: 0;
-  transform: translateY(5px);
-  filter: blur(1.5px);
-}
-
-.hero-grid:has(.without-link:hover) .sound-meta .no,
-.hero-grid:has(.without-link:focus-visible) .sound-meta .no {
-  opacity: 0;
-  transform: translateY(-5px);
-  filter: blur(1.5px);
-}
-
-.hero-grid:has(.without-link:hover) .sound-meta .yes,
-.hero-grid:has(.without-link:focus-visible) .sound-meta .yes {
+.hero-grid:has(.without-link:hover) .status-answer,
+.hero-grid:has(.without-link:focus-visible) .status-answer {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
 .line {
-  grid-row: 1 / -1;
-  margin: 190px 0 0;
-  justify-self: start;
+  margin: 0;
   width: max-content;
   max-width: 100%;
-  text-align: left;
+  text-align: center;
   font-size: clamp(14px, 1.05vw + 0.55rem, 16px);
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -522,9 +499,9 @@ body::before {
     transition: none;
   }
 
-  .sound-meta .no,
-  .sound-meta .yes {
+  .status-answer {
     transition: opacity 120ms linear;
+    transition-delay: 0ms;
     transform: none !important;
     filter: none !important;
   }

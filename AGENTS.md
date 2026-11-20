@@ -44,16 +44,15 @@ Two versions of the site, like a language switch (`pl` / `en`):
 - Blank out-klapki use the same light flap tone (not dark panels on dark bg)
 - Soft grain via `soft-light`
 
-## Sound / no|yes label (with page) — leave alone unless asked
+## Status meta (sound / interactive / story)
 
-- No `sound.png` image on the with page (removed)
-- Top-right: columns **11–12**, row **1** (`justify-self: end`, small top margin)
-- Font: **Oswald** (regular), **12px**
-- Always shows **sound**
-- Under it: **no** while the link shows **with**; **yes** while hovering/focusing (link reads **without**)
-- yes/no: soft crossfade (~420ms) with slight vertical drift + light blur — not a hard cut
-- Non-interactive (`.sound-meta`)
-- Do not move, restyle, or rewrite this block when changing the link flip
+Same soft motion as the old sound yes/no (opacity + slight vertical drift + light blur ~420ms), answers stagger in (`--i` × 90ms).
+
+- Placement: under the hero line, centered in the hero stack (cols **5–8**), smaller than the line (**Lato** ~11px)
+- Rest: **labels only** — `sound` · `interactive` · `story` — no answers
+- Non-interactive (`.status-meta`); do not change link flap markup when editing this
+- **On with** (`/`): hover/focus (link reads **without**) → answers appear in order: **yes** / **yes** / **who know**
+- **On without** (`/without/`, later): hover/focus (link reads **with**) → **no** / **no** / **yes**
 
 ## Typography
 
@@ -81,4 +80,4 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
   - **out**: klapki **`#454545` → `o u t`** (stagger); after settle, letters are clean (no hinge / no strikethrough look)
 - Underline fixed, a bit longer than “without”
 - Link → `/without/`
-- Also leave `.sound-meta` alone unless asked
+- Leave `.status-meta` alone when changing the link flip unless asked
