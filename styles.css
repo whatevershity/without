@@ -447,9 +447,20 @@ body::before {
 }
 
 /*
-  WITHOUT rest: pełna litera na wierzchu (bez szwu half/flip/hinge).
-  Hover: zdejmij pokrycie — działa locked flip o/u/t → blank.
+  WITHOUT rest: spłaszcz tile + ukryj half/flip/hinge, pokaż czystą literę.
+  (preserve-3d przebijało zwykły ::after/z-index.)
+  Hover: przywróć 3D i guts — locked flip o/u/t → blank.
 */
+.page-without .tile-out {
+  transform-style: flat;
+}
+
+.page-without .tile-out .half,
+.page-without .tile-out .flip,
+.page-without .tile-out .hinge {
+  visibility: hidden;
+}
+
 .page-without .tile-out::after {
   content: attr(data-from);
   position: absolute;
@@ -460,8 +471,23 @@ body::before {
   background: var(--flap-card);
   color: var(--flap-ink);
   box-shadow: inset 0 0 0 1px rgb(0 0 0 / 12%);
+  font: inherit;
   line-height: 1;
   pointer-events: none;
+}
+
+.page-without .without-link:hover .tile-out,
+.page-without .without-link:focus-visible .tile-out {
+  transform-style: preserve-3d;
+}
+
+.page-without .without-link:hover .tile-out .half,
+.page-without .without-link:hover .tile-out .flip,
+.page-without .without-link:hover .tile-out .hinge,
+.page-without .without-link:focus-visible .tile-out .half,
+.page-without .without-link:focus-visible .tile-out .flip,
+.page-without .without-link:focus-visible .tile-out .hinge {
+  visibility: visible;
 }
 
 .page-without .without-link:hover .tile-out::after,
