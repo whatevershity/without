@@ -4,11 +4,13 @@
 
   const isLitHash = () => location.hash === "#lit";
 
+  const SWAY_VOL_MAX = 0.45;
+
   /* —— dźwięki z sound/ —— */
   const sway = new Audio("../sound/lamp-swaying.mp3");
   sway.loop = true;
   sway.preload = "auto";
-  sway.volume = 0.45;
+  sway.volume = SWAY_VOL_MAX;
 
   const clickFx = new Audio("../sound/lamp-switch.mp3");
   clickFx.preload = "auto";
@@ -17,6 +19,31 @@
   let lit = false;
   let unlocked = false;
   let pausedByHover = false;
+
+  /* Im niżej scroll, tym dalej / ciszej lampa — miejsce na inne dźwięki */
+  const fadeRange = () => Math.max(window.innerHeight * 0.9, 420);
+
+  const updateSwayDistance = () => {
+    const t = Math.min(1, Math.max(0, window.scrollY / fadeRange()));
+    const gain = (1 - t) * (1 - t);
+    sway.volume = SWAY_VOL_MAX * gain;
+  };
+
+  let scrollTick = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (scrollTick) return;
+      scrollTick = true;
+      requestAnimationFrame(() => {
+        scrollTick = false;
+        updateSwayDistance();
+      });
+    },
+    { passive: true }
+  );
+  window.addEventListener("resize", updateSwayDistance, { passive: true });
+  updateSwayDistance();
 
   const setLit = (on) => {
     if (on === lit) return;
@@ -30,12 +57,9 @@
     if (p && typeof p.catch === "function") p.catch(() => {});
   };
 
-  const syncFromUrl = () => {
-    setLit(isLitHash());
-  };
-
   const tryPlaySway = () => {
     if (pausedByHover) return;
+    updateSwayDistance();
     const p = sway.play();
     if (p && typeof p.then === "function") {
       p.then(() => {
@@ -80,7 +104,10 @@
     }
   });
 
-  window.addEventListener("popstate", syncFromUrl);
+  window.addEventListener("popstate", () => {
+    setLit(isLitHash());
+  });
+
   /* start: bez dźwięku switch przy samym wejściu / odświeżeniu */
   lit = isLitHash();
   btn.setAttribute("aria-pressed", lit ? "true" : "false");

@@ -107,7 +107,7 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 - Acts as a **light switch** on `/without/` (does **not** navigate between pages)
 - Sways harder: **right→left in 2s**, back in 2s (full **4s**); creak on each side (~every 2s); **pauses on hover**; no lamp2 image swap
 - Sound (`sound/`):
-  - `lamp-swaying.mp3` — loop on enter; pauses with hover
+  - `lamp-swaying.mp3` — loop on enter; pauses with hover; **volume falls with scroll** (farther = quieter, room for other sounds)
   - `lamp-switch.mp3` — plays on dark↔light (and back)
   - may need first gesture if autoplay blocked
 - State: `aria-pressed` + `body.is-lit` via `lamp.js`; lit uses hash `#lit` so browser **Back** returns to dark `/without/`, not to **with**
