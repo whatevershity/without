@@ -18,7 +18,6 @@
 
   let lit = false;
   let unlocked = false;
-  let pausedByHover = false;
 
   /* Im niżej scroll, tym dalej / ciszej lampa — miejsce na inne dźwięki */
   const fadeRange = () => Math.max(window.innerHeight * 0.9, 420);
@@ -58,7 +57,6 @@
   };
 
   const tryPlaySway = () => {
-    if (pausedByHover) return;
     updateSwayDistance();
     const p = sway.play();
     if (p && typeof p.then === "function") {
@@ -66,16 +64,6 @@
         unlocked = true;
       }).catch(() => {});
     }
-  };
-
-  const pauseSway = () => {
-    pausedByHover = true;
-    sway.pause();
-  };
-
-  const resumeSway = () => {
-    pausedByHover = false;
-    tryPlaySway();
   };
 
   const unlock = () => {
@@ -86,11 +74,6 @@
   document.addEventListener("pointerdown", unlock, { once: true, passive: true });
   document.addEventListener("keydown", unlock, { once: true, passive: true });
   tryPlaySway();
-
-  btn.addEventListener("pointerenter", pauseSway);
-  btn.addEventListener("pointerleave", resumeSway);
-  btn.addEventListener("focus", pauseSway);
-  btn.addEventListener("blur", resumeSway);
 
   btn.addEventListener("click", (e) => {
     e.preventDefault();
