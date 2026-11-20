@@ -614,7 +614,9 @@ body::before {
   position: relative;
   width: 78px;
   height: auto;
-  transition: opacity 220ms ease;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 220ms ease, visibility 220ms ease;
 }
 
 .lamp-on {
@@ -625,19 +627,26 @@ body::before {
   width: 93px;
   height: auto;
   opacity: 0;
-  transition: opacity 220ms ease;
+  visibility: hidden;
+  transition: opacity 220ms ease, visibility 220ms ease;
 }
 
 .lamp-switch:hover .lamp-off,
 .lamp-switch:focus-visible .lamp-off,
-.lamp-switch[aria-pressed="true"] .lamp-off {
+.lamp-switch.is-on .lamp-off,
+.lamp-switch[aria-pressed="true"] .lamp-off,
+.page-without.is-lit .lamp-off {
   opacity: 0;
+  visibility: hidden;
 }
 
 .lamp-switch:hover .lamp-on,
 .lamp-switch:focus-visible .lamp-on,
-.lamp-switch[aria-pressed="true"] .lamp-on {
+.lamp-switch.is-on .lamp-on,
+.lamp-switch[aria-pressed="true"] .lamp-on,
+.page-without.is-lit .lamp-on {
   opacity: 1;
+  visibility: visible;
 }
 
 /* Idle: lekki sway + pulse — jedyna podpowiedź „kliknij mnie” */
