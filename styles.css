@@ -618,7 +618,8 @@ body::before {
 
 /*
   Lit shout — krzyk przez hałas / światło:
-  duże CAPS, rozmazany wjazd, kilka wersji w chaosie.
+  duże CAPS, smear jak Neue Pangram, kilka wersji w chaosie —
+  jakbyś chciał przekrzyczeć straszny hałas.
   Font na start: Clash Display (Fontshare); potem ewentualnie Neue Pangram-like.
 */
 .lit-shout {
@@ -627,7 +628,7 @@ body::before {
   z-index: 3;
   display: grid;
   place-items: center;
-  padding: 10vh 0;
+  padding: 8vh 0;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -638,17 +639,43 @@ body::before {
   visibility: visible;
 }
 
+.lit-shout-stack {
+  position: relative;
+  width: min(92vw, 14ch);
+  text-align: center;
+}
+
+.lit-shout-ghost,
 .lit-shout-lines {
   margin: 0;
-  max-width: min(92vw, 14ch);
-  text-align: center;
   font-family: "Clash Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
-  font-size: clamp(2.4rem, 9vw, 6.5rem);
-  line-height: 0.95;
-  letter-spacing: 0.02em;
+  font-size: clamp(2.6rem, 10vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   color: #0a0a0a;
+}
+
+.lit-shout-ghost {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.lit-shout-ghost.is-echo {
+  animation: lit-ghost 0.7s ease-out both;
+}
+
+.lit-shout-lines {
+  position: relative;
+  z-index: 1;
+}
+
+.lit-shout-lines.is-shaking {
+  animation: lit-shake 0.28s steps(2, end) infinite;
 }
 
 .lit-shout-lines .lit-line {
@@ -656,35 +683,73 @@ body::before {
 }
 
 .lit-shout-lines.is-smearing .lit-line {
-  animation: lit-smear 0.55s cubic-bezier(0.15, 0.85, 0.25, 1) both;
-  animation-delay: calc(var(--i, 0) * 55ms);
+  animation: lit-smear 0.48s cubic-bezier(0.12, 0.9, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 40ms);
 }
 
 @keyframes lit-smear {
   0% {
-    opacity: 0.35;
-    transform: translateX(-10vw) skewX(-8deg);
-    filter: blur(14px);
+    opacity: 0.25;
+    transform: translateX(-14vw) skewX(-12deg) scale(1.06);
+    filter: blur(18px);
     text-shadow:
-      -48px 0 0 rgb(0 0 0 / 12%),
-      -36px 0 0 rgb(0 0 0 / 16%),
-      -24px 0 0 rgb(0 0 0 / 22%),
-      -12px 0 0 rgb(0 0 0 / 35%),
-      12px 0 0 rgb(0 0 0 / 18%),
-      28px 0 0 rgb(0 0 0 / 10%);
+      -64px 0 0 rgb(0 0 0 / 10%),
+      -48px 0 0 rgb(0 0 0 / 14%),
+      -32px 0 0 rgb(0 0 0 / 20%),
+      -16px 0 0 rgb(0 0 0 / 32%),
+      -8px 0 0 rgb(0 0 0 / 45%),
+      10px 0 0 rgb(0 0 0 / 22%),
+      24px 0 0 rgb(0 0 0 / 14%),
+      40px 0 0 rgb(0 0 0 / 8%);
   }
-  55% {
+  40% {
     opacity: 1;
-    filter: blur(3px);
+    filter: blur(4px);
     text-shadow:
-      -16px 0 0 rgb(0 0 0 / 18%),
-      10px 0 0 rgb(0 0 0 / 12%);
+      -22px 0 0 rgb(0 0 0 / 22%),
+      -10px 0 0 rgb(0 0 0 / 28%),
+      14px 0 0 rgb(0 0 0 / 16%);
+  }
+  72% {
+    transform: translateX(1.2vw) skewX(2deg) scale(1.01);
+    filter: blur(1px);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) skewX(0);
+    transform: translateX(0) skewX(0) scale(1);
     filter: blur(0);
     text-shadow: none;
+  }
+}
+
+@keyframes lit-shake {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-0.35vw, 0.15vh) rotate(-0.4deg);
+  }
+  50% {
+    transform: translate(0.4vw, -0.1vh) rotate(0.35deg);
+  }
+  75% {
+    transform: translate(-0.2vw, 0.2vh) rotate(0.2deg);
+  }
+  100% {
+    transform: translate(0.15vw, -0.05vh) rotate(-0.15deg);
+  }
+}
+
+@keyframes lit-ghost {
+  0% {
+    opacity: 0.45;
+    filter: blur(6px);
+    transform: translateX(4vw) scale(1.04);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(18px);
+    transform: translateX(12vw) scale(1.1);
   }
 }
 
@@ -762,7 +827,9 @@ body::before {
     animation: none;
   }
 
-  .lit-shout-lines.is-smearing .lit-line {
+  .lit-shout-lines.is-smearing .lit-line,
+  .lit-shout-lines.is-shaking,
+  .lit-shout-ghost.is-echo {
     animation: none;
     filter: none;
     text-shadow: none;

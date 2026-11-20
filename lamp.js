@@ -19,36 +19,76 @@
   let lit = false;
   let unlocked = false;
 
-  /* Krzyk przez hałas — kilka wersji, chaotyczne przełączanie + smear */
+  /* Krzyk przez hałas — jakbyś chciał go trochę przekrzyczeć */
   const shoutRoot = document.querySelector(".lit-shout");
   const shoutLines = document.querySelector(".lit-shout-lines");
+  const shoutGhost = document.querySelector(".lit-shout-ghost");
   const shoutVariants = [
     ["HEY, TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"],
     ["TURN OFF", "THE LIGHT!", "TOO LOUD!"],
     ["HEY!", "TOO LOUD!", "TURN IT OFF!"],
     ["THE LIGHT!", "IT'S TOO LOUD!", "HEY!"],
     ["TURN IT OFF!", "TOO LOUD!", "THE LIGHT!"],
+    ["HEY—", "TOO LOUD!", "TURN IT OFF!"],
+    ["IT'S TOO LOUD!", "HEY!", "THE LIGHT!"],
   ];
   let shoutIndex = 0;
   let shoutTimer = 0;
+  let lastLinesHtml = "";
+
+  const linesToHtml = (lines) =>
+    lines
+      .map((line, i) => `<span class="lit-line" style="--i:${i}">${line}</span>`)
+      .join("");
 
   const renderShout = (lines) => {
     if (!shoutLines) return;
-    shoutLines.classList.remove("is-smearing");
-    shoutLines.innerHTML = lines
-      .map((line, i) => `<span class="lit-line" style="--i:${i}">${line}</span>`)
-      .join("");
+    if (shoutGhost && lastLinesHtml) {
+      shoutGhost.innerHTML = lastLinesHtml;
+      shoutGhost.classList.remove("is-echo");
+      void shoutGhost.offsetWidth;
+      shoutGhost.classList.add("is-echo");
+    }
+    const html = linesToHtml(lines);
+    lastLinesHtml = html;
+    shoutLines.classList.remove("is-smearing", "is-shaking");
+    shoutLines.innerHTML = html;
     void shoutLines.offsetWidth;
-    shoutLines.classList.add("is-smearing");
+    shoutLines.classList.add("is-smearing", "is-shaking");
+  };
+
+  const nextDelay = () => {
+    /* nierówne tempo — jak krzyczenie przez hałas */
+    const roll = Math.random();
+    if (roll < 0.15) return 320 + Math.random() * 180; /* staccato */
+    if (roll < 0.55) return 520 + Math.random() * 280;
+    return 780 + Math.random() * 420;
+  };
+
+  const scheduleNext = () => {
+    window.clearTimeout(shoutTimer);
+    shoutTimer = window.setTimeout(() => {
+      /* czasem powtórz tę samą frazę — jakby nie dosłyszeli */
+      if (Math.random() > 0.22) {
+        shoutIndex = (shoutIndex + 1 + Math.floor(Math.random() * 2)) % shoutVariants.length;
+      }
+      renderShout(shoutVariants[shoutIndex]);
+      scheduleNext();
+    }, nextDelay());
   };
 
   const stopShout = () => {
-    window.clearInterval(shoutTimer);
+    window.clearTimeout(shoutTimer);
     shoutTimer = 0;
+    lastLinesHtml = "";
     if (shoutRoot) shoutRoot.setAttribute("aria-hidden", "true");
     if (shoutLines) {
-      shoutLines.classList.remove("is-smearing");
+      shoutLines.classList.remove("is-smearing", "is-shaking");
       shoutLines.innerHTML = "";
+    }
+    if (shoutGhost) {
+      shoutGhost.classList.remove("is-echo");
+      shoutGhost.innerHTML = "";
     }
   };
 
@@ -56,12 +96,9 @@
     if (!shoutRoot || !shoutLines) return;
     shoutRoot.setAttribute("aria-hidden", "false");
     shoutIndex = 0;
+    lastLinesHtml = "";
     renderShout(shoutVariants[0]);
-    window.clearInterval(shoutTimer);
-    shoutTimer = window.setInterval(() => {
-      shoutIndex = (shoutIndex + 1) % shoutVariants.length;
-      renderShout(shoutVariants[shoutIndex]);
-    }, 900);
+    scheduleNext();
   };
 
   /* Im niżej scroll, tym dalej / ciszej lampa — miejsce na inne dźwięki */
