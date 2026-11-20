@@ -110,12 +110,13 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 - State: `aria-pressed` + `body.is-lit` via `lamp.js`
 - Do not change the locked tytuł flap when editing the lamp
 
-### Joke / sensory concept (autism experience) — planned, not built yet
+### Joke / sensory concept (autism experience)
 
-Clicking the lamp **floods the page with light** (white / glowing overload), not a real navigation.
+Clicking the lamp **floods the page with light** (`.light-flood` via `body.is-lit`) — not navigation. Hover does **not** flood.
 
-- Lit state ≈ sensory overload: harsh white / “shining” if we can get that feel
-- Copy appears (PL draft for now; **EN later**), e.g. *„hej, zgaś to światło nie mogę się skupić”* (or similar)
-- User must **turn the light off** (click lamp again) to return to darkness — the only way back
-- Tone: empathy for light sensitivity / focus, not a gag at autistic people; site is about that experience
+- Lit ≈ sensory overload: white / soft glow wash
+- **Lamp stays visible on top** of the flood (not whitened) so the user can click again to turn it off
+- Copy TBD (PL draft: *„hej, zgaś to światło nie mogę się skupić”*; **EN later**)
+- Only way back: click lamp → darkness
+- Tone: empathy for light sensitivity / focus; site is about that experience
 - Sound may reinforce on/off later
