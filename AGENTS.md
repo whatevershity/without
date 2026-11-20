@@ -106,7 +106,7 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 - Asset: **`lamp.png` only** (no lamp2 swap) — hangs from **top edge**, ~**column 3**
 - Acts as a **light switch** on `/without/` (does **not** navigate between pages)
 - Sways (~±2–3°) + brightness pulse (also while lit); **pauses on hover**; no lamp2 image swap; sound TBD
-- State: `aria-pressed` + `body.is-lit` via `lamp.js`
+- State: `aria-pressed` + `body.is-lit` via `lamp.js`; lit uses hash `#lit` so browser **Back** returns to dark `/without/`, not to **with**
 - Do not change the locked tytuł flap when editing the lamp
 
 ### Joke / sensory concept (autism experience)
