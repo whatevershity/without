@@ -646,6 +646,7 @@ body::before {
   display: block;
   width: 78px;
   transform-origin: top center;
+  animation: lamp-call 2.8s ease-in-out infinite;
 }
 
 .lamp-switch .lamp {
@@ -657,7 +658,7 @@ body::before {
   user-select: none;
 }
 
-/* Idle: lekki sway + pulse — jedyna podpowiedź „kliknij mnie” */
+/* Sway + pulse — bez zmiany obrazu */
 @keyframes lamp-call {
   0%,
   100% {
@@ -670,12 +671,8 @@ body::before {
   }
 }
 
-.lamp-switch .lamp-face {
-  animation: lamp-call 2.8s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .lamp-switch .lamp-face {
+  .lamp-face {
     animation: none;
   }
 
