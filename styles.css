@@ -660,7 +660,7 @@ body::before {
   width: 78px;
   transform-origin: top center;
   /* szybciej niż pełna długość mp3 — audio zostaje w loop */
-  animation: lamp-call 4.4s ease-in-out infinite;
+  animation: lamp-call 3.6s ease-in-out infinite;
 }
 
 .lamp-switch:hover .lamp-face,
