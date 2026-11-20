@@ -659,8 +659,8 @@ body::before {
   display: block;
   width: 78px;
   transform-origin: top center;
-  /* sync z sound/lamp-swaying.mp3 (~8.83s) — wolniej i mocniej */
-  animation: lamp-call 8.83s ease-in-out infinite;
+  /* szybciej niż pełna długość mp3 — audio zostaje w loop */
+  animation: lamp-call 4.4s ease-in-out infinite;
 }
 
 .lamp-switch:hover .lamp-face,
