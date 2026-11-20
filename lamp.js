@@ -4,76 +4,86 @@
 
   const isLitHash = () => location.hash === "#lit";
 
+  /* —— dźwięki z sound/ —— */
+  const sway = new Audio("../sound/lamp-swaying.mp3");
+  sway.loop = true;
+  sway.preload = "auto";
+  sway.volume = 0.45;
+
+  const clickFx = new Audio("../sound/lamp-switch.mp3");
+  clickFx.preload = "auto";
+  clickFx.volume = 0.7;
+
+  let lit = false;
+  let unlocked = false;
+  let pausedByHover = false;
+
   const setLit = (on) => {
+    if (on === lit) return;
+    lit = on;
     btn.setAttribute("aria-pressed", on ? "true" : "false");
     btn.classList.toggle("is-on", on);
     document.body.classList.toggle("is-lit", on);
+    /* switch przy czarne↔białe (i odwrotnie) */
+    clickFx.currentTime = 0;
+    const p = clickFx.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
   };
 
   const syncFromUrl = () => {
     setLit(isLitHash());
   };
 
-  /* —— zardzewiałe bujanie: loop przy sway, pause na hover —— */
-  const creak = new Audio("../lamp-creak.ogg");
-  creak.loop = true;
-  creak.preload = "auto";
-  creak.volume = 0.38;
-
-  let unlocked = false;
-  let pausedByHover = false;
-
-  const tryPlay = () => {
+  const tryPlaySway = () => {
     if (pausedByHover) return;
-    const p = creak.play();
+    const p = sway.play();
     if (p && typeof p.then === "function") {
       p.then(() => {
         unlocked = true;
-      }).catch(() => {
-        /* autoplay zablokowany — odblokujemy przy pierwszej interakcji */
-      });
+      }).catch(() => {});
     }
   };
 
-  const pauseCreak = () => {
+  const pauseSway = () => {
     pausedByHover = true;
-    creak.pause();
+    sway.pause();
   };
 
-  const resumeCreak = () => {
+  const resumeSway = () => {
     pausedByHover = false;
-    tryPlay();
+    tryPlaySway();
   };
 
   const unlock = () => {
-    if (unlocked && !creak.paused) return;
-    tryPlay();
+    if (unlocked && !sway.paused) return;
+    tryPlaySway();
   };
 
   document.addEventListener("pointerdown", unlock, { once: true, passive: true });
   document.addEventListener("keydown", unlock, { once: true, passive: true });
-  /* klik z /with/ czasem pozwala od razu */
-  tryPlay();
+  tryPlaySway();
 
-  btn.addEventListener("pointerenter", pauseCreak);
-  btn.addEventListener("pointerleave", resumeCreak);
-  btn.addEventListener("focus", pauseCreak);
-  btn.addEventListener("blur", resumeCreak);
+  btn.addEventListener("pointerenter", pauseSway);
+  btn.addEventListener("pointerleave", resumeSway);
+  btn.addEventListener("focus", pauseSway);
+  btn.addEventListener("blur", resumeSway);
 
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     unlock();
     if (isLitHash()) {
-      // Zgaś: cofnij wpis #lit — zostajemy na /without/
       history.back();
     } else {
-      // Zapal: nowy wpis historii, żeby Wstecz wracało do ciemnego without, nie na with
       history.pushState({ lit: true }, "", "#lit");
       setLit(true);
     }
   });
 
   window.addEventListener("popstate", syncFromUrl);
-  syncFromUrl();
+  /* start: bez dźwięku switch przy samym wejściu / odświeżeniu */
+  lit = isLitHash();
+  btn.setAttribute("aria-pressed", lit ? "true" : "false");
+  btn.classList.toggle("is-on", lit);
+  document.body.classList.toggle("is-lit", lit);
 })();

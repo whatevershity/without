@@ -659,7 +659,8 @@ body::before {
   display: block;
   width: 78px;
   transform-origin: top center;
-  animation: lamp-call 2.8s ease-in-out infinite;
+  /* sync z sound/lamp-swaying.mp3 (~8.83s) — wolniej i mocniej */
+  animation: lamp-call 8.83s ease-in-out infinite;
 }
 
 .lamp-switch:hover .lamp-face,
@@ -678,15 +679,15 @@ body::before {
   user-select: none;
 }
 
-/* Sway + pulse — bez zmiany obrazu */
+/* Sway + pulse — dopasowane do lamp-swaying.mp3 */
 @keyframes lamp-call {
   0%,
   100% {
-    transform: rotate(1.8deg);
+    transform: rotate(4.5deg);
     filter: brightness(1);
   }
   50% {
-    transform: rotate(-2.6deg);
+    transform: rotate(-6.5deg);
     filter: brightness(1.28);
   }
 }
