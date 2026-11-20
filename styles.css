@@ -616,6 +616,78 @@ body::before {
   opacity: 1;
 }
 
+/*
+  Lit shout — krzyk przez hałas / światło:
+  duże CAPS, rozmazany wjazd, kilka wersji w chaosie.
+  Font na start: Clash Display (Fontshare); potem ewentualnie Neue Pangram-like.
+*/
+.lit-shout {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  padding: 10vh 0;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.page-without.is-lit .lit-shout {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lit-shout-lines {
+  margin: 0;
+  max-width: min(92vw, 14ch);
+  text-align: center;
+  font-family: "Clash Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 9vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+}
+
+.lit-shout-lines .lit-line {
+  display: block;
+}
+
+.lit-shout-lines.is-smearing .lit-line {
+  animation: lit-smear 0.55s cubic-bezier(0.15, 0.85, 0.25, 1) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+@keyframes lit-smear {
+  0% {
+    opacity: 0.35;
+    transform: translateX(-10vw) skewX(-8deg);
+    filter: blur(14px);
+    text-shadow:
+      -48px 0 0 rgb(0 0 0 / 12%),
+      -36px 0 0 rgb(0 0 0 / 16%),
+      -24px 0 0 rgb(0 0 0 / 22%),
+      -12px 0 0 rgb(0 0 0 / 35%),
+      12px 0 0 rgb(0 0 0 / 18%),
+      28px 0 0 rgb(0 0 0 / 10%);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(3px);
+    text-shadow:
+      -16px 0 0 rgb(0 0 0 / 18%),
+      10px 0 0 rgb(0 0 0 / 12%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) skewX(0);
+    filter: blur(0);
+    text-shadow: none;
+  }
+}
+
 .page-without .hero-grid {
   z-index: 2;
 }
@@ -688,6 +760,13 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   .lamp-face {
     animation: none;
+  }
+
+  .lit-shout-lines.is-smearing .lit-line {
+    animation: none;
+    filter: none;
+    text-shadow: none;
+    transform: none;
   }
 
   .flip,

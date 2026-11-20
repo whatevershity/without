@@ -19,6 +19,51 @@
   let lit = false;
   let unlocked = false;
 
+  /* Krzyk przez hałas — kilka wersji, chaotyczne przełączanie + smear */
+  const shoutRoot = document.querySelector(".lit-shout");
+  const shoutLines = document.querySelector(".lit-shout-lines");
+  const shoutVariants = [
+    ["HEY, TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"],
+    ["TURN OFF", "THE LIGHT!", "TOO LOUD!"],
+    ["HEY!", "TOO LOUD!", "TURN IT OFF!"],
+    ["THE LIGHT!", "IT'S TOO LOUD!", "HEY!"],
+    ["TURN IT OFF!", "TOO LOUD!", "THE LIGHT!"],
+  ];
+  let shoutIndex = 0;
+  let shoutTimer = 0;
+
+  const renderShout = (lines) => {
+    if (!shoutLines) return;
+    shoutLines.classList.remove("is-smearing");
+    shoutLines.innerHTML = lines
+      .map((line, i) => `<span class="lit-line" style="--i:${i}">${line}</span>`)
+      .join("");
+    void shoutLines.offsetWidth;
+    shoutLines.classList.add("is-smearing");
+  };
+
+  const stopShout = () => {
+    window.clearInterval(shoutTimer);
+    shoutTimer = 0;
+    if (shoutRoot) shoutRoot.setAttribute("aria-hidden", "true");
+    if (shoutLines) {
+      shoutLines.classList.remove("is-smearing");
+      shoutLines.innerHTML = "";
+    }
+  };
+
+  const startShout = () => {
+    if (!shoutRoot || !shoutLines) return;
+    shoutRoot.setAttribute("aria-hidden", "false");
+    shoutIndex = 0;
+    renderShout(shoutVariants[0]);
+    window.clearInterval(shoutTimer);
+    shoutTimer = window.setInterval(() => {
+      shoutIndex = (shoutIndex + 1) % shoutVariants.length;
+      renderShout(shoutVariants[shoutIndex]);
+    }, 900);
+  };
+
   /* Im niżej scroll, tym dalej / ciszej lampa — miejsce na inne dźwięki */
   const fadeRange = () => Math.max(window.innerHeight * 0.9, 420);
 
@@ -54,6 +99,8 @@
     clickFx.currentTime = 0;
     const p = clickFx.play();
     if (p && typeof p.catch === "function") p.catch(() => {});
+    if (on) startShout();
+    else stopShout();
   };
 
   const tryPlaySway = () => {
@@ -96,4 +143,6 @@
   btn.setAttribute("aria-pressed", lit ? "true" : "false");
   btn.classList.toggle("is-on", lit);
   document.body.classList.toggle("is-lit", lit);
+  if (lit) startShout();
+  else stopShout();
 })();

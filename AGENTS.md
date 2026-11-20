@@ -120,7 +120,11 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
 - Lit ≈ sensory overload: light bursting from mid-hero via `clip-path` + **glowing** `radial-gradient` / inset `box-shadow` wash; tytuł/opcje/guides fade
 - Lamp art stays **`lamp.png`**, visible and clickable (never under the wash)
 - Flood has `pointer-events: none` so the second click always reaches the lamp
-- Copy TBD (PL draft: *„hej, zgaś to światło nie mogę się skupić”*; **EN later**)
+- On lit: **shout** copy (EN), all caps, large — *“Hey, turn off the light! It’s too loud!”* in 2–3 lines
+  - Dynamic: several variants cycle (~0.9s) with **horizontal smear / blur** entrance (krzyk przez hałas)
+  - Font for now: **Clash Display** Bold (Fontshare); may swap later (Neue Pangram–like)
+  - Lamp stays above the shout
 - Only way back: click lamp → darkness
-- Tone: empathy for light sensitivity / focus; site is about that experience
+- Tone: empathy for sensory overload / light+noise; site is about that experience
 - Sound may reinforce on/off later
+
