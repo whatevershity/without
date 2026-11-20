@@ -113,7 +113,7 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 
 Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-path` circle, `body.is-lit`) — not navigation. Hover does **not** flood.
 
-- Lit ≈ sensory overload: white expanding quickly from mid-hero; tytuł/opcje/guides fade
+- Lit ≈ sensory overload: light bursting from mid-hero via `clip-path` + **glowing** `radial-gradient` / inset `box-shadow` wash; tytuł/opcje/guides fade
 - Lamp art stays **`lamp.png`**, visible and clickable (never under the wash)
 - Flood has `pointer-events: none` so the second click always reaches the lamp
 - Copy TBD (PL draft: *„hej, zgaś to światło nie mogę się skupić”*; **EN later**)
