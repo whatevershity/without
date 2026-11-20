@@ -187,9 +187,9 @@ body::before {
 }
 
 /*
-  Status meta — ten sam mechanizm co dawny sound (opacity + drift + blur).
-  Rest: same etykiety. Hover linku: odpowiedzi kolejno (stagger).
-  with → yes / yes / who know | without → no / no / yes
+  Status meta — dokładny crossfade jak dawny sound (no↔yes):
+  opacity + lekki drift + blur ~420ms. Kolumny ze staggerem (--i).
+  On with: rest no/no/yes → hover yes/yes/who know
 */
 .status-meta {
   display: grid;
@@ -222,11 +222,15 @@ body::before {
 }
 
 .status-answer {
-  display: block;
+  display: grid;
+  margin-top: 2px;
   min-height: 1.25em;
-  opacity: 0;
-  transform: translateY(5px);
-  filter: blur(1.5px);
+}
+
+.status-answer .rest,
+.status-answer .hover {
+  grid-area: 1 / 1;
+  justify-self: center;
   transition:
     opacity 420ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -235,8 +239,28 @@ body::before {
   will-change: opacity, transform, filter;
 }
 
-.hero-grid:has(.without-link:hover) .status-answer,
-.hero-grid:has(.without-link:focus-visible) .status-answer {
+/* Resting: .rest. Hover link → .hover (miękki crossfade + lekki ruch) */
+.status-answer .rest {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.status-answer .hover {
+  opacity: 0;
+  transform: translateY(5px);
+  filter: blur(1.5px);
+}
+
+.hero-grid:has(.without-link:hover) .status-answer .rest,
+.hero-grid:has(.without-link:focus-visible) .status-answer .rest {
+  opacity: 0;
+  transform: translateY(-5px);
+  filter: blur(1.5px);
+}
+
+.hero-grid:has(.without-link:hover) .status-answer .hover,
+.hero-grid:has(.without-link:focus-visible) .status-answer .hover {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
@@ -499,7 +523,8 @@ body::before {
     transition: none;
   }
 
-  .status-answer {
+  .status-answer .rest,
+  .status-answer .hover {
     transition: opacity 120ms linear;
     transition-delay: 0ms;
     transform: none !important;

@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400&family=Special+Elite&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=status-meta1" />
+    <link rel="stylesheet" href="styles.css?v=status-crossfade1" />
   </head>
   <body class="page-with">
     <main class="page">
@@ -67,21 +67,30 @@
               frames
             </p>
             <!--
-              Rest: tylko etykiety. Hover linku (with→without): yes / yes / who know —
-              ten sam miękki crossfade co dawny sound.
+              Crossfade jak dawny sound (no↔yes): rest no/no/yes → hover yes/yes/who know.
+              Kolumny wchodzą kolejno (--i stagger).
             -->
             <div class="status-meta" aria-hidden="true">
               <div class="status-col" style="--i: 0">
                 <span class="status-label">sound</span>
-                <span class="status-answer">yes</span>
+                <span class="status-answer">
+                  <span class="rest">no</span>
+                  <span class="hover">yes</span>
+                </span>
               </div>
               <div class="status-col" style="--i: 1">
                 <span class="status-label">interactive</span>
-                <span class="status-answer">yes</span>
+                <span class="status-answer">
+                  <span class="rest">no</span>
+                  <span class="hover">yes</span>
+                </span>
               </div>
               <div class="status-col" style="--i: 2">
                 <span class="status-label">story</span>
-                <span class="status-answer">who know</span>
+                <span class="status-answer">
+                  <span class="rest">yes</span>
+                  <span class="hover">who know</span>
+                </span>
               </div>
             </div>
           </div>

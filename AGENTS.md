@@ -46,13 +46,13 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 ## Status meta (sound / interactive / story)
 
-Same soft motion as the old sound yes/no (opacity + slight vertical drift + light blur ~420ms), answers stagger in (`--i` × 90ms).
+Exact same crossfade as the old sound yes/no: two stacked answers, opacity + slight vertical drift + light blur ~420ms. Columns stagger (`--i` × 90ms).
 
 - Placement: under the hero line, centered in the hero stack (cols **5–8**), smaller than the line (**Lato** ~11px)
-- Rest: **labels only** — `sound` · `interactive` · `story` — no answers
+- Labels always: `sound` · `interactive` · `story`
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
-- **On with** (`/`): hover/focus (link reads **without**) → answers appear in order: **yes** / **yes** / **who know**
-- **On without** (`/without/`, later): hover/focus (link reads **with**) → **no** / **no** / **yes**
+- **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who know**
+- **On without** (`/without/`, later): rest **yes** / **yes** / **who know** → hover/focus (link reads **with**) **no** / **no** / **yes**
 
 ## Typography
 
