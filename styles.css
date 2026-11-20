@@ -447,11 +447,30 @@ body::before {
 }
 
 /*
-  WITHOUT: rest pokazuje litery o u t — bez kreski/hinge (jak settled letters).
-  Hover (→ with) używa tego samego flipu co locked mechanizm.
+  WITHOUT: rest pokazuje litery o u t czysto (bez hinge / bez kreski ze shadow flipa).
+  Hover (→ with) przywraca cień klapki; ten sam locked flip.
 */
 .page-without .tile-out .hinge {
   opacity: 0;
+  visibility: hidden;
+}
+
+.page-without .tile-out .flip-face {
+  /* bez dolnej kreski 0 1px — to wyglądało jak przekreślenie litery */
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 8%);
+}
+
+.page-without .hero-grid:has(.without-link:hover) .tile-out .flip-face,
+.page-without .hero-grid:has(.without-link:focus-visible) .tile-out .flip-face {
+  box-shadow:
+    0 1px 0 rgb(0 0 0 / 12%),
+    inset 0 0 0 1px rgb(0 0 0 / 8%);
+}
+
+.page-without .hero-grid:has(.without-link:hover) .tile-out .hinge,
+.page-without .hero-grid:has(.without-link:focus-visible) .tile-out .hinge {
+  /* w trakcie flipu hinge może mignąć; locked rule i tak gasi go po settle */
+  visibility: visible;
 }
 
 /* —— „with”: obrót litery wokół własnej osi (LOCKED) —— */
