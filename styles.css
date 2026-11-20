@@ -1,8 +1,10 @@
 :root {
-  --ink: #1a1a1a;
-  --paper: #fdfdfd;
-  --flap-card: #f3f1ed;
-  --flap-black: #454545;
+  --ink: #f5f5f5;
+  --paper: #454545;
+  --flap-card: #f2f0ec;
+  --flap-ink: #1a1a1a;
+  /* blank out-klapki (dawniej „black”) — biały odcień jak klapka */
+  --flap-black: #f2f0ec;
   --side: 360px;
   --gutter: 16px;
   --hero-h: 100vh;
@@ -12,7 +14,7 @@
   --flap-stagger: 90ms;
   --tile-w: 1em;
   --tile-h: 1.05em;
-  --guide: rgb(26 26 26 / 14%);
+  --guide: rgb(245 245 245 / 16%);
 }
 
 *,
@@ -41,8 +43,8 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.08;
-  mix-blend-mode: multiply;
+  opacity: 0.18;
+  mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.12 0 0 0 0 0.11 0 0 0 0 0.1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 180px 180px;
@@ -99,7 +101,7 @@ body::before {
   font-family: "Special Elite", "Courier New", Courier, monospace;
   font-size: 10px;
   line-height: 1;
-  color: rgb(26 26 26 / 28%);
+  color: rgb(245 245 245 / 28%);
 }
 
 .col-guides span {
@@ -130,7 +132,7 @@ body::before {
   font-family: "Special Elite", "Courier New", Courier, monospace;
   font-size: 10px;
   line-height: 1;
-  color: rgb(26 26 26 / 28%);
+  color: rgb(245 245 245 / 28%);
 }
 
 .hero-grid > :not(.col-guides):not(.row-guides) {
@@ -313,8 +315,9 @@ body::before {
   width: var(--tile-w);
   height: var(--tile-h);
   transform-style: preserve-3d;
+  color: var(--flap-ink);
   background: var(--flap-card);
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 12%);
 }
 
 .half {
@@ -323,6 +326,7 @@ body::before {
   width: 100%;
   height: 50%;
   overflow: hidden;
+  color: var(--flap-ink);
   background: var(--flap-card);
 }
 
@@ -382,6 +386,7 @@ body::before {
   overflow: hidden;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  color: var(--flap-ink);
   background: var(--flap-card);
   box-shadow:
     0 1px 0 rgb(0 0 0 / 12%),
@@ -424,8 +429,8 @@ body::before {
   top: 50%;
   z-index: 5;
   height: 1.5px;
-  background: rgb(0 0 0 / 35%);
-  box-shadow: 0 0.5px 0 rgb(255 255 255 / 35%);
+  background: rgb(0 0 0 / 22%);
+  box-shadow: 0 0.5px 0 rgb(255 255 255 / 45%);
   pointer-events: none;
   transform: translateY(-50%);
 }
@@ -456,8 +461,9 @@ body::before {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  color: var(--flap-ink);
   background: var(--flap-card);
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 12%);
   line-height: 1;
 }
 

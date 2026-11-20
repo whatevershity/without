@@ -34,13 +34,15 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 ## Hero photo
 
-- Center stack (cols **5–8**): **wild…** line directly above `adelka3.png`, **10px** gap
-- Photo starts at row **3** (3rd guide); full width of that stack; height from aspect — **no crop**
-- Do **not** change the link / flap markup or styles when moving this stack — only placement
+- Photo removed on the dark with page (for now)
 
-## Surface
+## Surface — dark
 
-- Page background: near-white `#FDFDFD` with very light **paper grain** (opacity ~0.08)
+- Page background: **`#454545`** (former flap-black)
+- Page / sound text: **white** (`#f5f5f5`)
+- Flap cards: light **`#f2f0ec`** with dark glyphs (`--flap-ink`) so letters stay readable
+- Blank out-klapki use the same light flap tone (not dark panels on dark bg)
+- Soft grain via `soft-light`
 
 ## Sound / no|yes label (with page) — leave alone unless asked
 
