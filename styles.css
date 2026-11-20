@@ -649,6 +649,13 @@ body::before {
   animation: lamp-call 2.8s ease-in-out infinite;
 }
 
+.lamp-switch:hover .lamp-face,
+.lamp-switch:focus-visible .lamp-face {
+  animation: none;
+  transform: none;
+  filter: none;
+}
+
 .lamp-switch .lamp {
   display: block;
   width: 78px;
