@@ -653,17 +653,17 @@ body::before {
 @keyframes lamp-call {
   0%,
   100% {
-    transform: rotate(0.55deg);
+    transform: rotate(1.8deg);
     filter: brightness(1);
   }
   50% {
-    transform: rotate(-0.85deg);
-    filter: brightness(1.22);
+    transform: rotate(-2.6deg);
+    filter: brightness(1.28);
   }
 }
 
 .page-without:not(.is-lit) .lamp-switch:not(:hover):not(:focus-visible) .lamp-face {
-  animation: lamp-call 3.4s ease-in-out infinite;
+  animation: lamp-call 2.8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

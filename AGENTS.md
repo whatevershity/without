@@ -106,6 +106,6 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 - Asset: `lamp.png` (rest) / `lamp2.png` (hover + pressed) — hangs from **top edge**, ~**column 3**
 - Acts as a **light switch** on `/without/` (does **not** navigate between pages)
 - Hover / pressed: show `lamp2`, may overhang toward **column 2**
-- Idle (before click): delicate sway + brightness pulse — only affordance on the page
+- Idle (before click): noticeable sway (~±2–3°) + brightness pulse — only affordance on the page; sound TBD
 - State: `aria-pressed` + `body.is-lit` via `lamp.js` — destination link TBD (user will provide)
 - Do not change the locked tytuł flap when editing the lamp
