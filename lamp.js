@@ -7,7 +7,7 @@
   const SWAY_VOL_MAX = 0.45;
   /* tempo jak szybkie czytanie — słowo po słowie */
   /* trochę wolniej — nadal jak czytanie, nie jak maszyna */
-  const WORD_MS = 115;
+  const WORD_MS = 155;
 
   /* —— dźwięki z sound/ —— */
   const sway = new Audio("../sound/lamp-swaying.mp3");
