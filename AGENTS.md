@@ -57,7 +57,7 @@ Use these names in chat and notes when talking about spacing or copy.
 
 Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, opacity + slight vertical drift + light blur ~420ms. Columns one after another (`--i` × `--status-stagger` ~320ms) — not all at once.
 
-- Placement: under the **tytuł**, centered in the hero stack (cols **5–8**), smaller (**Synonym Regular** ~11px, [Fontshare](https://www.fontshare.com/fonts/synonym))
+- Placement: under the **tytuł**, centered in the hero stack (cols **5–8**), smaller (**PT Mono** ~11px)
 - Gap **tytuł → opcje**: larger (`margin-top` ~3.25rem on `.status-meta`)
 - Gap **opcje → wybór**: within each column (`gap` ~0.7em)
 - Opcje always visible; wybór crossfades on link hover
@@ -67,7 +67,8 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 
 ## Typography
 
-- Typeface: **Special Elite** (typewriter / machine style), fallback Courier New / Courier.
+- **Tytuł** (`wild … frames`): **Special Elite** (typewriter), fallback Courier New / Courier — do not change when swapping other UI fonts
+- Everything else (opcje / wybór / shout / guides): **PT Mono**, fallback Courier New / Courier
 - **Tytuł** on **with**: `wild with frames` (linked word = **with**)
   - Centered in hero stack (cols **5–8**)
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
@@ -122,10 +123,10 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
 - Glow layers: `.light-flood-core` (brighter blur) + `.light-flood-halo` (wider soft poświata); scales out from mid-hero
 - Lamp art stays **`lamp.png`**, visible and clickable (never under the wash)
 - Flood has `pointer-events: none` so the second click always reaches the lamp
-- On lit: **shout** once (EN), caps, smaller Clash Display — **HEY!** then rest lines enter after it
+- On lit: **shout** once (EN), caps, **PT Mono** — **HEY!** then rest lines enter after it
   - Entrance: **pop small→large** + **fast smear/shadow trail**; then text **settles and stops** (no cycling)
   - Placement: center-right in the hero
-  - `hey.mp3` (slowed) on HEY; font TBD later
+  - `hey.mp3` (slowed) on HEY
   - After light off: shout **stays on the page**, color flips to **white** on dark; lit = dark type
   - Lamp stays above the shout; sway audio muted on lit
 - Only way back to dark: click lamp → darkness (shout remains)

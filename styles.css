@@ -35,7 +35,8 @@ body {
   position: relative;
   color: var(--ink);
   background-color: var(--paper);
-  font-family: "Special Elite", "Courier New", Courier, monospace;
+  /* wszystko poza tytułem (wild…) — PT Mono; tytuł zostaje Special Elite */
+  font-family: "PT Mono", "Courier New", Courier, monospace;
 }
 
 body::before {
@@ -99,7 +100,6 @@ body::before {
   content: attr(data-n);
   position: absolute;
   top: 8px;
-  font-family: "Special Elite", "Courier New", Courier, monospace;
   font-size: 10px;
   line-height: 1;
   color: rgb(245 245 245 / 28%);
@@ -130,7 +130,6 @@ body::before {
   position: absolute;
   left: 8px;
   top: 4px;
-  font-family: "Special Elite", "Courier New", Courier, monospace;
   font-size: 10px;
   line-height: 1;
   color: rgb(245 245 245 / 28%);
@@ -200,7 +199,7 @@ body::before {
   width: max-content;
   max-width: 100%;
   text-align: center;
-  font-family: Synonym, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
   font-weight: 400;
   font-size: 11px;
   letter-spacing: 0.08em;
@@ -273,6 +272,8 @@ body::before {
   width: max-content;
   max-width: 100%;
   text-align: center;
+  /* tytuł — Special Elite (nie ruszamy) */
+  font-family: "Special Elite", "Courier New", Courier, monospace;
   font-size: clamp(14px, 1.05vw + 0.55rem, 16px);
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -657,7 +658,7 @@ body::before {
 
 /*
   Lit shout — krzyk raz (pop + smear), potem napisy stoją.
-  Zostają po zgaszeniu (białe na ciemnym). Font Clash Display na start — mniejszy.
+  Zostają po zgaszeniu (białe na ciemnym). Font: PT Mono (jak reszta poza tytułem).
   Pozycja: środek, lekko w prawo.
 */
 .hero-grid > .lit-shout {
@@ -693,8 +694,8 @@ body::before {
 .lit-shout-hey,
 .lit-shout-rest {
   margin: 0;
-  font-family: "Clash Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
+  font-weight: 400;
   font-size: clamp(1rem, 2.4vw, 1.55rem);
   line-height: 1.05;
   letter-spacing: 0.02em;
