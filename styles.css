@@ -858,6 +858,11 @@ body::before {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* po apology — wygląda jak lampa, klik tylko dźwięk */
+.lamp-switch.is-locked {
+  cursor: default;
+}
+
 .lamp-switch:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 4px;

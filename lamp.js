@@ -31,6 +31,8 @@
   let unlocked = false;
   let shoutSettled = false;
   let apologySettled = false;
+  /* po apology — lampa nie wraca do światła; tylko dźwięk kliknięcia */
+  let lampLocked = false;
 
   const shoutRoot = document.querySelector(".lit-shout");
   const shoutHey = document.querySelector(".lit-shout-hey");
@@ -122,6 +124,18 @@
     return startAt + Math.max(0, words.length - 1) * WORD_MS;
   };
 
+  const lockLamp = () => {
+    lampLocked = true;
+    btn.classList.add("is-locked");
+    btn.setAttribute("aria-disabled", "true");
+  };
+
+  const playClickOnly = () => {
+    clickFx.currentTime = 0;
+    const p = clickFx.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
+  };
+
   const hideApology = () => {
     if (!apologyRoot) return;
     apologyRoot.classList.remove("is-on");
@@ -146,6 +160,7 @@
     apologyRoot.classList.add("is-on");
     apologyRoot.setAttribute("aria-hidden", "false");
     apologySettled = true;
+    lockLamp();
   };
 
   const crossfadeToApology = () => {
@@ -206,6 +221,7 @@
         if (shoutRest) shoutRest.innerHTML = "";
         apologySettled = true;
         shoutSettled = true;
+        lockLamp();
       }, endAt + 140)
     );
   };
@@ -278,13 +294,13 @@
 
   const setLit = (on) => {
     if (on === lit) return;
+    /* zablokowana — nie wracaj do światła (nawet z historii) */
+    if (lampLocked && on) return;
     lit = on;
     btn.setAttribute("aria-pressed", on ? "true" : "false");
     btn.classList.toggle("is-on", on);
     document.body.classList.toggle("is-lit", on);
-    clickFx.currentTime = 0;
-    const p = clickFx.play();
-    if (p && typeof p.catch === "function") p.catch(() => {});
+    playClickOnly();
     updateSwayDistance();
     if (on) startShout();
     else crossfadeToApology();
@@ -313,6 +329,11 @@
     e.preventDefault();
     e.stopPropagation();
     unlock();
+    /* po apology: tylko klik dźwiękowy, zero przejścia */
+    if (lampLocked) {
+      playClickOnly();
+      return;
+    }
     if (isLitHash()) {
       history.back();
     } else {

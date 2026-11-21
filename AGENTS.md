@@ -129,8 +129,9 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
   - `hey.mp3` (slowed) on HEY
   - After light off: shout **exits word-by-word** (fast reading pace) while apology enters the same way in parallel:
     *“I apologize, but when I’m working, a sudden change in my surroundings throws me off rhythm.”*
-  - Apology placement: starts at **column 7**, row 5 (`data-col="7"`); stays on dark; re-lit hides it and shows settled shout
+  - Apology placement: starts at **column 7**, row 5 (`data-col="7"`); stays on dark
   - Apology layout (ref): small type, short lines, open leading in-block, **larger gaps between stanza blocks**
+  - After apology: **lamp locks** — still sways + click sound, but **no return to lit**
   - Lamp stays above; sway audio muted on lit
 - Tone: empathy for sensory overload / light+noise; site is about that experience
 
