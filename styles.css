@@ -661,8 +661,7 @@ body::before {
   Po zgaszeniu: HEY znika słowo-po-słowie; równolegle wchodzi apology
   (tempo jak szybkie czytanie). Font: PT Mono. HEY @ mid row 5.
 */
-.hero-grid > .lit-shout,
-.hero-grid > .apology {
+.hero-grid > .lit-shout {
   position: absolute;
   inset: 0;
   z-index: 3;
@@ -680,37 +679,25 @@ body::before {
   visibility: visible;
 }
 
-.apology.is-on {
-  opacity: 1;
-  visibility: visible;
-}
-
-.lit-shout-stack,
-.apology-lines {
+.lit-shout-stack {
   position: absolute;
   /* środek rzędu 5: (5 - 0.5) / --rows */
   top: calc((5 - 0.5) / var(--rows) * 100%);
   right: clamp(4rem, 16vw, 11rem);
-  width: min(70vw, 22ch);
+  width: min(70vw, 16ch);
   text-align: right;
 }
 
 .lit-shout-hey,
-.lit-shout-rest,
-.apology-lines {
+.lit-shout-rest {
   margin: 0;
   font-family: "PT Mono", "Courier New", Courier, monospace;
   font-weight: 400;
   font-size: clamp(1rem, 2.4vw, 1.55rem);
-  line-height: 1.35;
-  letter-spacing: 0.02em;
-  color: #f5f5f5;
-}
-
-.lit-shout-hey,
-.lit-shout-rest {
-  text-transform: uppercase;
   line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #f5f5f5;
 }
 
 /* na świetle — ciemne */
@@ -719,9 +706,35 @@ body::before {
   color: #0a0a0a;
 }
 
+/* apology — zaczyna się od kolumny 7 (place data-col=7), rząd 5 */
+.hero-grid > .apology {
+  z-index: 3;
+  align-self: start;
+  justify-self: stretch;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+  /* środek rzędu 5 (place start = top of row 5) */
+  padding-top: calc(var(--hero-h) / var(--rows) / 2);
+}
+
+.apology.is-on {
+  opacity: 1;
+  visibility: visible;
+}
+
 .apology-lines {
-  text-transform: none;
+  margin: 0;
+  max-width: 28ch;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.4vw, 1.55rem);
+  line-height: 1.35;
   letter-spacing: 0.01em;
+  text-align: left;
+  text-transform: none;
+  color: #f5f5f5;
 }
 
 /* słowo-po-słowie (czytanie) */
