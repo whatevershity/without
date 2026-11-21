@@ -5,6 +5,8 @@
   const isLitHash = () => location.hash === "#lit";
 
   const SWAY_VOL_MAX = 0.45;
+  /* tempo jak szybkie czytanie — słowo po słowie */
+  const WORD_MS = 72;
 
   /* —— dźwięki z sound/ —— */
   const sway = new Audio("../sound/lamp-swaying.mp3");
@@ -19,7 +21,6 @@
   const heyFx = new Audio("../sound/hey.mp3");
   heyFx.preload = "auto";
   heyFx.volume = 0.85;
-  /* zwolnione — w sensie dźwięk */
   heyFx.playbackRate = 0.72;
   try {
     heyFx.preservesPitch = false;
@@ -28,18 +29,39 @@
   let lit = false;
   let unlocked = false;
   let shoutSettled = false;
+  let apologySettled = false;
 
-  /*
-    Krzyk raz: HEY! + reszta wchodzi po nim (pop + smear),
-    potem napisy się zatrzymują i zostają na stronie
-    (po zgaszeniu — biały tekst).
-  */
   const shoutRoot = document.querySelector(".lit-shout");
   const shoutHey = document.querySelector(".lit-shout-hey");
   const shoutRest = document.querySelector(".lit-shout-rest");
+  const apologyRoot = document.querySelector(".apology");
+  const apologyLines = document.querySelector(".apology-lines");
+
   const FINAL_REST = ["TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"];
+  const APOLOGY = [
+    "I apologize,",
+    "but when I’m working, a sudden change",
+    "in my surroundings throws me off rhythm.",
+  ];
+
   let restTimer = 0;
   let settleTimer = 0;
+  let wordTimers = [];
+
+  const clearWordTimers = () => {
+    wordTimers.forEach((id) => window.clearTimeout(id));
+    wordTimers = [];
+  };
+
+  const wordsHtml = (text) =>
+    text
+      .split(/(\s+)/)
+      .map((tok) => {
+        if (/^\s+$/.test(tok)) return tok;
+        if (!tok) return "";
+        return `<span class="w">${tok}</span>`;
+      })
+      .join("");
 
   const linesToHtml = (lines, startI = 0) =>
     lines
@@ -60,33 +82,153 @@
     shoutSettled = true;
     if (shoutRoot) {
       shoutRoot.classList.add("is-settled");
+      shoutRoot.classList.remove("is-exiting");
       shoutRoot.setAttribute("aria-hidden", "false");
     }
     if (shoutHey) shoutHey.classList.remove("is-popping");
     if (shoutRest) shoutRest.classList.remove("is-popping");
   };
 
+  /* zamień linie krzyku na słowa — do wyjścia słowo-po-słowie */
+  const explodeShoutToWords = () => {
+    if (!shoutHey || !shoutRest) return [];
+    const heyText = shoutHey.textContent.trim() || "HEY!";
+    shoutHey.innerHTML = wordsHtml(heyText);
+    shoutHey.classList.remove("is-popping");
+
+    const restText = FINAL_REST.join(" ");
+    shoutRest.classList.remove("is-popping");
+    shoutRest.innerHTML = `<span class="lit-line">${wordsHtml(restText)}</span>`;
+
+    const words = [...shoutRoot.querySelectorAll(".w")];
+    words.forEach((w) => {
+      w.classList.add("is-on");
+      w.style.opacity = "1";
+    });
+    return words;
+  };
+
+  const staggerWords = (words, turnOn, startAt = 0) => {
+    words.forEach((el, i) => {
+      const id = window.setTimeout(() => {
+        el.classList.toggle("is-on", turnOn);
+        if (!turnOn) el.style.opacity = "0";
+        else el.style.opacity = "";
+      }, startAt + i * WORD_MS);
+      wordTimers.push(id);
+    });
+    return startAt + Math.max(0, words.length - 1) * WORD_MS;
+  };
+
+  const hideApology = () => {
+    if (!apologyRoot) return;
+    apologyRoot.classList.remove("is-on");
+    apologyRoot.setAttribute("aria-hidden", "true");
+  };
+
+  const showApologyInstant = () => {
+    if (!apologyRoot || !apologyLines) return;
+    apologyLines.innerHTML = APOLOGY.map(
+      (line) => `<span class="apology-line">${wordsHtml(line)}</span>`
+    ).join("<br />");
+    apologyLines.querySelectorAll(".w").forEach((w) => {
+      w.classList.add("is-on");
+      w.style.opacity = "";
+    });
+    apologyRoot.classList.add("is-on");
+    apologyRoot.setAttribute("aria-hidden", "false");
+    apologySettled = true;
+  };
+
+  const crossfadeToApology = () => {
+    window.clearTimeout(restTimer);
+    window.clearTimeout(settleTimer);
+    clearWordTimers();
+    heyFx.pause();
+    heyFx.currentTime = 0;
+
+    if (!shoutRoot) {
+      showApologyInstant();
+      return;
+    }
+
+    /* już było — tylko pokaż apology, schowaj shout */
+    if (apologySettled) {
+      shoutRoot.classList.remove("is-settled", "is-exiting");
+      shoutRoot.setAttribute("aria-hidden", "true");
+      if (shoutHey) shoutHey.innerHTML = "";
+      if (shoutRest) shoutRest.innerHTML = "";
+      showApologyInstant();
+      return;
+    }
+
+    if (!shoutHey?.textContent && !shoutRest?.textContent) {
+      showApologyInstant();
+      return;
+    }
+
+    const shoutWords = explodeShoutToWords();
+    shoutRoot.classList.add("is-exiting", "is-settled");
+    shoutRoot.setAttribute("aria-hidden", "false");
+
+    if (apologyLines) {
+      apologyLines.innerHTML = APOLOGY.map(
+        (line) => `<span class="apology-line">${wordsHtml(line)}</span>`
+      ).join("<br />");
+    }
+    const apologyWords = apologyRoot
+      ? [...apologyRoot.querySelectorAll(".w")]
+      : [];
+    apologyWords.forEach((w) => {
+      w.classList.remove("is-on");
+      w.style.opacity = "0";
+    });
+    if (apologyRoot) {
+      apologyRoot.classList.add("is-on");
+      apologyRoot.setAttribute("aria-hidden", "false");
+    }
+
+    /* równolegle: shout out + apology in */
+    staggerWords(shoutWords, false, 0);
+    const endAt = staggerWords(apologyWords, true, 0);
+
+    wordTimers.push(
+      window.setTimeout(() => {
+        shoutRoot.classList.remove("is-settled", "is-exiting");
+        shoutRoot.setAttribute("aria-hidden", "true");
+        if (shoutHey) shoutHey.innerHTML = "";
+        if (shoutRest) shoutRest.innerHTML = "";
+        apologySettled = true;
+        shoutSettled = true;
+      }, endAt + 140)
+    );
+  };
+
   const startShout = () => {
     if (!shoutRoot || !shoutHey || !shoutRest) return;
 
-    /* już po efekcie — tylko zostań (kolor CSS przełącza się z is-lit) */
+    clearWordTimers();
+    hideApology();
+
+    /* już po pierwszym krzyku — wróć bez popu */
     if (shoutSettled) {
+      shoutHey.textContent = "HEY!";
+      shoutRest.innerHTML = linesToHtml(FINAL_REST, 1);
       shoutRoot.classList.add("is-settled");
+      shoutRoot.classList.remove("is-exiting");
       shoutRoot.setAttribute("aria-hidden", "false");
       return;
     }
 
     shoutRoot.setAttribute("aria-hidden", "false");
-    shoutRoot.classList.remove("is-settled");
+    shoutRoot.classList.remove("is-settled", "is-exiting");
 
-    /* 1) HEY! + dźwięk */
     shoutHey.classList.remove("is-popping");
     shoutHey.textContent = "HEY!";
     void shoutHey.offsetWidth;
     shoutHey.classList.add("is-popping");
     playHey();
 
-    /* 2) reszta raz — potem stop */
     shoutRest.innerHTML = "";
     shoutRest.classList.remove("is-popping");
     window.clearTimeout(restTimer);
@@ -95,25 +237,11 @@
       shoutRest.innerHTML = linesToHtml(FINAL_REST, 1);
       void shoutRest.offsetWidth;
       shoutRest.classList.add("is-popping");
-      /* po popie — zatrzymaj na stałe */
       const restMs = 520 + FINAL_REST.length * 70 + 80;
       settleTimer = window.setTimeout(markSettled, restMs);
     }, 520);
   };
 
-  /* zgaszenie: nie kasuj tekstu — zostaje, biały na ciemnym */
-  const keepShoutOnDark = () => {
-    window.clearTimeout(restTimer);
-    window.clearTimeout(settleTimer);
-    heyFx.pause();
-    heyFx.currentTime = 0;
-    if (!shoutRoot) return;
-    if (shoutHey?.textContent || shoutRest?.textContent) {
-      markSettled();
-    }
-  };
-
-  /* Im niżej scroll, tym dalej / ciszej lampa — na bieli wycisz */
   const fadeRange = () => Math.max(window.innerHeight * 0.9, 420);
 
   const updateSwayDistance = () => {
@@ -148,13 +276,12 @@
     btn.setAttribute("aria-pressed", on ? "true" : "false");
     btn.classList.toggle("is-on", on);
     document.body.classList.toggle("is-lit", on);
-    /* switch przy czarne↔białe (i odwrotnie) */
     clickFx.currentTime = 0;
     const p = clickFx.play();
     if (p && typeof p.catch === "function") p.catch(() => {});
     updateSwayDistance();
     if (on) startShout();
-    else keepShoutOnDark();
+    else crossfadeToApology();
   };
 
   const tryPlaySway = () => {
@@ -192,7 +319,6 @@
     setLit(isLitHash());
   });
 
-  /* start: bez dźwięku switch przy samym wejściu / odświeżeniu */
   lit = isLitHash();
   btn.setAttribute("aria-pressed", lit ? "true" : "false");
   btn.classList.toggle("is-on", lit);

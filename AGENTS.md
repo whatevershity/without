@@ -127,8 +127,9 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
   - Entrance: **pop small→large** + **fast smear/shadow trail**; then text **settles and stops** (no cycling)
   - Placement: **HEY** starts at mid **row 5**; stack leans right
   - `hey.mp3` (slowed) on HEY
-  - After light off: shout **stays on the page**, color flips to **white** on dark; lit = dark type
-  - Lamp stays above the shout; sway audio muted on lit
-- Only way back to dark: click lamp → darkness (shout remains)
+  - After light off: shout **exits word-by-word** (fast reading pace) while apology enters the same way in parallel:
+    *“I apologize, but when I’m working, a sudden change in my surroundings throws me off rhythm.”*
+  - Apology stays on dark; re-lit hides apology and shows settled shout
+  - Lamp stays above; sway audio muted on lit
 - Tone: empathy for sensory overload / light+noise; site is about that experience
 

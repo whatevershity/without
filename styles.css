@@ -657,11 +657,12 @@ body::before {
 }
 
 /*
-  Lit shout — krzyk raz (pop + smear), potem napisy stoją.
-  Zostają po zgaszeniu (białe na ciemnym). Font: PT Mono (jak reszta poza tytułem).
-  HEY zaczyna się w połowie rzędu 5; lekko w prawo.
+  Lit shout — krzyk raz (pop + smear), potem napisy stoją na świetle.
+  Po zgaszeniu: HEY znika słowo-po-słowie; równolegle wchodzi apology
+  (tempo jak szybkie czytanie). Font: PT Mono. HEY @ mid row 5.
 */
-.hero-grid > .lit-shout {
+.hero-grid > .lit-shout,
+.hero-grid > .apology {
   position: absolute;
   inset: 0;
   z-index: 3;
@@ -670,42 +671,72 @@ body::before {
   visibility: hidden;
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  transition: opacity 0.28s ease;
 }
 
 .page-without.is-lit .lit-shout,
-.lit-shout.is-settled {
+.lit-shout.is-settled,
+.lit-shout.is-exiting {
   opacity: 1;
   visibility: visible;
 }
 
-.lit-shout-stack {
+.apology.is-on {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lit-shout-stack,
+.apology-lines {
   position: absolute;
   /* środek rzędu 5: (5 - 0.5) / --rows */
   top: calc((5 - 0.5) / var(--rows) * 100%);
   right: clamp(4rem, 16vw, 11rem);
-  width: min(70vw, 16ch);
+  width: min(70vw, 22ch);
   text-align: right;
 }
 
 .lit-shout-hey,
-.lit-shout-rest {
+.lit-shout-rest,
+.apology-lines {
   margin: 0;
   font-family: "PT Mono", "Courier New", Courier, monospace;
   font-weight: 400;
   font-size: clamp(1rem, 2.4vw, 1.55rem);
-  line-height: 1.05;
+  line-height: 1.35;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
-  /* na ciemnym (po zgaszeniu) — białe */
   color: #f5f5f5;
-  transition: color 0.28s ease;
+}
+
+.lit-shout-hey,
+.lit-shout-rest {
+  text-transform: uppercase;
+  line-height: 1.05;
 }
 
 /* na świetle — ciemne */
 .page-without.is-lit .lit-shout-hey,
 .page-without.is-lit .lit-shout-rest {
   color: #0a0a0a;
+}
+
+.apology-lines {
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+/* słowo-po-słowie (czytanie) */
+.w {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.w.is-on {
+  opacity: 1;
+}
+
+.apology-line {
+  display: block;
 }
 
 .lit-shout-hey {
