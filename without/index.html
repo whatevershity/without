@@ -4,8 +4,131 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>without</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=synonym@400&f[]=clash-display@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css?v=lit-glow2" />
   </head>
-  <body>
-    <!-- Placeholder: without variant (motion / sound / unease). Build later. -->
+  <body class="page-without">
+    <main class="page">
+      <!--
+        WITHOUT variant — ten sam hero co with.
+        Tytuł: rest without → hover with. Link → /.
+        Wybór: rest yes/yes/who knows → hover no/no/yes.
+        Lampa: click → rozmazane koło światła + naturalna poświata; krzyk (lit-shout).
+      -->
+      <section class="hero" aria-label="Hero">
+        <div class="light-flood" aria-hidden="true">
+          <span class="light-flood-halo"></span>
+          <span class="light-flood-core"></span>
+        </div>
+        <div class="hero-grid">
+          <div class="col-guides" aria-hidden="true">
+            <span data-n="1"></span>
+            <span data-n="2"></span>
+            <span data-n="3"></span>
+            <span data-n="4"></span>
+            <span data-n="5"></span>
+            <span data-n="6"></span>
+            <span data-n="7"></span>
+            <span data-n="8"></span>
+            <span data-n="9"></span>
+            <span data-n="10"></span>
+            <span data-n="11"></span>
+            <span data-n="12"></span>
+          </div>
+          <div class="row-guides" aria-hidden="true">
+            <span data-n="1"></span>
+            <span data-n="2"></span>
+            <span data-n="3"></span>
+            <span data-n="4"></span>
+            <span data-n="5"></span>
+            <span data-n="6"></span>
+            <span data-n="7"></span>
+            <span data-n="8"></span>
+          </div>
+
+          <div class="lit-shout" aria-live="assertive" aria-hidden="true">
+            <div class="lit-shout-stack">
+              <p class="lit-shout-hey"></p>
+              <p class="lit-shout-rest"></p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="lamp-switch place"
+            data-col="3"
+            data-span="1"
+            data-row="1"
+            aria-pressed="false"
+            aria-label="Light"
+          >
+            <span class="lamp-face">
+              <img class="lamp" src="../lamp.png" width="78" height="309" alt="" />
+            </span>
+          </button>
+
+          <div
+            class="hero-stack place"
+            data-col="5"
+            data-span="4"
+            data-row="3"
+          >
+            <p class="line">
+              wild
+              <a class="without-link" href="/" aria-label="without">
+                <span class="board" aria-hidden="true">
+                  <span class="tile tile-keep" style="--i: 0" data-from="w" data-to="w"></span>
+                  <span class="tile tile-keep" style="--i: 1" data-from="i" data-to="i"></span>
+                  <span class="tile tile-keep" style="--i: 2" data-from="t" data-to="t"></span>
+                  <span class="tile tile-keep" style="--i: 3" data-from="h" data-to="h"></span>
+                  <span class="tile tile-out" style="--i: 0" data-from="o" data-to="black"></span>
+                  <span class="tile tile-out" style="--i: 1" data-from="u" data-to="black"></span>
+                  <span class="tile tile-out" style="--i: 2" data-from="t" data-to="black"></span>
+                </span>
+              </a>
+              frames
+            </p>
+            <!--
+              Opcje + wybór (without): rest yes/yes/who knows → hover no/no/yes.
+            -->
+            <div class="status-meta" aria-hidden="true">
+              <div class="status-col" style="--i: 0">
+                <span class="status-label">sound</span>
+                <span class="status-answer">
+                  <span class="rest">yes</span>
+                  <span class="hover">no</span>
+                </span>
+              </div>
+              <div class="status-col" style="--i: 1">
+                <span class="status-label">interactive</span>
+                <span class="status-answer">
+                  <span class="rest">yes</span>
+                  <span class="hover">no</span>
+                </span>
+              </div>
+              <div class="status-col" style="--i: 2">
+                <span class="status-label">story</span>
+                <span class="status-answer">
+                  <span class="rest">who knows</span>
+                  <span class="hover">yes</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="../splitflap.js"></script>
+    <script src="../grid.js"></script>
+    <script src="../lamp.js"></script>
   </body>
 </html>
