@@ -125,7 +125,7 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
 - Flood has `pointer-events: none` so the second click always reaches the lamp
 - On lit: **shout** once (EN), caps, **PT Mono** — **HEY!** then rest lines enter after it
   - Entrance: **pop small→large** + **fast smear/shadow trail**; then text **settles and stops** (no cycling)
-  - Placement: center-right in the hero
+  - Placement: **HEY** starts at mid **row 5**; stack leans right
   - `hey.mp3` (slowed) on HEY
   - After light off: shout **stays on the page**, color flips to **white** on dark; lit = dark type
   - Lamp stays above the shout; sway audio muted on lit

@@ -659,17 +659,12 @@ body::before {
 /*
   Lit shout — krzyk raz (pop + smear), potem napisy stoją.
   Zostają po zgaszeniu (białe na ciemnym). Font: PT Mono (jak reszta poza tytułem).
-  Pozycja: środek, lekko w prawo.
+  HEY zaczyna się w połowie rzędu 5; lekko w prawo.
 */
 .hero-grid > .lit-shout {
   position: absolute;
   inset: 0;
   z-index: 3;
-  display: grid;
-  /* środek + z prawej */
-  justify-items: end;
-  align-items: center;
-  padding: 6vh 4% 6vh 18%;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -685,10 +680,12 @@ body::before {
 }
 
 .lit-shout-stack {
-  position: relative;
+  position: absolute;
+  /* środek rzędu 5: (5 - 0.5) / --rows */
+  top: calc((5 - 0.5) / var(--rows) * 100%);
+  right: clamp(0px, 6vw, 4rem);
   width: min(70vw, 16ch);
   text-align: right;
-  margin-right: clamp(0px, 6vw, 4rem);
 }
 
 .lit-shout-hey,
