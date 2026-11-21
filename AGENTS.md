@@ -132,6 +132,7 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
   - Apology placement: starts at **column 7**, row 5 (`data-col="7"`); stays on dark
   - Apology layout (ref): small type, short lines, open leading in-block, **larger gaps between stanza blocks**
   - After apology: **lamp locks** — still sways + click sound, but **no return to lit**
+  - Then **“Ok, so.”** at **col 5 / row 8**, same word-by-word reveal
   - Lamp stays above; sway audio muted on lit
 - Tone: empathy for sensory overload / light+noise; site is about that experience
 

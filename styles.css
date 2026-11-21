@@ -754,6 +754,33 @@ body::before {
   display: block;
 }
 
+/* „Ok, so.” — kolumna 5 / rząd 8, ten sam efekt słowo-po-słowie */
+.hero-grid > .ok-so {
+  z-index: 3;
+  align-self: center;
+  justify-self: start;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+}
+
+.ok-so.is-on {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ok-so-line {
+  margin: 0;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
+  font-weight: 400;
+  font-size: clamp(0.62rem, 0.95vw, 0.78rem);
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: #f5f5f5;
+}
+
 /* słowo-po-słowie (czytanie) */
 .w {
   display: inline-block;

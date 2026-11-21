@@ -39,6 +39,8 @@
   const shoutRest = document.querySelector(".lit-shout-rest");
   const apologyRoot = document.querySelector(".apology");
   const apologyLines = document.querySelector(".apology-lines");
+  const okSoRoot = document.querySelector(".ok-so");
+  const okSoLine = document.querySelector(".ok-so-line");
 
   const FINAL_REST = ["TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"];
   /* bloki jak w ref (krótkie wersy + większa przerwa między grupami) */
@@ -47,6 +49,7 @@
     ["but when I’m working,", "a sudden change"],
     ["in my surroundings", "throws me off rhythm."],
   ];
+  const OK_SO = "Ok, so.";
 
   let restTimer = 0;
   let settleTimer = 0;
@@ -137,9 +140,35 @@
   };
 
   const hideApology = () => {
-    if (!apologyRoot) return;
-    apologyRoot.classList.remove("is-on");
-    apologyRoot.setAttribute("aria-hidden", "true");
+    if (apologyRoot) {
+      apologyRoot.classList.remove("is-on");
+      apologyRoot.setAttribute("aria-hidden", "true");
+    }
+    if (okSoRoot) {
+      okSoRoot.classList.remove("is-on");
+      okSoRoot.setAttribute("aria-hidden", "true");
+    }
+    if (okSoLine) okSoLine.innerHTML = "";
+  };
+
+  const revealOkSo = (startAt = 0, instant = false) => {
+    if (!okSoRoot || !okSoLine) return startAt;
+    okSoLine.innerHTML = wordsHtml(OK_SO);
+    const words = [...okSoLine.querySelectorAll(".w")];
+    okSoRoot.classList.add("is-on");
+    okSoRoot.setAttribute("aria-hidden", "false");
+    if (instant) {
+      words.forEach((w) => {
+        w.classList.add("is-on");
+        w.style.opacity = "";
+      });
+      return startAt;
+    }
+    words.forEach((w) => {
+      w.classList.remove("is-on");
+      w.style.opacity = "0";
+    });
+    return staggerWords(words, true, startAt);
   };
 
   const apologyHtml = () =>
@@ -161,6 +190,7 @@
     apologyRoot.setAttribute("aria-hidden", "false");
     apologySettled = true;
     lockLamp();
+    revealOkSo(0, true);
   };
 
   const crossfadeToApology = () => {
@@ -209,9 +239,10 @@
       apologyRoot.setAttribute("aria-hidden", "false");
     }
 
-    /* równolegle: shout out + apology in */
+    /* równolegle: shout out + apology in; potem „Ok, so.” @ 5/8 */
     staggerWords(shoutWords, false, 0);
-    const endAt = staggerWords(apologyWords, true, 0);
+    const apologyEnd = staggerWords(apologyWords, true, 0);
+    const okSoEnd = revealOkSo(apologyEnd + WORD_MS * 2, false);
 
     wordTimers.push(
       window.setTimeout(() => {
@@ -222,7 +253,7 @@
         apologySettled = true;
         shoutSettled = true;
         lockLamp();
-      }, endAt + 140)
+      }, okSoEnd + 140)
     );
   };
 
