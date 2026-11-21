@@ -634,17 +634,25 @@ body::before {
   transform: scale(1.08);
 }
 
-/* jaśniejsze, rozmazane koło od środka */
+/* jaśniejsze, rozmazane koło — środek od bielszej bieli */
 .light-flood-core {
-  background: radial-gradient(
-    circle at 50% 48%,
-    #ffffff 0%,
-    rgb(255 255 255 / 0.95) 14%,
-    rgb(255 255 255 / 0.62) 34%,
-    rgb(255 255 255 / 0.22) 52%,
-    transparent 68%
-  );
-  filter: blur(22px);
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      #ffffff 0%,
+      #ffffff 18%,
+      rgb(255 255 255 / 0.98) 28%,
+      rgb(255 255 255 / 0.7) 42%,
+      rgb(255 255 255 / 0.28) 56%,
+      transparent 70%
+    ),
+    radial-gradient(
+      circle at 50% 48%,
+      #ffffff 0%,
+      rgb(255 255 255 / 0.9) 12%,
+      transparent 32%
+    );
+  filter: blur(14px);
 }
 
 /*
