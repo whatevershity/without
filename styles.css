@@ -656,9 +656,9 @@ body::before {
 }
 
 /*
-  Lit shout — HEY! zostaje; reszta wchodzi po nim.
-  Pop małe→duże + szybki smear-cień za napisem (zostaje).
-  Pozycja: środek, lekko w prawo. Font: Clash Display na start.
+  Lit shout — krzyk raz (pop + smear), potem napisy stoją.
+  Zostają po zgaszeniu (białe na ciemnym). Font Clash Display na start — mniejszy.
+  Pozycja: środek, lekko w prawo.
 */
 .hero-grid > .lit-shout {
   position: absolute;
@@ -674,16 +674,18 @@ body::before {
   visibility: hidden;
   grid-column: 1 / -1;
   grid-row: 1 / -1;
+  transition: opacity 0.28s ease;
 }
 
-.page-without.is-lit .lit-shout {
+.page-without.is-lit .lit-shout,
+.lit-shout.is-settled {
   opacity: 1;
   visibility: visible;
 }
 
 .lit-shout-stack {
   position: relative;
-  width: min(78vw, 13ch);
+  width: min(70vw, 16ch);
   text-align: right;
   margin-right: clamp(0px, 6vw, 4rem);
 }
@@ -693,10 +695,18 @@ body::before {
   margin: 0;
   font-family: "Clash Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
-  font-size: clamp(1.6rem, 5.5vw, 3.6rem);
-  line-height: 0.92;
-  letter-spacing: 0.01em;
+  font-size: clamp(1rem, 2.4vw, 1.55rem);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  /* na ciemnym (po zgaszeniu) — białe */
+  color: #f5f5f5;
+  transition: color 0.28s ease;
+}
+
+/* na świetle — ciemne */
+.page-without.is-lit .lit-shout-hey,
+.page-without.is-lit .lit-shout-rest {
   color: #0a0a0a;
 }
 

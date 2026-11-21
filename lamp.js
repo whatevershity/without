@@ -27,26 +27,19 @@
 
   let lit = false;
   let unlocked = false;
+  let shoutSettled = false;
 
   /*
-    Krzyk na bieli:
-    HEY! zostaje; reszta wchodzi po nim (pop małe→duże + smear-cień).
-    Pozycja: środek / lekko w prawo.
+    Krzyk raz: HEY! + reszta wchodzi po nim (pop + smear),
+    potem napisy się zatrzymują i zostają na stronie
+    (po zgaszeniu — biały tekst).
   */
   const shoutRoot = document.querySelector(".lit-shout");
   const shoutHey = document.querySelector(".lit-shout-hey");
   const shoutRest = document.querySelector(".lit-shout-rest");
-  const restVariants = [
-    ["TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"],
-    ["TURN OFF", "THE LIGHT!", "TOO LOUD!"],
-    ["TOO LOUD!", "TURN IT OFF!"],
-    ["THE LIGHT!", "IT'S TOO LOUD!"],
-    ["TURN IT OFF!", "TOO LOUD!", "THE LIGHT!"],
-    ["IT'S TOO LOUD!", "TURN IT OFF!"],
-  ];
-  let shoutIndex = 0;
-  let shoutTimer = 0;
+  const FINAL_REST = ["TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"];
   let restTimer = 0;
+  let settleTimer = 0;
 
   const linesToHtml = (lines, startI = 0) =>
     lines
@@ -63,71 +56,61 @@
     if (p && typeof p.catch === "function") p.catch(() => {});
   };
 
-  const renderRest = (lines) => {
-    if (!shoutRest) return;
-    shoutRest.classList.remove("is-popping");
-    shoutRest.innerHTML = linesToHtml(lines, 1);
-    void shoutRest.offsetWidth;
-    shoutRest.classList.add("is-popping");
-  };
-
-  const nextDelay = () => {
-    const roll = Math.random();
-    if (roll < 0.15) return 420 + Math.random() * 200;
-    if (roll < 0.55) return 700 + Math.random() * 320;
-    return 980 + Math.random() * 480;
-  };
-
-  const scheduleRestCycle = () => {
-    window.clearTimeout(shoutTimer);
-    shoutTimer = window.setTimeout(() => {
-      if (Math.random() > 0.2) {
-        shoutIndex =
-          (shoutIndex + 1 + Math.floor(Math.random() * 2)) % restVariants.length;
-      }
-      renderRest(restVariants[shoutIndex]);
-      scheduleRestCycle();
-    }, nextDelay());
-  };
-
-  const stopShout = () => {
-    window.clearTimeout(shoutTimer);
-    window.clearTimeout(restTimer);
-    shoutTimer = 0;
-    restTimer = 0;
-    heyFx.pause();
-    heyFx.currentTime = 0;
-    if (shoutRoot) shoutRoot.setAttribute("aria-hidden", "true");
-    if (shoutHey) {
-      shoutHey.classList.remove("is-popping");
-      shoutHey.textContent = "";
+  const markSettled = () => {
+    shoutSettled = true;
+    if (shoutRoot) {
+      shoutRoot.classList.add("is-settled");
+      shoutRoot.setAttribute("aria-hidden", "false");
     }
-    if (shoutRest) {
-      shoutRest.classList.remove("is-popping");
-      shoutRest.innerHTML = "";
-    }
+    if (shoutHey) shoutHey.classList.remove("is-popping");
+    if (shoutRest) shoutRest.classList.remove("is-popping");
   };
 
   const startShout = () => {
     if (!shoutRoot || !shoutHey || !shoutRest) return;
-    shoutRoot.setAttribute("aria-hidden", "false");
-    shoutIndex = 0;
 
-    /* 1) HEY! — zostaje; dźwięk zwolniony */
+    /* już po efekcie — tylko zostań (kolor CSS przełącza się z is-lit) */
+    if (shoutSettled) {
+      shoutRoot.classList.add("is-settled");
+      shoutRoot.setAttribute("aria-hidden", "false");
+      return;
+    }
+
+    shoutRoot.setAttribute("aria-hidden", "false");
+    shoutRoot.classList.remove("is-settled");
+
+    /* 1) HEY! + dźwięk */
     shoutHey.classList.remove("is-popping");
     shoutHey.textContent = "HEY!";
     void shoutHey.offsetWidth;
     shoutHey.classList.add("is-popping");
     playHey();
 
-    /* 2) reszta wchodzi po nim */
+    /* 2) reszta raz — potem stop */
     shoutRest.innerHTML = "";
     shoutRest.classList.remove("is-popping");
     window.clearTimeout(restTimer);
+    window.clearTimeout(settleTimer);
     restTimer = window.setTimeout(() => {
-      renderRest(restVariants[0]);
-      scheduleRestCycle();
+      shoutRest.innerHTML = linesToHtml(FINAL_REST, 1);
+      void shoutRest.offsetWidth;
+      shoutRest.classList.add("is-popping");
+      /* po popie — zatrzymaj na stałe */
+      const restMs = 520 + FINAL_REST.length * 70 + 80;
+      settleTimer = window.setTimeout(markSettled, restMs);
     }, 520);
+  };
+
+  /* zgaszenie: nie kasuj tekstu — zostaje, biały na ciemnym */
+  const keepShoutOnDark = () => {
+    window.clearTimeout(restTimer);
+    window.clearTimeout(settleTimer);
+    heyFx.pause();
+    heyFx.currentTime = 0;
+    if (!shoutRoot) return;
+    if (shoutHey?.textContent || shoutRest?.textContent) {
+      markSettled();
+    }
   };
 
   /* Im niżej scroll, tym dalej / ciszej lampa — na bieli wycisz */
@@ -171,7 +154,7 @@
     if (p && typeof p.catch === "function") p.catch(() => {});
     updateSwayDistance();
     if (on) startShout();
-    else stopShout();
+    else keepShoutOnDark();
   };
 
   const tryPlaySway = () => {
@@ -216,5 +199,4 @@
   document.body.classList.toggle("is-lit", lit);
   updateSwayDistance();
   if (lit) startShout();
-  else stopShout();
 })();

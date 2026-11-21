@@ -122,11 +122,12 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
 - Glow layers: `.light-flood-core` (brighter blur) + `.light-flood-halo` (wider soft poświata); scales out from mid-hero
 - Lamp art stays **`lamp.png`**, visible and clickable (never under the wash)
 - Flood has `pointer-events: none` so the second click always reaches the lamp
-- On lit: **shout** (EN), caps, smaller Clash Display — **HEY!** stays; other lines enter after it
-  - Entrance: **pop small→large** + keep the **fast smear/shadow trail** behind the type
+- On lit: **shout** once (EN), caps, smaller Clash Display — **HEY!** then rest lines enter after it
+  - Entrance: **pop small→large** + **fast smear/shadow trail**; then text **settles and stops** (no cycling)
   - Placement: center-right in the hero
-  - Rest lines cycle chaotically after HEY; `hey.mp3` (slowed) on HEY
+  - `hey.mp3` (slowed) on HEY; font TBD later
+  - After light off: shout **stays on the page**, color flips to **white** on dark; lit = dark type
   - Lamp stays above the shout; sway audio muted on lit
-- Only way back: click lamp → darkness
+- Only way back to dark: click lamp → darkness (shout remains)
 - Tone: empathy for sensory overload / light+noise; site is about that experience
 
