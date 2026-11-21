@@ -118,14 +118,15 @@ Video ref: https://www.youtube.com/watch?v=cI3jg1Jo650 — mechanism only.
 
 Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-path` circle, `body.is-lit`) — not navigation. Hover does **not** flood.
 
-- Lit ≈ sensory overload: light bursting from mid-hero via `clip-path` + **glowing** `radial-gradient` / inset `box-shadow` wash; tytuł/opcje/guides fade
+- Lit ≈ sensory overload: soft **blurred circle from center** + natural halo (not a flat white wash); dark vignette edges stay; tytuł/opcje/guides fade
+- Glow layers: `.light-flood-core` (brighter blur) + `.light-flood-halo` (wider soft poświata); scales out from mid-hero
 - Lamp art stays **`lamp.png`**, visible and clickable (never under the wash)
 - Flood has `pointer-events: none` so the second click always reaches the lamp
 - On lit: **shout** (EN), caps, smaller Clash Display — **HEY!** stays; other lines enter after it
   - Entrance: **pop small→large** + keep the **fast smear/shadow trail** behind the type
   - Placement: center-right in the hero
   - Rest lines cycle chaotically after HEY; `hey.mp3` (slowed) on HEY
-  - Lamp stays above the shout; sway audio muted on white
+  - Lamp stays above the shout; sway audio muted on lit
 - Only way back: click lamp → darkness
 - Tone: empathy for sensory overload / light+noise; site is about that experience
 

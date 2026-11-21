@@ -571,49 +571,80 @@ body::before {
 
 /*
   Lampa — switch na /without/ (tylko lamp.png).
-  Click: światło ze środka hero. Lampa zostaje nad światłem (klikalna).
+  Click: rozmazane koło ze środka + naturalna poświata (ref glow),
+  nie płaska biała zalewka. Lampa zostaje nad światłem (klikalna).
 */
 .page-without .hero {
   overflow: visible;
 }
 
 .page-without.is-lit {
-  background-color: #f4f1ea;
-  background-image:
-    radial-gradient(ellipse 55% 45% at 50% 42%, rgb(255 255 255 / 95%) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 35% at 28% 18%, rgb(255 250 230 / 85%) 0%, transparent 65%),
-    radial-gradient(ellipse 35% 30% at 72% 70%, rgb(255 255 255 / 70%) 0%, transparent 60%);
+  /* krawędzie zostają ciemne — vignette jak w ref */
+  background-color: #2e2e2e;
+  background-image: radial-gradient(
+    ellipse 90% 80% at 50% 48%,
+    #3f3f3f 0%,
+    #2a2a2a 55%,
+    #1c1c1c 100%
+  );
 }
 
 .page-without.is-lit::before {
-  opacity: 0;
+  /* lekki grain na ciemnych brzegach (naturalniej) */
+  opacity: 0.14;
 }
 
 .light-flood {
   position: absolute;
-  inset: 0;
+  inset: -18%;
   z-index: 1;
   pointer-events: none;
-  background-color: #fffef8;
-  background-image:
-    radial-gradient(circle at 50% 48%, #ffffff 0%, rgb(255 252 240 / 90%) 28%, transparent 58%),
-    radial-gradient(ellipse 70% 55% at 50% 50%, rgb(255 248 220 / 75%) 0%, transparent 72%),
-    radial-gradient(ellipse 45% 40% at 35% 30%, rgb(255 255 255 / 80%) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 35% at 65% 65%, rgb(255 250 235 / 65%) 0%, transparent 50%);
-  box-shadow:
-    inset 0 0 120px rgb(255 255 255 / 90%),
-    inset 0 0 220px rgb(255 240 200 / 45%),
-    0 0 80px rgb(255 255 255 / 50%);
-  clip-path: circle(0% at 50% 50%);
   opacity: 0;
+  transform: scale(0.12);
+  transform-origin: 50% 48%;
   transition:
-    clip-path 0.36s cubic-bezier(0.15, 0.85, 0.25, 1),
-    opacity 0.12s ease;
+    transform 0.62s cubic-bezier(0.12, 0.82, 0.2, 1),
+    opacity 0.28s ease;
 }
 
 .page-without.is-lit .light-flood {
-  clip-path: circle(165% at 50% 50%);
   opacity: 1;
+  transform: scale(1);
+}
+
+.light-flood-halo,
+.light-flood-core {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* szeroka, miękka poświata — zarys naturalnego glow */
+.light-flood-halo {
+  background: radial-gradient(
+    circle at 50% 48%,
+    rgb(255 255 255 / 0.55) 0%,
+    rgb(255 255 255 / 0.28) 28%,
+    rgb(255 255 255 / 0.1) 48%,
+    transparent 70%
+  );
+  filter: blur(42px);
+  transform: scale(1.08);
+}
+
+/* jaśniejsze, rozmazane koło od środka */
+.light-flood-core {
+  background: radial-gradient(
+    circle at 50% 48%,
+    #ffffff 0%,
+    rgb(255 255 255 / 0.95) 14%,
+    rgb(255 255 255 / 0.62) 34%,
+    rgb(255 255 255 / 0.22) 52%,
+    transparent 68%
+  );
+  filter: blur(22px);
 }
 
 /*
