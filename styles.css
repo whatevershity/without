@@ -683,7 +683,7 @@ body::before {
   position: absolute;
   /* środek rzędu 5: (5 - 0.5) / --rows */
   top: calc((5 - 0.5) / var(--rows) * 100%);
-  right: clamp(0px, 6vw, 4rem);
+  right: clamp(4rem, 16vw, 11rem);
   width: min(70vw, 16ch);
   text-align: right;
 }
