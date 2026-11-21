@@ -724,17 +724,34 @@ body::before {
   visibility: visible;
 }
 
+/*
+  Apology — układ jak ref (mały tekst, krótkie wersy,
+  ciasne leading w bloku, większa przerwa między grupami).
+*/
 .apology-lines {
   margin: 0;
-  max-width: 32ch;
+  max-width: 18ch;
   font-family: "PT Mono", "Courier New", Courier, monospace;
   font-weight: 400;
-  font-size: clamp(0.72rem, 1.35vw, 0.95rem);
-  line-height: 1.15;
-  letter-spacing: 0.01em;
+  font-size: clamp(0.62rem, 0.95vw, 0.78rem);
+  line-height: 1.55;
+  letter-spacing: 0.03em;
   text-align: left;
   text-transform: none;
   color: #f5f5f5;
+}
+
+.apology-block {
+  display: block;
+  margin: 0 0 1.55em;
+}
+
+.apology-block:last-child {
+  margin-bottom: 0;
+}
+
+.apology-line {
+  display: block;
 }
 
 /* słowo-po-słowie (czytanie) */
@@ -746,10 +763,6 @@ body::before {
 
 .w.is-on {
   opacity: 1;
-}
-
-.apology-line {
-  display: block;
 }
 
 .lit-shout-hey {

@@ -39,10 +39,11 @@
   const apologyLines = document.querySelector(".apology-lines");
 
   const FINAL_REST = ["TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"];
+  /* bloki jak w ref (krótkie wersy + większa przerwa między grupami) */
   const APOLOGY = [
-    "I apologize,",
-    "but when I’m working, a sudden change",
-    "in my surroundings throws me off rhythm.",
+    ["I apologize,"],
+    ["but when I’m working,", "a sudden change"],
+    ["in my surroundings", "throws me off rhythm."],
   ];
 
   let restTimer = 0;
@@ -127,11 +128,17 @@
     apologyRoot.setAttribute("aria-hidden", "true");
   };
 
+  const apologyHtml = () =>
+    APOLOGY.map(
+      (block) =>
+        `<span class="apology-block">${block
+          .map((line) => `<span class="apology-line">${wordsHtml(line)}</span>`)
+          .join("")}</span>`
+    ).join("");
+
   const showApologyInstant = () => {
     if (!apologyRoot || !apologyLines) return;
-    apologyLines.innerHTML = APOLOGY.map(
-      (line) => `<span class="apology-line">${wordsHtml(line)}</span>`
-    ).join("<br />");
+    apologyLines.innerHTML = apologyHtml();
     apologyLines.querySelectorAll(".w").forEach((w) => {
       w.classList.add("is-on");
       w.style.opacity = "";
@@ -173,9 +180,7 @@
     shoutRoot.setAttribute("aria-hidden", "false");
 
     if (apologyLines) {
-      apologyLines.innerHTML = APOLOGY.map(
-        (line) => `<span class="apology-line">${wordsHtml(line)}</span>`
-      ).join("<br />");
+      apologyLines.innerHTML = apologyHtml();
     }
     const apologyWords = apologyRoot
       ? [...apologyRoot.querySelectorAll(".w")]
