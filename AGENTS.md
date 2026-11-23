@@ -69,7 +69,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 - Layout: three rows in a compact panel (`fit-content`, padding 16px, `rgb(255 255 255 / 0.06)`); label | dots `1fr` | value; row gap ~9px
 - **Etykiety** (opcje): PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`; `max-content` width
 - **Wartości** (wybór): PT Mono ~10px, `rgb(255 255 255 / 0.85)`; column `calc(10ch + 0.8em)`, right-aligned
-- Gap **tytuł → tabela**: ~40px; 8px between label / dots / value; dots fill free space (min 16px)
+- Gap **tytuł → tabela**: ~40px; 8px between label / dots / value; dots = `border-bottom: 1px dotted` on `1fr` track (min 16px)
 - Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**

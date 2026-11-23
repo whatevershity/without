@@ -251,20 +251,14 @@ body::before {
   box-sizing: border-box;
   width: 100%;
   min-width: 16px;
-  height: 1px;
+  height: 0;
   margin: 0;
   padding: 0;
   align-self: center;
+  /* widoczny dotted leader (1px gradient bywał niewidoczny) */
   border: none;
-  /* gęste kropki na całą szerokość toru 1fr */
-  background-image: radial-gradient(
-    circle closest-side,
-    rgb(255 255 255 / 0.4) 55%,
-    transparent 56%
-  );
-  background-size: 3px 1px;
-  background-repeat: repeat-x;
-  background-position: left center;
+  border-bottom: 1px dotted rgb(255 255 255 / 0.55);
+  background: none;
   pointer-events: none;
 }
 
