@@ -302,7 +302,8 @@
     /* równolegle: shout out + apology in; potem „Ok, so.” @ 5/8 */
     staggerWords(shoutWords, false, 0);
     const apologyEnd = staggerWords(apologyWords, true, 0);
-    const okSoEnd = revealOkSo(apologyEnd + WORD_MS * 2, false);
+    /* „Ok, so.” — sekundę po apology */
+    const okSoEnd = revealOkSo(apologyEnd + 1000, false);
 
     wordTimers.push(
       window.setTimeout(() => {
