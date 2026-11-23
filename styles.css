@@ -189,7 +189,7 @@ body::before {
 /*
   Opcje + wybór (pod tytułem) — crossfade jak dawny sound (no↔yes):
   opacity + lekki drift + blur ~420ms. Wiersze ze staggerem (--i).
-  Panel na szerokość hero-stack; wartości startują w luce kolumn 6|7.
+  Wartości Nadal RIGHT-ALIGN. Tylko przesunięte: prawa krawędź na luce kol. 6|7.
   On with: rest no/no/yes → hover yes/yes/who knows
   Animacji .rest/.hover (transform/transition) nie ruszać.
 */
@@ -215,7 +215,7 @@ body::before {
   box-shadow: none;
 }
 
-/* wiersz: etykieta | kropki; wartość absolutnie na luce 6|7 */
+/* wiersz: etykieta | kropki; wartość w flow z prawą krawędzią na luce 6|7 */
 .status-col {
   position: relative;
   display: grid;
@@ -228,7 +228,7 @@ body::before {
   min-width: 0;
   min-height: 1.35em;
   margin: 0;
-  /* kropki kończą się tuż przed startem wartości (początek kol. 7) */
+  /* miejsce na kolumnę wartości kończącą się na starcie kol. 7 */
   padding: 0 calc(50% - var(--gutter) / 2) 0 0;
 }
 
@@ -264,19 +264,20 @@ body::before {
 }
 
 /*
-  Wartości: start na luce między kol. 6 a 7 (względem hero-stack cols 5–8).
-  who knows blisko kropek — OK. Left-align od tej linii.
+  Przesunięcie tylko: prawa krawędź bloku = luka 6|7.
+  Kierunek bez zmian: text-align/justify end (who knows jak yes/no).
 */
 .status-answer {
+  --status-value-w: calc(10ch + 0.8em);
   position: absolute;
-  left: calc(50% + var(--gutter) / 2);
   top: 0;
+  left: calc(50% + var(--gutter) / 2 - var(--status-value-w));
   display: grid;
-  justify-items: start;
+  justify-items: end;
   margin: 0;
   box-sizing: border-box;
-  width: max-content;
-  min-width: calc(10ch + 0.8em);
+  width: var(--status-value-w);
+  min-width: var(--status-value-w);
   min-height: 1.35em;
   padding: 0;
   color: rgb(255 255 255 / 0.85);
@@ -289,14 +290,14 @@ body::before {
   letter-spacing: 0.04em;
   line-height: 1.2;
   text-transform: lowercase;
-  text-align: left;
+  text-align: right;
   white-space: nowrap;
 }
 
 .status-answer .rest,
 .status-answer .hover {
   grid-area: 1 / 1;
-  justify-self: start;
+  justify-self: end;
   transition:
     opacity 420ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
