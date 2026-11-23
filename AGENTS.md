@@ -57,10 +57,11 @@ Use these names in chat and notes when talking about spacing or copy.
 
 Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, opacity + slight vertical drift + light blur ~420ms. Columns one after another (`--i` × `--status-stagger` ~320ms) — not all at once.
 
-- Placement: under the **tytuł**, centered in the hero stack (cols **5–8**), smaller (**PT Mono** ~11px)
-- Gap **tytuł → opcje**: larger (`margin-top` ~3.25rem on `.status-meta`)
-- Gap **opcje → wybór**: within each column (`gap` ~0.7em)
-- Opcje always visible; wybór crossfades on link hover
+- Placement: under the **tytuł**, cols aligned under wild / with / frames (hero stack cols **5–8**)
+- **Etykiety** (opcje): quiet UI notes — PT Mono 11px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.5)`
+- **Wartości** (wybór): one flap-like tile each (same `--flap-card` / `--flap-ink` / inset border as title tiles, Special Elite ~15px) — smaller than title flaps; tile on `.status-answer` so crossfade stays inside
+- Gap **tytuł → tabela**: ~45px; gap **etykieta → kafelek**: ~7px
+- Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**
 - **On without** (`/without/`): rest **yes** / **yes** / **who knows** → hover/focus (link reads **with**) **no** / **no** / **yes**
