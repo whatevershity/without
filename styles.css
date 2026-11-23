@@ -12,6 +12,7 @@
   --rows: 8;
   --flap-ms: 420ms;
   --flap-stagger: 90ms;
+  --status-stagger: 320ms;
   --tile-w: 1em;
   --tile-h: 1.05em;
   --guide: rgb(245 245 245 / 16%);
@@ -34,7 +35,8 @@ body {
   position: relative;
   color: var(--ink);
   background-color: var(--paper);
-  font-family: "Special Elite", "Courier New", Courier, monospace;
+  /* wszystko poza tytułem (wild…) — PT Mono; tytuł zostaje Special Elite */
+  font-family: "PT Mono", "Courier New", Courier, monospace;
 }
 
 body::before {
@@ -98,7 +100,6 @@ body::before {
   content: attr(data-n);
   position: absolute;
   top: 8px;
-  font-family: "Special Elite", "Courier New", Courier, monospace;
   font-size: 10px;
   line-height: 1;
   color: rgb(245 245 245 / 28%);
@@ -129,7 +130,6 @@ body::before {
   position: absolute;
   left: 8px;
   top: 4px;
-  font-family: "Special Elite", "Courier New", Courier, monospace;
   font-size: 10px;
   line-height: 1;
   color: rgb(245 245 245 / 28%);
@@ -167,109 +167,174 @@ body::before {
 .place[data-row="11"] { grid-row-start: 11; }
 .place[data-row="12"] { grid-row-start: 12; }
 
-/* Zdjęcie od 3. linii (środek); napis 10px nad zdjęciem — bez zmian w linku */
+/* Środek: linia + status (sound / interactive / story) */
 .hero-stack {
   position: relative;
   align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   z-index: 2;
 }
 
 .hero-stack .line {
-  position: absolute;
-  left: 0;
-  bottom: 100%;
-  margin: 0 0 10px;
+  position: static;
+  margin: 0;
   grid-row: auto;
   justify-self: auto;
+  text-align: center;
 }
 
-.adelka {
+/*
+  Opcje + wybór (pod tytułem) — crossfade jak dawny sound (no↔yes):
+  opacity + lekki drift + blur ~420ms. Wiersze ze staggerem (--i).
+  Panel fit-content: etykieta | kropki 1fr | who knows; padding 16px.
+  On with: rest no/no/yes → hover yes/yes/who knows
+  Animacji .rest/.hover (transform/transition) nie ruszać.
+*/
+.status-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-self: start;
+  gap: 9px;
+  margin-top: 40px;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  padding: 16px;
+  text-align: left;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
+  font-weight: 400;
+  line-height: 1.25;
+  pointer-events: none;
+  background: rgb(255 255 255 / 0.06);
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* wiersz: etykieta | kropki na całą wolną przestrzeń | wartość */
+.status-col {
+  display: grid;
+  /* value = who knows (stała); dots = 1fr między etykietą a wartością */
+  grid-template-columns: max-content minmax(16px, 1fr) calc(10ch + 0.8em);
+  grid-template-areas: "label dots answer";
+  align-items: baseline;
+  /* ciaśniejszy odstęp kropek→wartość; kierunek right-align bez zmian */
+  column-gap: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
   margin: 0;
   padding: 0;
-  width: 100%;
-  overflow: visible;
 }
 
-.adelka img {
+.status-label {
+  grid-area: label;
   display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.4);
+  background: none;
+  white-space: nowrap;
 }
 
-/* „sound” / no|yes — wyżej, w prawo (kol. 11–12, rząd 1) */
-.sound-meta {
-  margin: 16px 0 0;
-  justify-self: end;
-  width: max-content;
-  text-align: center;
-  font-family: Oswald, "Arial Narrow", Arial, sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  text-transform: lowercase;
-  color: var(--ink);
-  z-index: 2;
+.status-col::after {
+  content: "";
+  grid-area: dots;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 16px;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  /* widoczny dotted leader (1px gradient bywał niewidoczny) */
+  border: none;
+  border-bottom: 1px dotted rgb(255 255 255 / 0.55);
+  background: none;
   pointer-events: none;
 }
 
-.sound-meta .sound-word {
-  display: block;
-}
-
-.sound-meta .answer {
+/* wartość: szerokość who knows, wyrównana do prawej (jak było) */
+.status-answer {
+  grid-area: answer;
   display: grid;
-  margin-top: 2px;
-  min-height: 1.2em;
+  justify-items: end;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 1.35em;
+  padding: 0;
+  color: rgb(255 255 255 / 0.85);
+  background: none;
+  border: none;
+  box-shadow: none;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: lowercase;
+  text-align: right;
+  white-space: nowrap;
 }
 
-.sound-meta .no,
-.sound-meta .yes {
+.status-answer .rest,
+.status-answer .hover {
   grid-area: 1 / 1;
-  justify-self: center;
+  justify-self: end;
   transition:
     opacity 420ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
     filter 420ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* po kolei: sound → interactive → story (nie wszystkie naraz) */
+  transition-delay: calc(var(--i, 0) * var(--status-stagger));
   will-change: opacity, transform, filter;
 }
 
-/* Resting: no. Hover link → yes (miękki crossfade + lekki ruch) */
-.sound-meta .no {
+/* Resting: .rest. Hover link → .hover (miękki crossfade + lekki ruch) */
+.status-answer .rest {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
-.sound-meta .yes {
+.status-answer .hover {
   opacity: 0;
   transform: translateY(5px);
   filter: blur(1.5px);
 }
 
-.hero-grid:has(.without-link:hover) .sound-meta .no,
-.hero-grid:has(.without-link:focus-visible) .sound-meta .no {
+.hero-grid:has(.without-link:hover) .status-answer .rest,
+.hero-grid:has(.without-link:focus-visible) .status-answer .rest {
   opacity: 0;
   transform: translateY(-5px);
   filter: blur(1.5px);
 }
 
-.hero-grid:has(.without-link:hover) .sound-meta .yes,
-.hero-grid:has(.without-link:focus-visible) .sound-meta .yes {
+.hero-grid:has(.without-link:hover) .status-answer .hover,
+.hero-grid:has(.without-link:focus-visible) .status-answer .hover {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
 .line {
-  grid-row: 1 / -1;
-  margin: 190px 0 0;
-  justify-self: start;
+  margin: 0;
   width: max-content;
   max-width: 100%;
-  text-align: left;
+  text-align: center;
+  /* tytuł — Special Elite (nie ruszamy) */
+  font-family: "Special Elite", "Courier New", Courier, monospace;
   font-size: clamp(14px, 1.05vw + 0.55rem, 16px);
   font-weight: 400;
   letter-spacing: 0.04em;
@@ -443,6 +508,56 @@ body::before {
   box-shadow: none;
 }
 
+/*
+  WITHOUT rest: spłaszcz tile + ukryj half/flip/hinge, pokaż czystą literę.
+  (preserve-3d przebijało zwykły ::after/z-index.)
+  Hover: przywróć 3D i guts — locked flip o/u/t → blank.
+*/
+.page-without .tile-out {
+  transform-style: flat;
+}
+
+.page-without .tile-out .half,
+.page-without .tile-out .flip,
+.page-without .tile-out .hinge {
+  visibility: hidden;
+}
+
+.page-without .tile-out::after {
+  content: attr(data-from);
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  background: var(--flap-card);
+  color: var(--flap-ink);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 12%);
+  font: inherit;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.page-without .without-link:hover .tile-out,
+.page-without .without-link:focus-visible .tile-out {
+  transform-style: preserve-3d;
+}
+
+.page-without .without-link:hover .tile-out .half,
+.page-without .without-link:hover .tile-out .flip,
+.page-without .without-link:hover .tile-out .hinge,
+.page-without .without-link:focus-visible .tile-out .half,
+.page-without .without-link:focus-visible .tile-out .flip,
+.page-without .without-link:focus-visible .tile-out .hinge {
+  visibility: visible;
+}
+
+.page-without .without-link:hover .tile-out::after,
+.page-without .without-link:focus-visible .tile-out::after {
+  content: none;
+  display: none;
+}
+
 /* —— „with”: obrót litery wokół własnej osi (LOCKED) —— */
 .spin {
   position: absolute;
@@ -516,15 +631,448 @@ body::before {
   outline-offset: 4px;
 }
 
+/*
+  Lampa — switch na /without/ (tylko lamp.png).
+  Click: rozmazane koło ze środka + naturalna poświata (ref glow),
+  nie płaska biała zalewka. Lampa zostaje nad światłem (klikalna).
+*/
+.page-without .hero {
+  overflow: visible;
+}
+
+.page-without.is-lit {
+  /* krawędzie zostają ciemne — vignette jak w ref */
+  background-color: #2e2e2e;
+  background-image: radial-gradient(
+    ellipse 90% 80% at 50% 48%,
+    #3f3f3f 0%,
+    #2a2a2a 55%,
+    #1c1c1c 100%
+  );
+}
+
+.page-without.is-lit::before {
+  /* lekki grain na ciemnych brzegach (naturalniej) */
+  opacity: 0.14;
+}
+
+.light-flood {
+  position: absolute;
+  inset: -18%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.12);
+  transform-origin: 50% 48%;
+  transition:
+    transform 0.62s cubic-bezier(0.12, 0.82, 0.2, 1),
+    opacity 0.28s ease;
+}
+
+.page-without.is-lit .light-flood {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.light-flood-halo,
+.light-flood-core {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* szeroka, miękka poświata — zarys naturalnego glow */
+.light-flood-halo {
+  background: radial-gradient(
+    circle at 50% 48%,
+    rgb(255 255 255 / 0.55) 0%,
+    rgb(255 255 255 / 0.28) 28%,
+    rgb(255 255 255 / 0.1) 48%,
+    transparent 70%
+  );
+  filter: blur(42px);
+  transform: scale(1.08);
+}
+
+/* jaśniejsze, rozmazane koło — środek od bielszej bieli */
+.light-flood-core {
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      #ffffff 0%,
+      #ffffff 18%,
+      rgb(255 255 255 / 0.98) 28%,
+      rgb(255 255 255 / 0.7) 42%,
+      rgb(255 255 255 / 0.28) 56%,
+      transparent 70%
+    ),
+    radial-gradient(
+      circle at 50% 48%,
+      #ffffff 0%,
+      rgb(255 255 255 / 0.9) 12%,
+      transparent 32%
+    );
+  filter: blur(14px);
+}
+
+/*
+  Lit shout — krzyk raz (pop + smear), potem napisy stoją na świetle.
+  Po zgaszeniu: HEY znika słowo-po-słowie; równolegle wchodzi apology
+  (tempo jak szybkie czytanie). Font: PT Mono. HEY @ mid row 5.
+*/
+.hero-grid > .lit-shout {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+.page-without.is-lit .lit-shout,
+.lit-shout.is-settled,
+.lit-shout.is-exiting {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lit-shout-stack {
+  position: absolute;
+  /* środek rzędu 5: (5 - 0.5) / --rows */
+  top: calc((5 - 0.5) / var(--rows) * 100%);
+  right: clamp(4rem, 16vw, 11rem);
+  width: min(70vw, 16ch);
+  text-align: right;
+}
+
+.lit-shout-hey,
+.lit-shout-rest {
+  margin: 0;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.4vw, 1.55rem);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+/* na świetle — ciemne */
+.page-without.is-lit .lit-shout-hey,
+.page-without.is-lit .lit-shout-rest {
+  color: #0a0a0a;
+}
+
+/* apology — kolumna 7, nachodzi na zdjęcie (kol. 8+) */
+.hero-grid > .apology {
+  z-index: 4;
+  align-self: start;
+  justify-self: stretch;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+  /* środek rzędu 5 (place start = top of row 5) */
+  padding-top: calc(var(--hero-h) / var(--rows) / 2);
+}
+
+.apology.is-on {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*
+  Apology — układ jak ref (mały tekst, krótkie wersy,
+  ciasne leading w bloku, większa przerwa między grupami).
+*/
+.apology-lines {
+  margin: 0;
+  max-width: 18ch;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
+  font-weight: 400;
+  font-size: clamp(0.62rem, 0.95vw, 0.78rem);
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  text-align: left;
+  text-transform: none;
+  color: #f5f5f5;
+}
+
+/*
+  Zdjęcie Adelki — kolumna 8, rzędy 5→8.
+  Wejście z góry, nierówne „piksele” (paski ze staggerem + jitter).
+*/
+.hero-grid > .apology-photo {
+  z-index: 2;
+  align-self: stretch;
+  justify-self: stretch;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+}
+
+.apology-photo.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.apology-photo-slices {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.apology-photo-slice {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  /* zamknięte od dołu; lekkie nierówne boki jak piksele */
+  clip-path: inset(0 var(--jx, 0%) 100% var(--jy, 0%));
+  transition: clip-path 0.48s steps(2, end);
+  transition-delay: var(--delay, 0ms);
+}
+
+.apology-photo.is-open .apology-photo-slice {
+  clip-path: inset(0 var(--jx, 0%) 0 var(--jy, 0%));
+}
+
+.apology-photo-slice img {
+  position: absolute;
+  left: 0;
+  top: calc(var(--i, 0) * -100%);
+  display: block;
+  width: 100%;
+  height: calc(var(--n, 1) * 100%);
+  object-fit: contain;
+  object-position: top center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.apology-block {
+  display: block;
+  margin: 0 0 1.55em;
+}
+
+.apology-block:last-child {
+  margin-bottom: 0;
+}
+
+.apology-line {
+  display: block;
+}
+
+/* „Ok, so.” — kolumna 5 / rząd 8, ten sam efekt słowo-po-słowie */
+.hero-grid > .ok-so {
+  z-index: 3;
+  align-self: center;
+  justify-self: start;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+}
+
+.ok-so.is-on {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ok-so-line {
+  margin: 0;
+  font-family: "PT Mono", "Courier New", Courier, monospace;
+  font-weight: 400;
+  font-size: clamp(0.62rem, 0.95vw, 0.78rem);
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: #f5f5f5;
+}
+
+/* słowo-po-słowie (czytanie) */
+.w {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.w.is-on {
+  opacity: 1;
+}
+
+.lit-shout-hey {
+  display: block;
+  transform-origin: 85% 50%;
+}
+
+.lit-shout-rest {
+  display: block;
+  margin-top: 0.08em;
+}
+
+.lit-shout-rest .lit-line {
+  display: block;
+  transform-origin: 85% 50%;
+}
+
+/* pop małe→duże + szybki cień/smear za napisem */
+.lit-shout-hey.is-popping,
+.lit-shout-rest.is-popping .lit-line {
+  animation: lit-pop 0.52s cubic-bezier(0.12, 0.9, 0.2, 1) both;
+}
+
+.lit-shout-rest.is-popping .lit-line {
+  animation-delay: calc(var(--i, 1) * 70ms);
+}
+
+@keyframes lit-pop {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.18) skewX(-6deg);
+    filter: blur(12px);
+    text-shadow:
+      -48px 0 0 rgb(0 0 0 / 12%),
+      -36px 0 0 rgb(0 0 0 / 16%),
+      -24px 0 0 rgb(0 0 0 / 22%),
+      -12px 0 0 rgb(0 0 0 / 35%),
+      -6px 0 0 rgb(0 0 0 / 45%),
+      10px 0 0 rgb(0 0 0 / 22%),
+      22px 0 0 rgb(0 0 0 / 14%),
+      36px 0 0 rgb(0 0 0 / 8%);
+  }
+  42% {
+    opacity: 1;
+    filter: blur(3px);
+    text-shadow:
+      -20px 0 0 rgb(0 0 0 / 22%),
+      -10px 0 0 rgb(0 0 0 / 28%),
+      12px 0 0 rgb(0 0 0 / 16%);
+  }
+  72% {
+    transform: scale(1.06) skewX(1.5deg);
+    filter: blur(0.6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) skewX(0);
+    filter: blur(0);
+    text-shadow: none;
+  }
+}
+
+.page-without .hero-grid {
+  z-index: 2;
+}
+
+.page-without .col-guides,
+.page-without .row-guides,
+.page-without .hero-stack {
+  transition: opacity 0.22s ease;
+}
+
+.page-without.is-lit .col-guides,
+.page-without.is-lit .row-guides,
+.page-without.is-lit .hero-stack {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lamp-switch {
+  align-self: start;
+  justify-self: center;
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  width: 78px;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* po apology — wygląda jak lampa, klik tylko dźwięk */
+.lamp-switch.is-locked {
+  cursor: default;
+}
+
+.lamp-switch:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.lamp-face {
+  position: relative;
+  display: block;
+  width: 78px;
+  transform-origin: top center;
+  /* 2s prawa→lewa, 2s lewa→prawa; dźwięk co ~2s na krańcach */
+  animation: lamp-call 4s ease-in-out infinite;
+}
+
+.lamp-switch .lamp {
+  display: block;
+  width: 78px;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* mocniej: prawa (+) → lewa (−) w 2s, z powrotem w 2s */
+@keyframes lamp-call {
+  0%,
+  100% {
+    transform: rotate(9deg);
+    filter: brightness(1);
+  }
+  50% {
+    transform: rotate(-11deg);
+    filter: brightness(1.28);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .lamp-face {
+    animation: none;
+  }
+
+  .apology-photo-slice {
+    transition: none;
+  }
+
+  .lit-shout-hey.is-popping,
+  .lit-shout-rest.is-popping .lit-line {
+    animation: none;
+    filter: none;
+    text-shadow: none;
+    transform: none;
+  }
+
   .flip,
   .spin {
     transition: none;
   }
 
-  .sound-meta .no,
-  .sound-meta .yes {
+  .status-answer .rest,
+  .status-answer .hover {
     transition: opacity 120ms linear;
+    transition-delay: 0ms;
     transform: none !important;
     filter: none !important;
   }
