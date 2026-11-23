@@ -39,6 +39,7 @@
   const shoutRest = document.querySelector(".lit-shout-rest");
   const apologyRoot = document.querySelector(".apology");
   const apologyLines = document.querySelector(".apology-lines");
+  const apologyPhoto = document.querySelector(".apology-photo");
   const okSoRoot = document.querySelector(".ok-so");
   const okSoLine = document.querySelector(".ok-so-line");
 
@@ -139,11 +140,26 @@
     if (p && typeof p.catch === "function") p.catch(() => {});
   };
 
+  const openApologyPhoto = (instant = false) => {
+    if (!apologyPhoto) return;
+    if (instant) {
+      apologyPhoto.style.transition = "none";
+      apologyPhoto.classList.add("is-open");
+      void apologyPhoto.offsetWidth;
+      apologyPhoto.style.transition = "";
+      return;
+    }
+    apologyPhoto.classList.remove("is-open");
+    void apologyPhoto.offsetWidth;
+    apologyPhoto.classList.add("is-open");
+  };
+
   const hideApology = () => {
     if (apologyRoot) {
       apologyRoot.classList.remove("is-on");
       apologyRoot.setAttribute("aria-hidden", "true");
     }
+    if (apologyPhoto) apologyPhoto.classList.remove("is-open");
     if (okSoRoot) {
       okSoRoot.classList.remove("is-on");
       okSoRoot.setAttribute("aria-hidden", "true");
@@ -188,6 +204,7 @@
     });
     apologyRoot.classList.add("is-on");
     apologyRoot.setAttribute("aria-hidden", "false");
+    openApologyPhoto(true);
     apologySettled = true;
     lockLamp();
     revealOkSo(0, true);
@@ -238,6 +255,8 @@
       apologyRoot.classList.add("is-on");
       apologyRoot.setAttribute("aria-hidden", "false");
     }
+    /* zdjęcie razem z akapitem — rozwija się z góry */
+    openApologyPhoto(false);
 
     /* równolegle: shout out + apology in; potem „Ok, so.” @ 5/8 */
     staggerWords(shoutWords, false, 0);

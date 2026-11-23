@@ -131,6 +131,7 @@ Clicking the lamp **bursts light from the hero center** (`.light-flood` `clip-pa
     *“I apologize, but when I’m working, a sudden change in my surroundings throws me off rhythm.”*
   - Apology placement: starts at **column 7**, row 5 (`data-col="7"`); stays on dark
   - Apology layout (ref): small type, short lines, open leading in-block, **larger gaps between stanza blocks**
+  - Beside apology (right): **`adelka3.png`**, same height as the full paragraph; **unfurls from top** with the text
   - After apology: **lamp locks** — still sways + click sound, but **no return to lit**
   - Then **“Ok, so.”** at **col 5 / row 8**, same word-by-word reveal
   - Lamp stays above; sway audio muted on lit
