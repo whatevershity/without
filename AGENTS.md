@@ -61,7 +61,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 
 - **Commit / CSS:** `d60676f` · `styles.css?v=status-receipt6`
 - Clean receipt panel: no value rotate/translate; dots `1fr`; values right-aligned, column `calc(10ch + 0.8em)`
-- Prefer this when abandoning editorial experiments
+- Editorial-brutalist experiment reverted — current = this baseline
 
 ### Current layout
 
@@ -69,10 +69,6 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 - Layout: three rows in a compact panel (`fit-content`, padding 16px, `rgb(255 255 255 / 0.06)`); label | dots `1fr` | value; row gap ~9px
 - **Etykiety** (opcje): PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`; `max-content` width
 - **Wartości** (wybór): PT Mono ~10px, `rgb(255 255 255 / 0.85)`; column `calc(10ch + 0.8em)`, right-aligned
-- **Eksperyment editorial-brutalist** (on `.status-answer` via `rotate` / `translate`, not `transform`):  
-  1. SOUND: `rotate -2deg`, `translate -6px 0` (najeżdża na kropki)  
-  2. INTERACTIVE: `rotate 0`, `font-size 8.5px` (~85%), `translate 0 1px`  
-  3. STORY: `rotate 1deg`, `translate 3px 0`
 - Gap **tytuł → tabela**: ~40px; 8px between label / dots / value; dots fill free space (min 16px)
 - Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this

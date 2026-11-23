@@ -291,25 +291,6 @@ body::before {
   text-transform: lowercase;
   text-align: right;
   white-space: nowrap;
-  /* editorial-brutalist: rotate/translate (nie transform — flip używa transform) */
-  transform-origin: right center;
-}
-
-/* eksperyment: stałe przesunięcia / obroty na kontenerze wartości */
-.status-col:nth-child(1) .status-answer {
-  rotate: -2deg;
-  translate: -6px 0;
-}
-
-.status-col:nth-child(2) .status-answer {
-  rotate: 0deg;
-  translate: 0 1px;
-  font-size: 8.5px; /* ~85% z 10px */
-}
-
-.status-col:nth-child(3) .status-answer {
-  rotate: 1deg;
-  translate: 3px 0;
 }
 
 .status-answer .rest,
