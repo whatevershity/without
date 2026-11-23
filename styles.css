@@ -706,9 +706,9 @@ body::before {
   color: #0a0a0a;
 }
 
-/* apology — zaczyna się od kolumny 7 (place data-col=7), rząd 5 */
+/* apology — kolumna 7, nachodzi na zdjęcie (kol. 8+) */
 .hero-grid > .apology {
-  z-index: 3;
+  z-index: 4;
   align-self: start;
   justify-self: stretch;
   pointer-events: none;
@@ -746,7 +746,7 @@ body::before {
   Pełna wysokość komórek; rozwija się z góry; bez ucięcia kadru.
 */
 .hero-grid > .apology-photo {
-  z-index: 3;
+  z-index: 2;
   align-self: stretch;
   justify-self: stretch;
   width: 100%;
