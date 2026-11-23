@@ -65,11 +65,11 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 
 ### Current layout
 
-- Placement: under the **tytuł**, panel stretches hero stack (cols **5–8**)
-- Layout: three rows; padding 16px, `rgb(255 255 255 / 0.06)`; label | dots; values shifted so **right edge** sits on grid gap **col 6|7**
+- Placement: under the **tytuł**, panel `align-self: start` in hero stack (cols **5–8**)
+- Layout: three rows; padding 16px, `rgb(255 255 255 / 0.06)`; **tło dopasowane do napisów** (`width: calc(50% + gutter/2 + 16px)` → prawa krawędź ≈ luka kol. 6|7) — nie rozciągać tła na pusty obszar
 - **Etykiety** (opcje): PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`
-- **Wartości** (wybór): PT Mono ~10px, `rgb(255 255 255 / 0.85)`; always **right-aligned** (yes/no/who knows — nie zmieniać kierunku); tylko przesunięcie pozycji
-- Gap **tytuł → tabela**: ~40px; dots = `border-bottom: 1px dotted` ending before the value column
+- **Wartości** (wybór): PT Mono ~10px, `rgb(255 255 255 / 0.85)`; always **right-aligned** (yes/no/who knows — nie zmieniać kierunku)
+- Gap **tytuł → tabela**: ~40px; column-gap ~4px; dots = `border-bottom: 1px dotted` on `1fr` track
 - Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**

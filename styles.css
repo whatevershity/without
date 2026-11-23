@@ -189,7 +189,8 @@ body::before {
 /*
   Opcje + wybór (pod tytułem) — crossfade jak dawny sound (no↔yes):
   opacity + lekki drift + blur ~420ms. Wiersze ze staggerem (--i).
-  Wartości Nadal RIGHT-ALIGN. Tylko przesunięte: prawa krawędź na luce kol. 6|7.
+  Tło dopasowane do napisów (nie odwrotnie). Wartości RIGHT-ALIGN.
+  Prawa krawędź panelu ≈ luka kol. 6|7.
   On with: rest no/no/yes → hover yes/yes/who knows
   Animacji .rest/.hover (transform/transition) nie ruszać.
 */
@@ -197,11 +198,12 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  align-self: stretch;
+  align-self: start;
   gap: 9px;
   margin-top: 40px;
   box-sizing: border-box;
-  width: 100%;
+  /* szerokość do luki 6|7 + prawy padding — tło obejmuje napisy, bez pustej prawej */
+  width: calc(50% + var(--gutter) / 2 + 16px);
   max-width: 100%;
   padding: 16px;
   text-align: left;
@@ -215,21 +217,18 @@ body::before {
   box-shadow: none;
 }
 
-/* wiersz: etykieta | kropki; wartość w flow z prawą krawędzią na luce 6|7 */
+/* wiersz: etykieta | kropki | wartość (right-align, w flow) */
 .status-col {
-  position: relative;
   display: grid;
-  grid-template-columns: max-content minmax(16px, 1fr);
-  grid-template-areas: "label dots";
+  grid-template-columns: max-content minmax(16px, 1fr) calc(10ch + 0.8em);
+  grid-template-areas: "label dots answer";
   align-items: baseline;
-  column-gap: 8px;
+  column-gap: 4px;
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  min-height: 1.35em;
   margin: 0;
-  /* miejsce na kolumnę wartości kończącą się na starcie kol. 7 */
-  padding: 0 calc(50% - var(--gutter) / 2) 0 0;
+  padding: 0;
 }
 
 .status-label {
@@ -263,21 +262,15 @@ body::before {
   pointer-events: none;
 }
 
-/*
-  Przesunięcie tylko: prawa krawędź bloku = luka 6|7.
-  Kierunek bez zmian: text-align/justify end (who knows jak yes/no).
-*/
+/* wartość: right-align jak było — bez zmiany kierunku */
 .status-answer {
-  --status-value-w: calc(10ch + 0.8em);
-  position: absolute;
-  top: 0;
-  left: calc(50% + var(--gutter) / 2 - var(--status-value-w));
+  grid-area: answer;
   display: grid;
   justify-items: end;
   margin: 0;
   box-sizing: border-box;
-  width: var(--status-value-w);
-  min-width: var(--status-value-w);
+  width: 100%;
+  min-width: 0;
   min-height: 1.35em;
   padding: 0;
   color: rgb(255 255 255 / 0.85);
