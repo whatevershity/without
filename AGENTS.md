@@ -65,11 +65,11 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 
 ### Current layout
 
-- Placement: under the **tytuł**, left-aligned in hero stack (cols **5–8**) — receipt rows, not under title words
-- Layout: three rows in a compact panel (`fit-content`, padding 16px, `rgb(255 255 255 / 0.06)`); label | dots `1fr` | value; row gap ~9px
-- **Etykiety** (opcje): PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`; `max-content` width
-- **Wartości** (wybór): PT Mono ~10px, `rgb(255 255 255 / 0.85)`; column `calc(10ch + 0.8em)`, right-aligned (trailing edge / `who knows` jak było)
-- Gap **tytuł → tabela**: ~40px; column-gap ~4px; dots = `border-bottom: 1px dotted` on `1fr` track (min 16px)
+- Placement: under the **tytuł**, panel stretches hero stack (cols **5–8**)
+- Layout: three rows; padding 16px, `rgb(255 255 255 / 0.06)`; label | dots; values pinned to grid gap **col 6|7** (`left: calc(50% + var(--gutter) / 2)`)
+- **Etykiety** (opcje): PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`
+- **Wartości** (wybór): PT Mono ~10px, `rgb(255 255 255 / 0.85)`; start at col 6|7 gap (left-align); `who knows` may sit close to dots — intentional
+- Gap **tytuł → tabela**: ~40px; dots = `border-bottom: 1px dotted` ending just before values
 - Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**

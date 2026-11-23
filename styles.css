@@ -189,7 +189,7 @@ body::before {
 /*
   Opcje + wybór (pod tytułem) — crossfade jak dawny sound (no↔yes):
   opacity + lekki drift + blur ~420ms. Wiersze ze staggerem (--i).
-  Panel fit-content: etykieta | kropki 1fr | who knows; padding 16px.
+  Panel na szerokość hero-stack; wartości startują w luce kolumn 6|7.
   On with: rest no/no/yes → hover yes/yes/who knows
   Animacji .rest/.hover (transform/transition) nie ruszać.
 */
@@ -197,11 +197,11 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  align-self: start;
+  align-self: stretch;
   gap: 9px;
   margin-top: 40px;
   box-sizing: border-box;
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
   padding: 16px;
   text-align: left;
@@ -215,20 +215,21 @@ body::before {
   box-shadow: none;
 }
 
-/* wiersz: etykieta | kropki na całą wolną przestrzeń | wartość */
+/* wiersz: etykieta | kropki; wartość absolutnie na luce 6|7 */
 .status-col {
+  position: relative;
   display: grid;
-  /* value = who knows (stała); dots = 1fr między etykietą a wartością */
-  grid-template-columns: max-content minmax(16px, 1fr) calc(10ch + 0.8em);
-  grid-template-areas: "label dots answer";
+  grid-template-columns: max-content minmax(16px, 1fr);
+  grid-template-areas: "label dots";
   align-items: baseline;
-  /* ciaśniejszy odstęp kropek→wartość; kierunek right-align bez zmian */
-  column-gap: 4px;
+  column-gap: 8px;
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
+  min-height: 1.35em;
   margin: 0;
-  padding: 0;
+  /* kropki kończą się tuż przed startem wartości (początek kol. 7) */
+  padding: 0 calc(50% - var(--gutter) / 2) 0 0;
 }
 
 .status-label {
@@ -256,25 +257,28 @@ body::before {
   margin: 0;
   padding: 0;
   align-self: center;
-  /* widoczny dotted leader (1px gradient bywał niewidoczny) */
   border: none;
   border-bottom: 1px dotted rgb(255 255 255 / 0.55);
   background: none;
   pointer-events: none;
 }
 
-/* wartość: szerokość who knows, wyrównana do prawej; lekko w lewo */
+/*
+  Wartości: start na luce między kol. 6 a 7 (względem hero-stack cols 5–8).
+  who knows blisko kropek — OK. Left-align od tej linii.
+*/
 .status-answer {
-  grid-area: answer;
+  position: absolute;
+  left: calc(50% + var(--gutter) / 2);
+  top: 0;
   display: grid;
-  justify-items: end;
+  justify-items: start;
   margin: 0;
   box-sizing: border-box;
-  width: 100%;
-  min-width: 0;
+  width: max-content;
+  min-width: calc(10ch + 0.8em);
   min-height: 1.35em;
   padding: 0;
-  translate: -6px 0; /* trochę w lewo, bez zmiany right-align */
   color: rgb(255 255 255 / 0.85);
   background: none;
   border: none;
@@ -285,14 +289,14 @@ body::before {
   letter-spacing: 0.04em;
   line-height: 1.2;
   text-transform: lowercase;
-  text-align: right;
+  text-align: left;
   white-space: nowrap;
 }
 
 .status-answer .rest,
 .status-answer .hover {
   grid-area: 1 / 1;
-  justify-self: end;
+  justify-self: start;
   transition:
     opacity 420ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
