@@ -296,7 +296,7 @@ body::before {
   min-width: var(--status-value-w);
   min-height: 1.35em;
   padding: 0;
-  color: rgb(255 255 255 / 0.85);
+  color: rgb(255 255 255 / 0.65);
   background: none;
   border: none;
   box-shadow: none;

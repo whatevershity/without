@@ -68,7 +68,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 - Placement: under the **tytuł**, panel stretches hero stack (cols **5–8**) for layout
 - Layout: three rows; padding 0; **tło** via `::before` mniejsze niż napisy (inset **7px** ze wszystkich stron)
 - **Etykiety** (opcje): PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`
-- **Wartości** (wybór): PT Mono ~10px, `rgb(255 255 255 / 0.85)`; always **right-aligned**; prawa krawędź na luce kol. **6|7**
+- **Wartości** (wybór): PT Mono ~10px, `rgb(255 255 255 / 0.65)`; always **right-aligned**; prawa krawędź na luce kol. **6|7**
 - Gap **tytuł → tabela**: ~40px; dots = `border-bottom: 1px dotted` ending before the value column
 - Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
