@@ -58,9 +58,9 @@ Use these names in chat and notes when talking about spacing or copy.
 Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, opacity + slight vertical drift + light blur ~420ms. Columns one after another (`--i` × `--status-stagger` ~320ms) — not all at once.
 
 - Placement: under the **tytuł**, cols aligned under wild / with / frames (hero stack cols **5–8**)
-- **Etykiety** (opcje): quiet UI notes — PT Mono 11px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.5)`
-- **Wartości** (wybór): plain white Special Elite ~14px (no flap tiles); optional 1px `border-bottom` in `--guide`; fit-content columns, ~28px gaps
-- Gap **tytuł → tabela**: ~45px; gap **etykieta → wartość**: ~7px
+- **Etykiety** (opcje): quiet UI notes — PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`
+- **Wartości** (wybór): Special Elite 12px, `rgb(255 255 255 / 0.7)` (no tiles, no underline); fit-content columns, ~28px gaps
+- Gap **tytuł → tabela**: ~30px; gap **etykieta → wartość**: ~7px
 - Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**

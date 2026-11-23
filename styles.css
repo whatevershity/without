@@ -200,7 +200,7 @@ body::before {
   justify-content: space-between;
   column-gap: 28px;
   row-gap: 0;
-  margin-top: 45px;
+  margin-top: 30px;
   /* szerokość zbliżona do tytułu (wild + 7 klapek + frames) */
   width: max(
     max-content,
@@ -225,15 +225,15 @@ body::before {
 
 .status-label {
   display: block;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgb(255 255 255 / 0.5);
+  color: rgb(255 255 255 / 0.4);
   background: none;
 }
 
-/* wartość: sam tekst (bez kafelka); underline jak linia siatki */
+/* wartość: cichy typewriter, bez linii pod spodem */
 .status-answer {
   display: grid;
   place-items: center;
@@ -242,14 +242,13 @@ body::before {
   width: max-content;
   min-width: 5.5em;
   min-height: 1.35em;
-  padding: 0 0 0.15em;
-  color: var(--ink);
+  padding: 0;
+  color: rgb(255 255 255 / 0.7);
   background: none;
   border: none;
-  border-bottom: 1px solid var(--guide);
   box-shadow: none;
   font-family: "Special Elite", "Courier New", Courier, monospace;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1.2;
