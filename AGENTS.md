@@ -59,8 +59,8 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 
 - Placement: under the **tytuł**, cols aligned under wild / with / frames (hero stack cols **5–8**)
 - **Etykiety** (opcje): quiet UI notes — PT Mono 11px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.5)`
-- **Wartości** (wybór): one flap-like tile each (same `--flap-card` / `--flap-ink` / inset border as title tiles, Special Elite ~15px) — smaller than title flaps; tile on `.status-answer` so crossfade stays inside
-- Gap **tytuł → tabela**: ~45px; gap **etykieta → kafelek**: ~7px
+- **Wartości** (wybór): plain white Special Elite ~14px (no flap tiles); optional 1px `border-bottom` in `--guide`; fit-content columns, ~28px gaps
+- Gap **tytuł → tabela**: ~45px; gap **etykieta → wartość**: ~7px
 - Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**
@@ -69,7 +69,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 ## Typography
 
 - **Tytuł** (`wild … frames`): **Special Elite** (typewriter), fallback Courier New / Courier — do not change when swapping other UI fonts
-- Everything else (opcje / wybór / shout / guides): **PT Mono**, fallback Courier New / Courier
+- Everything else (opcje / shout / guides): **PT Mono**, fallback Courier New / Courier — **wybór** values use **Special Elite** like the tytuł (plain text, no tiles)
 - **Tytuł** on **with**: `wild with frames` (linked word = **with**)
   - Centered in hero stack (cols **5–8**)
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
