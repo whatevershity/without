@@ -189,7 +189,7 @@ body::before {
 /*
   Opcje + wybór (pod tytułem) — crossfade jak dawny sound (no↔yes):
   opacity + lekki drift + blur ~420ms. Wiersze ze staggerem (--i).
-  Zwarty panel: etykieta | 4–5 kropek (stałe) | wartość; fit-content + padding.
+  Panel fit-content: etykieta | kropki 1fr | who knows; padding 16px.
   On with: rest no/no/yes → hover yes/yes/who knows
   Animacji .rest/.hover (transform/transition) nie ruszać.
 */
@@ -215,11 +215,11 @@ body::before {
   box-shadow: none;
 }
 
-/* wiersz: etykieta | stałe kropki | wartość (miesci się w paddingu panelu) */
+/* wiersz: etykieta | kropki na całą wolną przestrzeń | wartość */
 .status-col {
   display: grid;
-  /* label = INTERACTIVE; dots = 28px; value ≥ who knows, reszta 1fr → prawa krawędź = padding */
-  grid-template-columns: calc(11ch + 1.32em) 28px minmax(max-content, 1fr);
+  /* value = who knows (stała); dots = 1fr między etykietą a wartością */
+  grid-template-columns: max-content minmax(16px, 1fr) calc(10ch + 0.8em);
   grid-template-areas: "label dots answer";
   align-items: baseline;
   column-gap: 8px;
@@ -233,7 +233,7 @@ body::before {
 .status-label {
   grid-area: label;
   display: block;
-  width: 100%;
+  width: max-content;
   margin: 0;
   padding: 0;
   font-size: 10px;
@@ -249,26 +249,26 @@ body::before {
   content: "";
   grid-area: dots;
   box-sizing: border-box;
-  width: 28px;
-  max-width: 28px;
+  width: 100%;
+  min-width: 16px;
   height: 1px;
   margin: 0;
   padding: 0;
   align-self: center;
   border: none;
-  /* ~5 kropek w 28px, stała szerokość — bez flex:1 */
+  /* gęste kropki na całą szerokość toru 1fr */
   background-image: radial-gradient(
     circle closest-side,
     rgb(255 255 255 / 0.4) 55%,
     transparent 56%
   );
-  background-size: 5.6px 1px;
+  background-size: 3px 1px;
   background-repeat: repeat-x;
   background-position: left center;
   pointer-events: none;
 }
 
-/* wartość: min = who knows (max-content), wyrównana do prawej krawędzi panelu */
+/* wartość: szerokość who knows, wyrównana do prawej (przy paddingu panelu) */
 .status-answer {
   grid-area: answer;
   display: grid;
@@ -276,7 +276,7 @@ body::before {
   margin: 0;
   box-sizing: border-box;
   width: 100%;
-  min-width: max-content;
+  min-width: 0;
   min-height: 1.35em;
   padding: 0;
   color: rgb(255 255 255 / 0.85);
