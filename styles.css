@@ -742,8 +742,8 @@ body::before {
 }
 
 /*
-  Zdjęcie Adelki — kolumna 8, rzędy 5→8 (pod / przy napisie).
-  Pełna wysokość komórek; rozwija się z góry; bez ucięcia kadru.
+  Zdjęcie Adelki — kolumna 8, rzędy 5→8.
+  Wejście z góry, nierówne „piksele” (paski ze staggerem + jitter).
 */
 .hero-grid > .apology-photo {
   z-index: 2;
@@ -758,22 +758,43 @@ body::before {
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  clip-path: inset(0 0 100% 0);
-  transition:
-    clip-path 1.05s cubic-bezier(0.18, 0.82, 0.2, 1),
-    opacity 0.2s ease;
+  transition: opacity 0.15s ease;
 }
 
 .apology-photo.is-open {
   opacity: 1;
   visibility: visible;
-  clip-path: inset(0 0 0 0);
 }
 
-.apology-photo img {
-  display: block;
+.apology-photo-slices {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+}
+
+.apology-photo-slice {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  /* zamknięte od dołu; lekkie nierówne boki jak piksele */
+  clip-path: inset(0 var(--jx, 0%) 100% var(--jy, 0%));
+  transition: clip-path 0.2s steps(2, end);
+  transition-delay: var(--delay, 0ms);
+}
+
+.apology-photo.is-open .apology-photo-slice {
+  clip-path: inset(0 var(--jx, 0%) 0 var(--jy, 0%));
+}
+
+.apology-photo-slice img {
+  position: absolute;
+  left: 0;
+  top: calc(var(--i, 0) * -100%);
+  display: block;
+  width: 100%;
+  height: calc(var(--n, 1) * 100%);
   object-fit: contain;
   object-position: top center;
   pointer-events: none;
@@ -970,7 +991,7 @@ body::before {
     animation: none;
   }
 
-  .apology-photo {
+  .apology-photo-slice {
     transition: none;
   }
 

@@ -140,16 +140,51 @@
     if (p && typeof p.catch === "function") p.catch(() => {});
   };
 
+  const PHOTO_SLICES = 18;
+
+  const buildApologyPhotoSlices = () => {
+    if (!apologyPhoto || apologyPhoto.dataset.sliced === "1") return;
+    const srcImg = apologyPhoto.querySelector(".apology-photo-src");
+    const host = apologyPhoto.querySelector(".apology-photo-slices");
+    if (!srcImg || !host) return;
+    const src = srcImg.getAttribute("src");
+    host.innerHTML = "";
+    for (let i = 0; i < PHOTO_SLICES; i += 1) {
+      const slice = document.createElement("div");
+      slice.className = "apology-photo-slice";
+      slice.style.setProperty("--i", String(i));
+      slice.style.setProperty("--n", String(PHOTO_SLICES));
+      /* nierówne tempo + lekkie poszarpanie boków */
+      const jitter = ((i * 37) % 11) * 7 + (i % 4) * 9;
+      slice.style.setProperty("--delay", `${i * 32 + jitter}ms`);
+      slice.style.setProperty("--jx", `${(i * 5) % 4}%`);
+      slice.style.setProperty("--jy", `${(i * 3) % 3}%`);
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "";
+      img.draggable = false;
+      slice.appendChild(img);
+      host.appendChild(slice);
+    }
+    apologyPhoto.dataset.sliced = "1";
+  };
+
   const openApologyPhoto = (instant = false) => {
     if (!apologyPhoto) return;
+    buildApologyPhotoSlices();
     if (instant) {
-      apologyPhoto.style.transition = "none";
       apologyPhoto.classList.add("is-open");
-      void apologyPhoto.offsetWidth;
-      apologyPhoto.style.transition = "";
+      apologyPhoto.querySelectorAll(".apology-photo-slice").forEach((slice) => {
+        slice.style.transition = "none";
+        slice.style.clipPath = `inset(0 ${slice.style.getPropertyValue("--jx") || "0%"} 0 ${slice.style.getPropertyValue("--jy") || "0%"})`;
+      });
       return;
     }
     apologyPhoto.classList.remove("is-open");
+    apologyPhoto.querySelectorAll(".apology-photo-slice").forEach((slice) => {
+      slice.style.transition = "";
+      slice.style.clipPath = "";
+    });
     void apologyPhoto.offsetWidth;
     apologyPhoto.classList.add("is-open");
   };
@@ -159,7 +194,13 @@
       apologyRoot.classList.remove("is-on");
       apologyRoot.setAttribute("aria-hidden", "true");
     }
-    if (apologyPhoto) apologyPhoto.classList.remove("is-open");
+    if (apologyPhoto) {
+      apologyPhoto.classList.remove("is-open");
+      apologyPhoto.querySelectorAll(".apology-photo-slice").forEach((slice) => {
+        slice.style.transition = "";
+        slice.style.clipPath = "";
+      });
+    }
     if (okSoRoot) {
       okSoRoot.classList.remove("is-on");
       okSoRoot.setAttribute("aria-hidden", "true");
