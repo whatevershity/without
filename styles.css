@@ -829,6 +829,7 @@ body::before {
   Wejście z góry, nierówne „piksele” (paski ze staggerem + jitter).
 */
 .hero-grid > .apology-photo {
+  position: relative;
   z-index: 2;
   align-self: stretch;
   justify-self: stretch;
@@ -848,6 +849,21 @@ body::before {
 .apology-photo.is-open {
   opacity: 1;
   visibility: visible;
+}
+
+/* overlay / scrim — tekst na zdjęciu czytelniejszy */
+.apology-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgb(0 0 0 / 0.55) 0%,
+    rgb(0 0 0 / 0.28) 45%,
+    rgb(0 0 0 / 0.12) 100%
+  );
+  pointer-events: none;
 }
 
 .apology-photo-slices {
