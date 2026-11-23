@@ -831,10 +831,12 @@ body::before {
 .hero-grid > .apology-photo {
   position: relative;
   z-index: 2;
-  align-self: stretch;
+  align-self: start;
   justify-self: stretch;
   width: 100%;
-  height: 100%;
+  /* pudełko = proporcje adelka.png — bez pustego pasa pod spodem */
+  height: auto;
+  aspect-ratio: 590 / 644;
   min-height: 0;
   margin: 0;
   padding: 0;
@@ -851,7 +853,7 @@ body::before {
   visibility: visible;
 }
 
-/* overlay / scrim — tekst na zdjęciu czytelniejszy */
+/* overlay tylko na obrazku (pudełko = aspect zdjęcia) */
 .apology-photo::after {
   content: "";
   position: absolute;
@@ -895,7 +897,7 @@ body::before {
   display: block;
   width: 100%;
   height: calc(var(--n, 1) * 100%);
-  object-fit: contain;
+  object-fit: cover;
   object-position: top center;
   pointer-events: none;
   user-select: none;
