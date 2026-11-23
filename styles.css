@@ -780,7 +780,7 @@ body::before {
   overflow: hidden;
   /* zamknięte od dołu; lekkie nierówne boki jak piksele */
   clip-path: inset(0 var(--jx, 0%) 100% var(--jy, 0%));
-  transition: clip-path 0.2s steps(2, end);
+  transition: clip-path 0.38s steps(2, end);
   transition-delay: var(--delay, 0ms);
 }
 

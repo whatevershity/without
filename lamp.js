@@ -155,8 +155,8 @@
       slice.style.setProperty("--i", String(i));
       slice.style.setProperty("--n", String(PHOTO_SLICES));
       /* nierówne tempo + lekkie poszarpanie boków */
-      const jitter = ((i * 37) % 11) * 7 + (i % 4) * 9;
-      slice.style.setProperty("--delay", `${i * 32 + jitter}ms`);
+      const jitter = ((i * 37) % 11) * 10 + (i % 4) * 14;
+      slice.style.setProperty("--delay", `${i * 58 + jitter}ms`);
       slice.style.setProperty("--jx", `${(i * 5) % 4}%`);
       slice.style.setProperty("--jy", `${(i * 3) % 3}%`);
       const img = document.createElement("img");
