@@ -7,12 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Special+Elite&display=swap"
+      href="https://fonts.googleapis.com/css2?family=PT+Mono&family=Special+Elite&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=dark1" />
+    <link rel="stylesheet" href="styles.css?v=status-dim" />
   </head>
-  <body>
+  <body class="page-with">
     <main class="page">
       <!--
         HERO 100vw × 100vh | marginesy treści 360px | 12 kolumn | 8 gęstych rzędów.
@@ -46,20 +46,6 @@
           </div>
 
           <div
-            class="sound-meta place"
-            data-col="11"
-            data-span="2"
-            data-row="1"
-            aria-hidden="true"
-          >
-            <span class="sound-word">sound</span>
-            <span class="answer">
-              <span class="no">no</span>
-              <span class="yes">yes</span>
-            </span>
-          </div>
-
-          <div
             class="hero-stack place"
             data-col="5"
             data-span="4"
@@ -80,6 +66,33 @@
               </a>
               frames
             </p>
+            <!--
+              Opcje + wybór. Crossfade jak dawny sound (no↔yes):
+              rest no/no/yes → hover yes/yes/who knows. Kolumny kolejno (--i stagger).
+            -->
+            <div class="status-meta" aria-hidden="true">
+              <div class="status-col" style="--i: 0">
+                <span class="status-label">sound</span>
+                <span class="status-answer">
+                  <span class="rest">no</span>
+                  <span class="hover">yes</span>
+                </span>
+              </div>
+              <div class="status-col" style="--i: 1">
+                <span class="status-label">interactive</span>
+                <span class="status-answer">
+                  <span class="rest">no</span>
+                  <span class="hover">yes</span>
+                </span>
+              </div>
+              <div class="status-col" style="--i: 2">
+                <span class="status-label">story</span>
+                <span class="status-answer">
+                  <span class="rest">yes</span>
+                  <span class="hover">who knows</span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
