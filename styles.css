@@ -724,14 +724,6 @@ body::before {
   visibility: visible;
 }
 
-.apology-row {
-  display: flex;
-  align-items: stretch;
-  gap: clamp(0.75rem, 1.5vw, 1.25rem);
-  width: max-content;
-  max-width: 100%;
-}
-
 /*
   Apology — układ jak ref (mały tekst, krótkie wersy,
   ciasne leading w bloku, większa przerwa między grupami).
@@ -749,28 +741,41 @@ body::before {
   color: #f5f5f5;
 }
 
-/* zdjęcie Adelki — ta sama wysokość co cały akapit; rozwija się z góry */
-.apology-photo {
-  position: relative;
-  flex: 0 0 clamp(3.6rem, 7.5vw, 5.75rem);
+/*
+  Zdjęcie Adelki — kolumna 8, rzędy 5→8 (pod / przy napisie).
+  Pełna wysokość komórek; rozwija się z góry; bez ucięcia kadru.
+*/
+.hero-grid > .apology-photo {
+  z-index: 3;
   align-self: stretch;
+  justify-self: stretch;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
   clip-path: inset(0 0 100% 0);
-  transition: clip-path 1.05s cubic-bezier(0.18, 0.82, 0.2, 1);
+  transition:
+    clip-path 1.05s cubic-bezier(0.18, 0.82, 0.2, 1),
+    opacity 0.2s ease;
 }
 
 .apology-photo.is-open {
+  opacity: 1;
+  visibility: visible;
   clip-path: inset(0 0 0 0);
 }
 
 .apology-photo img {
-  position: absolute;
-  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: top center;
   pointer-events: none;
   user-select: none;
 }
