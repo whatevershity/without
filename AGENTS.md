@@ -58,10 +58,10 @@ Use these names in chat and notes when talking about spacing or copy.
 Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, opacity + slight vertical drift + light blur ~420ms. Columns one after another (`--i` × `--status-stagger` ~320ms) — not all at once.
 
 - Placement: under the **tytuł**, left-aligned in hero stack (cols **5–8**) — receipt rows, not under title words
-- Layout: three rows (SOUND / INTERACTIVE / STORY); label | dense dotted leader | value; block `width: fit-content`; row gap ~9px
-- **Etykiety** (opcje): PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`
-- **Wartości** (wybór): same PT Mono ~10px, `rgb(255 255 255 / 0.85)`; fixed `10ch` for `who knows`, left-aligned after dots
-- Gap **tytuł → tabela**: ~40px; leader min 16px, ~8px inset from label/value
+- Layout: three rows in a compact panel (`fit-content`, padding 16px, `rgb(255 255 255 / 0.06)`); label | fixed ~5 dots (28px) | value; row gap ~9px
+- **Etykiety** (opcje): PT Mono 10px, uppercase, letter-spacing ~0.12em, `rgb(255 255 255 / 0.4)`; column = INTERACTIVE width
+- **Wartości** (wybór): same PT Mono ~10px, `rgb(255 255 255 / 0.85)`; column = `who knows` nowrap, left-aligned
+- Gap **tytuł → tabela**: ~40px; 8px between label / dots / value
 - Opcje always visible; wybór crossfades on link hover (do not touch that animation)
 - Non-interactive (`.status-meta`); do not change link flap markup when editing this
 - **On with** (`/`): rest **no** / **no** / **yes** → hover/focus (link reads **without**) **yes** / **yes** / **who knows**
