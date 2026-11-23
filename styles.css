@@ -35,7 +35,6 @@ body {
   position: relative;
   color: var(--ink);
   background-color: var(--paper);
-  /* wszystko poza tytułem (wild…) — PT Mono; tytuł zostaje Special Elite */
   font-family: "PT Mono", "Courier New", Courier, monospace;
 }
 
@@ -358,8 +357,8 @@ body::before {
   width: max-content;
   max-width: 100%;
   text-align: center;
-  /* tytuł — Special Elite (nie ruszamy) */
-  font-family: "Special Elite", "Courier New", Courier, monospace;
+  /* tytuł — PT Mono (jak reszta) */
+  font-family: "PT Mono", "Courier New", Courier, monospace;
   font-size: clamp(14px, 1.05vw + 0.55rem, 16px);
   font-weight: 400;
   letter-spacing: 0.04em;

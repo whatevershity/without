@@ -77,8 +77,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 
 ## Typography
 
-- **Tytuł** (`wild … frames`): **Special Elite** (typewriter), fallback Courier New / Courier — do not change when swapping other UI fonts
-- Everything else (opcje / wybór / shout / guides): **PT Mono**, fallback Courier New / Courier
+- **Tytuł** (`wild … frames`) + everything else (opcje / wybór / shout): **PT Mono**, fallback Courier New / Courier
 - **Tytuł** on **with**: `wild with frames` (linked word = **with**)
   - Centered in hero stack (cols **5–8**)
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
