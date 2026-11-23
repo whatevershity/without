@@ -222,6 +222,7 @@ body::before {
   grid-template-columns: max-content minmax(16px, 1fr) calc(10ch + 0.8em);
   grid-template-areas: "label dots answer";
   align-items: baseline;
+  /* 8px etykieta→kropki; wartość bliżej kropek (mniejszy gap + left align) */
   column-gap: 8px;
   box-sizing: border-box;
   width: 100%;
@@ -262,12 +263,12 @@ body::before {
   pointer-events: none;
 }
 
-/* wartość: szerokość who knows, wyrównana do prawej (przy paddingu panelu) */
+/* wartość: kolumna = who knows; start tuż za kropkami (left), panel trzyma szerokość */
 .status-answer {
   grid-area: answer;
   display: grid;
-  justify-items: end;
-  margin: 0;
+  justify-items: start;
+  margin: 0 0 0 -4px; /* bliżej kropek (z 8px gap → ~4px) */
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
@@ -283,14 +284,14 @@ body::before {
   letter-spacing: 0.04em;
   line-height: 1.2;
   text-transform: lowercase;
-  text-align: right;
+  text-align: left;
   white-space: nowrap;
 }
 
 .status-answer .rest,
 .status-answer .hover {
   grid-area: 1 / 1;
-  justify-self: end;
+  justify-self: start;
   transition:
     opacity 420ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 420ms cubic-bezier(0.4, 0, 0.2, 1),
