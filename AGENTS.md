@@ -24,7 +24,7 @@ Two versions of the site, like a language switch (`pl` / `en`):
 - **12 columns**, numbered **1 → 12 from the left**
 - **8 rows**, numbered **1 → 8 from the top** (`--rows: 8`) — denser bands within 100vh, not a longer page
 - Gutter between columns: `--gutter: 16px`
-- Thin guide lines + faint numbers: `.col-guides` / `.row-guides`; placement aids, **not final art** — may be removed later; keep `data-col` / `data-row`
+- Guide lines (`.col-guides` / `.row-guides`): **hidden** (`display: none`); keep markup + `data-col` / `data-row`
 - Placement API:
   - `data-col="N" data-span="S"` → column N, span S
   - `data-row="R" data-row-span="T"` → row R, span T
@@ -37,7 +37,7 @@ Two versions of the site, like a language switch (`pl` / `en`):
 
 ## Surface — dark
 
-- Page background: **`#454545`** (former flap-black)
+- Page background: **`#1a1a1a`** (near-black, not `#000`)
 - Page / sound text: **white** (`#f5f5f5`)
 - Flap cards: light **`#f2f0ec`** with dark glyphs (`--flap-ink`) so letters stay readable
 - Blank out-klapki use the same light flap tone (not dark panels on dark bg)
