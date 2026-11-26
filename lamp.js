@@ -42,6 +42,8 @@
   const apologyPhoto = document.querySelector(".apology-photo");
   const okSoRoot = document.querySelector(".ok-so");
   const okSoLine = document.querySelector(".ok-so-line");
+  const storyRoot = document.querySelector(".story-prose");
+  const storyGlitch = document.querySelector(".story-glitch-line");
 
   const FINAL_REST = ["TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"];
   /* bloki jak w ref (krótkie wersy + większa przerwa między grupami) */
@@ -228,6 +230,21 @@
     return staggerWords(words, true, startAt);
   };
 
+  /* ciągły tekst pod hero — dopiero po „Ok, so.” */
+  const revealStory = (instant = false) => {
+    if (!storyRoot || storyRoot.classList.contains("is-on")) return;
+    storyRoot.classList.add("is-on");
+    storyRoot.setAttribute("aria-hidden", "false");
+    if (!storyGlitch) return;
+    const reduce =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || instant) return;
+    window.setTimeout(() => {
+      storyGlitch.classList.add("is-glitch");
+    }, 480);
+  };
+
   const apologyHtml = () =>
     APOLOGY.map(
       (block) =>
@@ -249,6 +266,7 @@
     apologySettled = true;
     lockLamp();
     revealOkSo(0, true);
+    revealStory(true);
   };
 
   const crossfadeToApology = () => {
@@ -302,7 +320,7 @@
     /* równolegle: shout out + apology in; potem „Ok, so.” @ 5/8 */
     staggerWords(shoutWords, false, 0);
     const apologyEnd = staggerWords(apologyWords, true, 0);
-    /* „Ok, so.” — sekundę po apology */
+    /* „Ok, so.” — sekundę po apology; potem story prose pod hero */
     const okSoEnd = revealOkSo(apologyEnd + 1000, false);
 
     wordTimers.push(
@@ -314,6 +332,7 @@
         apologySettled = true;
         shoutSettled = true;
         lockLamp();
+        revealStory(false);
       }, okSoEnd + 140)
     );
   };

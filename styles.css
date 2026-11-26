@@ -1157,66 +1157,39 @@ body::before {
 }
 
 /*
-  Story zigzag — pod hero na /without/ (nie ruszać hero).
-  4 bloki: tekst|foto naprzemiennie; ten sam inset co hero (--side).
+  Story prose — pod hero na /without/ (hero nietknięty).
+  Schemat: ta sama siatka 12 kol. + --side; tekst w kol. 1–5, lewo.
+  Pojawia się po „Ok, so.” — jeden ciągły tekst, bez zdjęć.
 */
-.story-zigzag {
+.story-prose {
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
   width: 100%;
-  padding: 4.5rem 0 6rem;
-  color: var(--ink);
-  background: transparent;
-}
-
-.story-zigzag-inner {
-  margin: 0 var(--side);
-  display: flex;
-  flex-direction: column;
-  gap: 4.5rem;
-}
-
-.story-block {
+  margin: 0;
+  padding: 2.75rem var(--side) 6rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: clamp(2rem, 8vw, 5.5rem);
-  align-items: start;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gutter);
   opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.55s ease;
 }
 
-.story-block.is-in {
+.story-prose.is-on {
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
-/* zawsze: obraz lewo, tekst prawo */
-.story-block-media {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.story-block-text {
-  grid-column: 2;
-  grid-row: 1;
+.story-prose-inner {
+  grid-column: 1 / span 5;
+  max-width: 42ch;
   min-width: 0;
 }
 
-.story-block-panel {
-  box-sizing: border-box;
-  max-width: 40ch;
-  padding: 0;
-  background: none;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* typografia jak „Ok, so.” */
-.story-block-panel p {
+.story-prose-inner p {
   margin: 0 0 1.35em;
   font-family: "PT Mono", "Courier New", Courier, monospace;
   font-weight: 400;
@@ -1227,50 +1200,8 @@ body::before {
   text-align: left;
 }
 
-.story-block-panel p:last-child {
+.story-prose-inner p:last-child {
   margin-bottom: 0;
-}
-
-.story-block-media {
-  min-width: 0;
-  align-self: start;
-}
-
-.story-block-frame {
-  position: sticky;
-  top: 2rem;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-
-.story-block-frame img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* CSS scanlines — lekki glitch jak hero photo */
-.story-block-scan {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0) 0,
-    rgb(0 0 0 / 0) 2px,
-    rgb(0 0 0 / 0.28) 2px,
-    rgb(0 0 0 / 0.28) 3px
-  );
-  mix-blend-mode: multiply;
-  opacity: 0.55;
 }
 
 .story-glitch-line {
@@ -1310,37 +1241,13 @@ body::before {
 }
 
 @media (max-width: 768px) {
-  .story-zigzag {
-    padding: 3rem 0 4.5rem;
+  .story-prose {
+    padding: 2rem 20px 4.5rem;
+    display: block;
   }
 
-  .story-zigzag-inner {
-    margin: 0;
-    padding: 0 20px;
-    gap: 3.25rem;
-  }
-
-  .story-block {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .story-block-media {
-    order: 1;
-  }
-
-  .story-block-text {
-    order: 2;
-  }
-
-  .story-block-panel {
+  .story-prose-inner {
     max-width: none;
-  }
-
-  .story-block-frame {
-    position: relative;
-    top: auto;
   }
 }
 
@@ -1349,9 +1256,7 @@ body::before {
     animation: none;
   }
 
-  .story-block {
-    opacity: 1;
-    transform: none;
+  .story-prose {
     transition: none;
   }
 

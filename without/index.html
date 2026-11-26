@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css?v=zigzag2" />
+    <link rel="stylesheet" href="../styles.css?v=story-prose1" />
   </head>
   <body class="page-without">
     <main class="page">
@@ -166,100 +166,47 @@
       </section>
 
       <!--
-        Story zigzag — poniżej hero (bez zmian w hero).
-        Zdjęcia: podmień /images/block-1.jpg … block-4.jpg na docelowe.
+        Story prose — poniżej hero, lewa kolumna (1–5 / 12).
+        Pokazuje się po „Ok, so.” (lamp.js). Bez zdjęć, jeden ciągły tekst.
       -->
-      <section class="story-zigzag" aria-label="Small talk">
-        <div class="story-zigzag-inner">
-          <article class="story-block story-block--image-left" data-reveal>
-            <div class="story-block-text">
-              <div class="story-block-panel">
-                <p>
-                  Hi, my name is Adelaide, and a few years ago I took everything
-                  very literally.
-                </p>
-              </div>
-            </div>
-            <div class="story-block-media">
-              <div class="story-block-frame">
-                <!-- Swap: /images/block-1.jpg → final art -->
-                <img src="/images/block-1.jpg" width="800" height="1000" alt="" />
-                <span class="story-block-scan" aria-hidden="true"></span>
-              </div>
-            </div>
-          </article>
-
-          <article class="story-block story-block--image-left" data-reveal>
-            <div class="story-block-text">
-              <div class="story-block-panel">
-                <p>
-                  Whenever I ran into someone I knew and, after a short chat about
-                  nothing, they said, “We should totally meet up!”, I actually
-                  believed we would. So I’d text them: “Hey, so what about that
-                  meetup?” And they’d reply: “I’d love to, but I don’t have time
-                  right now.” Later I’d ask again, and they’d say: “That’d be
-                  great, but not now.”
-                </p>
-              </div>
-            </div>
-            <div class="story-block-media">
-              <div class="story-block-frame">
-                <!-- Swap: /images/block-2.jpg → final art -->
-                <img src="/images/block-2.jpg" width="800" height="1000" alt="" />
-                <span class="story-block-scan" aria-hidden="true"></span>
-              </div>
-            </div>
-          </article>
-
-          <article class="story-block story-block--image-left" data-reveal>
-            <div class="story-block-text">
-              <div class="story-block-panel">
-                <p>
-                  Eventually I realized that people just say these things. It
-                  wasn’t like I’d suggested something and they had to lie to spare
-                  my feelings. They started it, for no reason at all. It’s a lie
-                  built right into small talk.
-                </p>
-              </div>
-            </div>
-            <div class="story-block-media">
-              <div class="story-block-frame">
-                <!-- Swap: /images/block-3.jpg → final art -->
-                <img src="/images/block-3.jpg" width="800" height="1000" alt="" />
-                <span class="story-block-scan" aria-hidden="true"></span>
-              </div>
-            </div>
-          </article>
-
-          <article class="story-block story-block--image-left" data-reveal>
-            <div class="story-block-text">
-              <div class="story-block-panel">
-                <p>
-                  Since then, I’ve been doing it too. I see an acquaintance, we
-                  spend two minutes chatting about nothing, and at the end, which
-                  I can hardly wait for, I say cheerfully: “We have to catch up!
-                  We really have to meet! It would be so nice to talk properly
-                  over coffee!” Then I walk away and laugh. Because, you know,
-                  <span class="story-glitch-line"
-                    >I’m never actually going to call.</span
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="story-block-media">
-              <div class="story-block-frame">
-                <!-- Swap: /images/block-4.jpg → final art -->
-                <img src="/images/block-4.jpg" width="800" height="1000" alt="" />
-                <span class="story-block-scan" aria-hidden="true"></span>
-              </div>
-            </div>
-          </article>
+      <section
+        class="story-prose"
+        aria-label="Small talk"
+        aria-hidden="true"
+      >
+        <div class="story-prose-inner">
+          <p>
+            Hi, my name is Adelaide, and a few years ago I took everything very
+            literally.
+          </p>
+          <p>
+            Whenever I ran into someone I knew and, after a short chat about
+            nothing, they said, “We should totally meet up!”, I actually believed
+            we would. So I’d text them: “Hey, so what about that meetup?” And
+            they’d reply: “I’d love to, but I don’t have time right now.” Later
+            I’d ask again, and they’d say: “That’d be great, but not now.”
+          </p>
+          <p>
+            Eventually I realized that people just say these things. It wasn’t
+            like I’d suggested something and they had to lie to spare my
+            feelings. They started it, for no reason at all. It’s a lie built
+            right into small talk.
+          </p>
+          <p>
+            Since then, I’ve been doing it too. I see an acquaintance, we spend
+            two minutes chatting about nothing, and at the end, which I can
+            hardly wait for, I say cheerfully: “We have to catch up! We really
+            have to meet! It would be so nice to talk properly over coffee!” Then
+            I walk away and laugh. Because, you know,
+            <span class="story-glitch-line"
+              >I’m never actually going to call.</span
+            >
+          </p>
         </div>
       </section>
     </main>
     <script src="../splitflap.js"></script>
     <script src="../grid.js"></script>
     <script src="../lamp.js"></script>
-    <script src="../zigzag.js"></script>
   </body>
 </html>
