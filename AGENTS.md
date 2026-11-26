@@ -92,7 +92,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 - Schema: same 12-col + `--side` as hero; copy in **cols 1–5**, left-aligned, continuous paragraphs (not split across images)
 - Type like **Ok, so.** (PT Mono); no image placeholders / panels
 - Same word-by-word `.w` reveal as apology / Ok, so.; optional one-shot glitch on final sentence; honor `prefers-reduced-motion`
-- Word reveal driven by **scroll**; **sensory smear (~4s)** starts at **3rd paragraph** with dull ceiling thumps (`sound/ceiling-thumps.mp3`) — color fringes then shake back (autism distraction joke)
+- Word reveal driven by **scroll**; **sensory smear (~6s)** starts at **3rd paragraph** with dull ceiling thumps (`sound/ceiling-thumps.mp3`) — color fringes then shake back (autism distraction joke)
 
 ## Link mechanism — FINAL LOCK (do not touch)
 

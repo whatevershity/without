@@ -272,11 +272,11 @@
     wordTimers.push(
       window.setTimeout(() => {
         storyRoot.classList.remove("is-smearing");
-      }, 4100)
+      }, 6100)
     );
   };
 
-  /* pisanie słów ze scrollem; smear przy 3. akapicie (~4s) */
+  /* pisanie słów ze scrollem; smear przy 3. akapicie (~6s) */
   const bindStoryScrollReveal = (words) => {
     if (!storyRoot || storyScrollBound) return;
     storyScrollBound = true;
