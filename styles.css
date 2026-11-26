@@ -188,15 +188,15 @@ body::before {
   text-align: center;
 }
 
-/* „u r here” — ~1cm nad „frames”, trochę w lewo; Farsan + odręczna strzałka */
-.word-frames {
+/* „u r here” — ~1cm nad „with”, trochę w lewo; Farsan + odręczna strzałka */
+.word-with {
   position: relative;
   display: inline-block;
 }
 
 .ur-here {
   position: absolute;
-  left: -0.55em;
+  left: 0.15em;
   bottom: calc(100% + 0.85cm);
   display: flex;
   flex-direction: column;
@@ -212,7 +212,7 @@ body::before {
   font-family: Farsan, "Comic Sans MS", cursive;
   font-size: clamp(15px, 1.2vw + 0.55rem, 18px);
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.06em;
   line-height: 1;
   white-space: nowrap;
   transform: rotate(-6deg);
@@ -221,7 +221,7 @@ body::before {
 
 .ur-here-arrow {
   display: block;
-  margin-left: 0.55em;
+  margin-left: 0.75em;
   margin-top: -2px;
   color: inherit;
   transform: rotate(4deg);
