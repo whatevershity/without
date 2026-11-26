@@ -45,6 +45,11 @@
   const storyRoot = document.querySelector(".story-prose");
   const storyGlitch = document.querySelector(".story-glitch-line");
 
+  /* głuche łupy z sufitu — rozpraszający hałas przy odkrywaniu story */
+  const ceilingFx = new Audio("../sound/ceiling-thumps.mp3");
+  ceilingFx.preload = "auto";
+  ceilingFx.volume = 0.62;
+
   const FINAL_REST = ["TURN OFF", "THE LIGHT!", "IT'S TOO LOUD!"];
   /* bloki jak w ref (krótkie wersy + większa przerwa między grupami) */
   const APOLOGY = [
@@ -251,6 +256,21 @@
     storyRoot.dataset.worded = "1";
   };
 
+  const startSensorySmear = () => {
+    if (!storyRoot) return;
+    storyRoot.classList.remove("is-smearing");
+    void storyRoot.offsetWidth;
+    storyRoot.classList.add("is-smearing");
+    ceilingFx.currentTime = 0;
+    const p = ceilingFx.play();
+    if (p && typeof p.catch === "function") p.catch(() => {});
+    wordTimers.push(
+      window.setTimeout(() => {
+        storyRoot.classList.remove("is-smearing");
+      }, 3000)
+    );
+  };
+
   const revealStory = (instant = false) => {
     if (!storyRoot || storyRoot.classList.contains("is-on")) return;
     wrapStoryWords();
@@ -275,6 +295,11 @@
       w.style.opacity = "0";
     });
     const endAt = staggerWords(words, true, 0);
+
+    /* w trakcie pisania: łup z sufitu + rozmazanie w kolory → trzęsienie → spokój */
+    const smearAt = Math.min(Math.round(endAt * 0.28), 900);
+    wordTimers.push(window.setTimeout(() => startSensorySmear(), smearAt));
+
     const glitch = storyRoot.querySelector(".story-glitch-line");
     if (!glitch) return;
     wordTimers.push(

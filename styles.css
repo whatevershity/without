@@ -1187,6 +1187,92 @@ body::before {
   grid-column: 1 / span 5;
   max-width: 42ch;
   min-width: 0;
+  will-change: transform, filter, text-shadow;
+}
+
+/*
+  Sensory smear (ref: chromatic scanner glitch) —
+  tekst rozjeżdża się na kolory → trzęsie się wracając → normalny.
+*/
+.story-prose.is-smearing .story-prose-inner {
+  animation: story-sensory-smear 2.9s cubic-bezier(0.33, 0.1, 0.2, 1) forwards;
+}
+
+@keyframes story-sensory-smear {
+  0% {
+    filter: none;
+    text-shadow: none;
+    transform: translate3d(0, 0, 0);
+  }
+  /* rozmazanie w kolory (cyan / magenta / lime / orange) */
+  12% {
+    filter: blur(0.7px) contrast(1.15) saturate(1.4);
+    text-shadow:
+      -5px 0 rgb(255 0 170 / 0.9),
+      5px 0 rgb(0 230 255 / 0.9),
+      -2px 3px rgb(200 255 0 / 0.75),
+      3px -2px rgb(255 110 0 / 0.75);
+    transform: translate3d(1px, 0, 0);
+  }
+  22% {
+    filter: blur(1.35px) contrast(1.25) saturate(1.6);
+    text-shadow:
+      -10px 0 rgb(255 0 170 / 0.95),
+      10px 0 rgb(0 230 255 / 0.95),
+      -5px 4px rgb(200 255 0 / 0.8),
+      6px -3px rgb(255 110 0 / 0.85),
+      0 0 12px rgb(255 255 255 / 0.15);
+    transform: translate3d(-2px, 1px, 0) skewX(-0.6deg);
+  }
+  32% {
+    filter: blur(1.1px) contrast(1.2) saturate(1.45);
+    text-shadow:
+      -7px 1px rgb(255 0 170 / 0.85),
+      8px -1px rgb(0 230 255 / 0.85),
+      -3px 3px rgb(200 255 0 / 0.65),
+      4px -2px rgb(255 110 0 / 0.7);
+    transform: translate3d(2px, -1px, 0) skewX(0.4deg);
+  }
+  /* trzęsienie + powrót */
+  42% {
+    filter: blur(0.75px);
+    text-shadow:
+      -4px 0 rgb(255 0 170 / 0.55),
+      4px 0 rgb(0 230 255 / 0.55),
+      -2px 2px rgb(200 255 0 / 0.4);
+    transform: translate3d(-3px, 1px, 0);
+  }
+  50% {
+    filter: blur(0.55px);
+    text-shadow:
+      -3px 0 rgb(255 0 170 / 0.4),
+      3px 0 rgb(0 230 255 / 0.4);
+    transform: translate3d(3px, -1px, 0);
+  }
+  58% {
+    filter: blur(0.4px);
+    text-shadow:
+      -2px 0 rgb(255 0 170 / 0.28),
+      2px 0 rgb(0 230 255 / 0.28);
+    transform: translate3d(-2px, 0, 0);
+  }
+  68% {
+    filter: blur(0.25px);
+    text-shadow:
+      -1px 0 rgb(255 0 170 / 0.18),
+      1px 0 rgb(0 230 255 / 0.18);
+    transform: translate3d(1px, 0, 0);
+  }
+  80% {
+    filter: blur(0.1px);
+    text-shadow: -0.5px 0 rgb(255 0 170 / 0.08), 0.5px 0 rgb(0 230 255 / 0.08);
+    transform: translate3d(-0.5px, 0, 0);
+  }
+  100% {
+    filter: none;
+    text-shadow: none;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .story-prose-inner p {
@@ -1258,6 +1344,10 @@ body::before {
 
   .story-prose {
     transition: none;
+  }
+
+  .story-prose.is-smearing .story-prose-inner {
+    animation: none;
   }
 
   .story-glitch-line.is-glitch {
