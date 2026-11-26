@@ -7,12 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Special+Elite&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Farsan&family=PT+Mono&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=dark1" />
+    <link rel="stylesheet" href="styles.css?v=ur-here2" />
   </head>
-  <body>
+  <body class="page-with">
     <main class="page">
       <!--
         HERO 100vw × 100vh | marginesy treści 360px | 12 kolumn | 8 gęstych rzędów.
@@ -46,20 +46,6 @@
           </div>
 
           <div
-            class="sound-meta place"
-            data-col="11"
-            data-span="2"
-            data-row="1"
-            aria-hidden="true"
-          >
-            <span class="sound-word">sound</span>
-            <span class="answer">
-              <span class="no">no</span>
-              <span class="yes">yes</span>
-            </span>
-          </div>
-
-          <div
             class="hero-stack place"
             data-col="5"
             data-span="4"
@@ -67,19 +53,74 @@
           >
             <p class="line">
               wild
-              <a class="without-link" href="/without/" aria-label="with">
-                <span class="board" aria-hidden="true">
-                  <span class="tile tile-keep" style="--i: 0" data-from="w" data-to="w"></span>
-                  <span class="tile tile-keep" style="--i: 1" data-from="i" data-to="i"></span>
-                  <span class="tile tile-keep" style="--i: 2" data-from="t" data-to="t"></span>
-                  <span class="tile tile-keep" style="--i: 3" data-from="h" data-to="h"></span>
-                  <span class="tile tile-out" style="--i: 0" data-from="black" data-to="o"></span>
-                  <span class="tile tile-out" style="--i: 1" data-from="black" data-to="u"></span>
-                  <span class="tile tile-out" style="--i: 2" data-from="black" data-to="t"></span>
+              <span class="word-with">
+                <span class="ur-here" aria-hidden="true">
+                  <span class="ur-here-text">u r here</span>
+                  <svg
+                    class="ur-here-arrow"
+                    viewBox="0 0 40 48"
+                    width="22"
+                    height="28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18 2c2.5 8 1 16-1 24-1.2 4.8-2 9.5-1.2 14"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 32c3.5 3.2 6.8 6 8.8 8.5 1.2-3.8 3.4-7.2 6.2-10.2"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
                 </span>
-              </a>
+                <a class="without-link" href="/without/" aria-label="with">
+                  <span class="board" aria-hidden="true">
+                    <span class="tile tile-keep" style="--i: 0" data-from="w" data-to="w"></span>
+                    <span class="tile tile-keep" style="--i: 1" data-from="i" data-to="i"></span>
+                    <span class="tile tile-keep" style="--i: 2" data-from="t" data-to="t"></span>
+                    <span class="tile tile-keep" style="--i: 3" data-from="h" data-to="h"></span>
+                    <span class="tile tile-out" style="--i: 0" data-from="black" data-to="o"></span>
+                    <span class="tile tile-out" style="--i: 1" data-from="black" data-to="u"></span>
+                    <span class="tile tile-out" style="--i: 2" data-from="black" data-to="t"></span>
+                  </span>
+                </a>
+              </span>
               frames
             </p>
+            <!--
+              Opcje + wybór. Crossfade jak dawny sound (no↔yes):
+              rest no/no/yes → hover yes/yes/who knows. Kolumny kolejno (--i stagger).
+            -->
+            <div class="status-meta" aria-hidden="true">
+              <div class="status-col" style="--i: 0">
+                <span class="status-label">sound</span>
+                <span class="status-answer">
+                  <span class="rest">no</span>
+                  <span class="hover">yes</span>
+                </span>
+              </div>
+              <div class="status-col" style="--i: 1">
+                <span class="status-label">interactive</span>
+                <span class="status-answer">
+                  <span class="rest">no</span>
+                  <span class="hover">yes</span>
+                </span>
+              </div>
+              <div class="status-col" style="--i: 2">
+                <span class="status-label">story</span>
+                <span class="status-answer">
+                  <span class="rest">yes</span>
+                  <span class="hover">who knows</span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
