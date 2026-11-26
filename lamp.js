@@ -256,8 +256,13 @@
     storyRoot.dataset.worded = "1";
   };
 
+  let storyScrollBound = false;
+  let storySmearDone = false;
+  let storyGlitchDone = false;
+
   const startSensorySmear = () => {
-    if (!storyRoot) return;
+    if (!storyRoot || storySmearDone) return;
+    storySmearDone = true;
     storyRoot.classList.remove("is-smearing");
     void storyRoot.offsetWidth;
     storyRoot.classList.add("is-smearing");
@@ -267,8 +272,58 @@
     wordTimers.push(
       window.setTimeout(() => {
         storyRoot.classList.remove("is-smearing");
-      }, 3000)
+      }, 4100)
     );
+  };
+
+  /* pisanie słów ze scrollem; smear przy 3. akapicie (~4s) */
+  const bindStoryScrollReveal = (words) => {
+    if (!storyRoot || storyScrollBound) return;
+    storyScrollBound = true;
+    const paras = [...storyRoot.querySelectorAll(".story-prose-inner p")];
+    const thirdPara = paras[2] || null;
+    const reduce =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const syncFromScroll = () => {
+      const rect = storyRoot.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      /* start gdy sekcja wchodzi w viewport; pełne odkrycie po przewinięciu bloku */
+      const start = vh * 0.92;
+      const span = Math.max(rect.height + vh * 0.35, 1);
+      const raw = (start - rect.top) / span;
+      const progress = Math.max(0, Math.min(1, raw));
+      const count = Math.floor(progress * words.length);
+
+      words.forEach((w, i) => {
+        const on = i < count;
+        w.classList.toggle("is-on", on);
+        w.style.opacity = on ? "" : "0";
+      });
+
+      if (
+        !reduce &&
+        !storySmearDone &&
+        thirdPara &&
+        thirdPara.querySelector(".w.is-on")
+      ) {
+        startSensorySmear();
+      }
+
+      if (
+        !storyGlitchDone &&
+        progress >= 0.98 &&
+        storyRoot.querySelector(".story-glitch-line")
+      ) {
+        storyGlitchDone = true;
+        storyRoot.querySelector(".story-glitch-line").classList.add("is-glitch");
+      }
+    };
+
+    window.addEventListener("scroll", syncFromScroll, { passive: true });
+    window.addEventListener("resize", syncFromScroll);
+    syncFromScroll();
   };
 
   const revealStory = (instant = false) => {
@@ -294,19 +349,7 @@
       w.classList.remove("is-on");
       w.style.opacity = "0";
     });
-    const endAt = staggerWords(words, true, 0);
-
-    /* w trakcie pisania: łup z sufitu + rozmazanie w kolory → trzęsienie → spokój */
-    const smearAt = Math.min(Math.round(endAt * 0.28), 900);
-    wordTimers.push(window.setTimeout(() => startSensorySmear(), smearAt));
-
-    const glitch = storyRoot.querySelector(".story-glitch-line");
-    if (!glitch) return;
-    wordTimers.push(
-      window.setTimeout(() => {
-        glitch.classList.add("is-glitch");
-      }, endAt + 120)
-    );
+    bindStoryScrollReveal(words);
   };
 
   const apologyHtml = () =>
@@ -384,8 +427,13 @@
     /* równolegle: shout out + apology in; potem „Ok, so.” @ 5/8 */
     staggerWords(shoutWords, false, 0);
     const apologyEnd = staggerWords(apologyWords, true, 0);
-    /* „Ok, so.” — sekundę po apology; potem story prose pod hero */
+    /* „Ok, so.” — sekundę po apology; story od razu gotowe pod scroll */
     const okSoEnd = revealOkSo(apologyEnd + 1000, false);
+    wordTimers.push(
+      window.setTimeout(() => {
+        revealStory(false);
+      }, apologyEnd + 1000)
+    );
 
     wordTimers.push(
       window.setTimeout(() => {
@@ -396,7 +444,6 @@
         apologySettled = true;
         shoutSettled = true;
         lockLamp();
-        revealStory(false);
       }, okSoEnd + 140)
     );
   };

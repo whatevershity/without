@@ -1195,7 +1195,7 @@ body::before {
   tekst rozjeżdża się na kolory → trzęsie się wracając → normalny.
 */
 .story-prose.is-smearing .story-prose-inner {
-  animation: story-sensory-smear 2.9s cubic-bezier(0.33, 0.1, 0.2, 1) forwards;
+  animation: story-sensory-smear 4s cubic-bezier(0.33, 0.1, 0.2, 1) forwards;
 }
 
 @keyframes story-sensory-smear {
