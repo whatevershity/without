@@ -221,8 +221,8 @@ body::before {
   font-family: Farsan, "Comic Sans MS", cursive;
   font-size: clamp(15px, 1.2vw + 0.55rem, 18px);
   font-weight: 400;
-  letter-spacing: 0;
-  word-spacing: -0.28em;
+  letter-spacing: normal;
+  word-spacing: normal;
   line-height: 1;
   white-space: nowrap;
   transition: opacity 280ms ease;
