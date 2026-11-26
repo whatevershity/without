@@ -1193,47 +1193,37 @@ body::before {
   transform: translateY(0);
 }
 
-.story-block--text-left .story-block-text {
+/* zawsze: obraz lewo, tekst prawo */
+.story-block-media {
   grid-column: 1;
-  grid-row: 1;
-}
-
-.story-block--text-left .story-block-media {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.story-block--image-left .story-block-media {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.story-block--image-left .story-block-text {
-  grid-column: 2;
   grid-row: 1;
 }
 
 .story-block-text {
+  grid-column: 2;
+  grid-row: 1;
   min-width: 0;
 }
 
 .story-block-panel {
   box-sizing: border-box;
   max-width: 40ch;
-  padding: 0.85rem 1rem;
-  background: rgb(255 255 255 / 0.06);
+  padding: 0;
+  background: none;
   border: none;
   border-radius: 0;
+  box-shadow: none;
 }
 
+/* typografia jak „Ok, so.” */
 .story-block-panel p {
   margin: 0 0 1.35em;
   font-family: "PT Mono", "Courier New", Courier, monospace;
-  font-size: clamp(16px, 0.35vw + 15px, 18px);
   font-weight: 400;
-  line-height: 1.8;
-  letter-spacing: 0.01em;
-  color: rgb(245 245 245 / 0.92);
+  font-size: clamp(0.62rem, 0.95vw, 0.78rem);
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  color: #f5f5f5;
   text-align: left;
 }
 
@@ -1252,7 +1242,9 @@ body::before {
   width: 100%;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: rgb(255 255 255 / 0.04);
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 .story-block-frame img {
@@ -1328,9 +1320,7 @@ body::before {
     gap: 3.25rem;
   }
 
-  .story-block,
-  .story-block--text-left,
-  .story-block--image-left {
+  .story-block {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;

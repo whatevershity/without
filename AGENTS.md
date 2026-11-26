@@ -88,7 +88,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 ## Story zigzag (only **without**, below hero)
 
 - Section `.story-zigzag` under hero — **do not modify the hero** when editing this
-- 4 symmetrical blocks (text|image zigzag); same `--side` inset as hero; PT Mono ~16–18px; soft panel like status-meta
+- 4 blocks: image left / text right; same `--side` inset as hero; type like **Ok, so.** (PT Mono, small); no text/image panel frames
 - Images: `/images/block-1.jpg` … `block-4.jpg` (placeholders; swap later); CSS scanline overlay; sticky media when text is taller
 - Motion: fade+translateY via `zigzag.js` IntersectionObserver; one glitch on final sentence of block 4; honor `prefers-reduced-motion`
 
