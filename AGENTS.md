@@ -83,7 +83,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
   - Type size on `.line`: `clamp(14px, 1.05vw + 0.55rem, 16px)` (~14–16px)
   - Link size (smaller on purpose): ~13–15px clamp on `.without-link`
   - Split-flap tiles are near-square (`~1em × 1.05em`), not tall/vertical
-  - Orientation cue (only **with**): **„u r here”** + hand-drawn arrow (~1cm above **with**, nudged right) in **Farsan**; normal letter/word spacing; on link hover/focus → **„u r not here”**
+  - Orientation cue (only **with** for now): flat **„u r here”** + arrow (~1cm above **with**) in **Farsan** — no rotation; on link hover/focus → **„u r not here”**. Open question: whether this cue belongs on every subpage (probably not)
 
 ## Link mechanism — FINAL LOCK (do not touch)
 
