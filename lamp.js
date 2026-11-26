@@ -230,19 +230,58 @@
     return staggerWords(words, true, startAt);
   };
 
-  /* ciągły tekst pod hero — dopiero po „Ok, so.” */
+  /* ciągły tekst pod hero — dopiero po „Ok, so.”; ten sam efekt .w */
+  const wrapStoryWords = () => {
+    if (!storyRoot || storyRoot.dataset.worded === "1") return;
+    const inner = storyRoot.querySelector(".story-prose-inner");
+    if (!inner) return;
+    [...inner.querySelectorAll("p")].forEach((p) => {
+      const glitch = p.querySelector(".story-glitch-line");
+      if (glitch) {
+        const glitchText = glitch.textContent.trim();
+        glitch.remove();
+        const before = p.textContent.replace(/\s+$/, " ").trimEnd() + " ";
+        p.innerHTML =
+          wordsHtml(before) +
+          `<span class="story-glitch-line">${wordsHtml(glitchText)}</span>`;
+      } else {
+        p.innerHTML = wordsHtml(p.textContent.trim());
+      }
+    });
+    storyRoot.dataset.worded = "1";
+  };
+
   const revealStory = (instant = false) => {
     if (!storyRoot || storyRoot.classList.contains("is-on")) return;
+    wrapStoryWords();
+    const words = [...storyRoot.querySelectorAll(".w")];
     storyRoot.classList.add("is-on");
     storyRoot.setAttribute("aria-hidden", "false");
-    if (!storyGlitch) return;
+
     const reduce =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || instant) return;
-    window.setTimeout(() => {
-      storyGlitch.classList.add("is-glitch");
-    }, 480);
+
+    if (instant || reduce) {
+      words.forEach((w) => {
+        w.classList.add("is-on");
+        w.style.opacity = "";
+      });
+      return;
+    }
+
+    words.forEach((w) => {
+      w.classList.remove("is-on");
+      w.style.opacity = "0";
+    });
+    const endAt = staggerWords(words, true, 0);
+    const glitch = storyRoot.querySelector(".story-glitch-line");
+    if (!glitch) return;
+    wordTimers.push(
+      window.setTimeout(() => {
+        glitch.classList.add("is-glitch");
+      }, endAt + 120)
+    );
   };
 
   const apologyHtml = () =>

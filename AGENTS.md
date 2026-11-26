@@ -91,7 +91,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 - Appears **after „Ok, so.”** (`lamp.js` → `revealStory`)
 - Schema: same 12-col + `--side` as hero; copy in **cols 1–5**, left-aligned, continuous paragraphs (not split across images)
 - Type like **Ok, so.** (PT Mono); no image placeholders / panels
-- Optional one-shot glitch on final sentence; honor `prefers-reduced-motion`
+- Same word-by-word `.w` reveal as apology / Ok, so.; optional one-shot glitch on final sentence; honor `prefers-reduced-motion`
 
 ## Link mechanism — FINAL LOCK (do not touch)
 
