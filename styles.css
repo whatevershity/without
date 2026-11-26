@@ -188,7 +188,7 @@ body::before {
   text-align: center;
 }
 
-/* „u r here” — ~1cm nad „with”, trochę w lewo; Farsan + odręczna strzałka */
+/* „u r here” — ~1cm nad „with”; słowa ciaśniej; trochę w prawo */
 .word-with {
   position: relative;
   display: inline-block;
@@ -196,7 +196,7 @@ body::before {
 
 .ur-here {
   position: absolute;
-  left: 0.15em;
+  left: 0.55em;
   bottom: calc(100% + 0.85cm);
   display: flex;
   flex-direction: column;
@@ -208,15 +208,42 @@ body::before {
   z-index: 3;
 }
 
+.ur-here-copy {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  transform: rotate(-6deg);
+  transform-origin: left bottom;
+}
+
 .ur-here-text {
+  grid-area: 1 / 1;
   font-family: Farsan, "Comic Sans MS", cursive;
   font-size: clamp(15px, 1.2vw + 0.55rem, 18px);
   font-weight: 400;
-  letter-spacing: -0.06em;
+  letter-spacing: 0;
+  word-spacing: -0.28em;
   line-height: 1;
   white-space: nowrap;
-  transform: rotate(-6deg);
-  transform-origin: left bottom;
+  transition: opacity 280ms ease;
+}
+
+.ur-here-text.rest {
+  opacity: 1;
+}
+
+.ur-here-text.hover {
+  opacity: 0;
+}
+
+.hero-grid:has(.without-link:hover) .ur-here-text.rest,
+.hero-grid:has(.without-link:focus-visible) .ur-here-text.rest {
+  opacity: 0;
+}
+
+.hero-grid:has(.without-link:hover) .ur-here-text.hover,
+.hero-grid:has(.without-link:focus-visible) .ur-here-text.hover {
+  opacity: 1;
 }
 
 .ur-here-arrow {
