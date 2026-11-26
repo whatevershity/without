@@ -276,7 +276,7 @@
     );
   };
 
-  /* pisanie słów ze scrollem; smear przy 3. akapicie (~6s) */
+  /* pisanie słów zaraz ze scrollem po Ok so; glitch przy 3. akapicie (~6s) */
   const bindStoryScrollReveal = (words) => {
     if (!storyRoot || storyScrollBound) return;
     storyScrollBound = true;
@@ -289,10 +289,10 @@
     const syncFromScroll = () => {
       const rect = storyRoot.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      /* start gdy sekcja wchodzi w viewport; pełne odkrycie po przewinięciu bloku */
-      const start = vh * 0.92;
-      const span = Math.max(rect.height + vh * 0.35, 1);
-      const raw = (start - rect.top) / span;
+      /* od razu gdy sekcja wjeżdża — krótki tor, słowa idą z kółkiem */
+      const begin = vh * 0.98;
+      const end = Math.max(vh * 0.22, begin - Math.max(rect.height * 0.7, vh * 0.55));
+      const raw = (begin - rect.top) / Math.max(begin - end, 1);
       const progress = Math.max(0, Math.min(1, raw));
       const count = Math.floor(progress * words.length);
 
@@ -427,12 +427,12 @@
     /* równolegle: shout out + apology in; potem „Ok, so.” @ 5/8 */
     staggerWords(shoutWords, false, 0);
     const apologyEnd = staggerWords(apologyWords, true, 0);
-    /* „Ok, so.” — sekundę po apology; story od razu gotowe pod scroll */
+    /* „Ok, so.” — sekundę po apology; story zaraz po Ok so, pisze ze scrollem */
     const okSoEnd = revealOkSo(apologyEnd + 1000, false);
     wordTimers.push(
       window.setTimeout(() => {
         revealStory(false);
-      }, apologyEnd + 1000)
+      }, okSoEnd)
     );
 
     wordTimers.push(

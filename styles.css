@@ -1187,229 +1187,77 @@ body::before {
   grid-column: 1 / span 5;
   max-width: 42ch;
   min-width: 0;
-  position: relative;
   will-change: transform, text-shadow;
 }
 
 /*
-  Sensory glitch (ref: hard chromatic / terminal corruption) —
-  ostre RGB-split + poziome pasy / bloki, bez soft blur.
+  Sensory glitch — tylko litery: ostry chromatic (magenta/cyan),
+  bez blur, bez pasów/kwadratów. ~6s, potem wraca.
 */
 .story-prose.is-smearing .story-prose-inner {
-  animation: story-sensory-smear 6s steps(2, end) forwards;
-}
-
-.story-prose.is-smearing .story-prose-inner::before,
-.story-prose.is-smearing .story-prose-inner::after {
-  content: "";
-  position: absolute;
-  left: -8%;
-  right: -12%;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-}
-
-/* poziome kolorowe smugi + czarne bloki jak na ref */
-.story-prose.is-smearing .story-prose-inner::before {
-  top: 18%;
-  height: 22%;
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      rgb(255 20 90 / 0.55) 8%,
-      rgb(0 240 200 / 0.45) 22%,
-      transparent 28%,
-      rgb(190 255 0 / 0.4) 38%,
-      rgb(255 80 0 / 0.35) 48%,
-      transparent 56%,
-      rgb(0 180 255 / 0.5) 68%,
-      rgb(255 0 160 / 0.4) 82%,
-      transparent 100%
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgb(0 0 0 / 0.85) 0 10px,
-      transparent 10px 28px,
-      rgb(0 0 0 / 0.7) 28px 34px,
-      transparent 34px 52px
-    );
-  mix-blend-mode: screen;
-  animation: story-smear-band-a 6s steps(3, end) forwards;
-}
-
-.story-prose.is-smearing .story-prose-inner::after {
-  top: 52%;
-  height: 16%;
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      rgb(0 255 180 / 0.5) 12%,
-      rgb(255 0 120 / 0.55) 30%,
-      transparent 40%,
-      rgb(255 200 0 / 0.4) 55%,
-      rgb(80 120 255 / 0.45) 72%,
-      transparent 100%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent 0 3px,
-      rgb(255 255 255 / 0.06) 3px 4px
-    );
-  mix-blend-mode: screen;
-  animation: story-smear-band-b 6s steps(3, end) forwards;
-}
-
-@keyframes story-smear-band-a {
-  0%,
-  8% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0) scaleX(1);
-  }
-  14% {
-    opacity: 0.85;
-    transform: translate3d(-3%, 0, 0) scaleX(1.04);
-  }
-  28% {
-    opacity: 1;
-    transform: translate3d(4%, 2%, 0) scaleX(1.08);
-  }
-  42% {
-    opacity: 0.9;
-    transform: translate3d(-6%, -1%, 0) scaleX(0.96);
-  }
-  58% {
-    opacity: 0.55;
-    transform: translate3d(2%, 0, 0) scaleX(1.02);
-  }
-  72% {
-    opacity: 0.2;
-    transform: translate3d(-1%, 0, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes story-smear-band-b {
-  0%,
-  16% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-  24% {
-    opacity: 0.75;
-    transform: translate3d(5%, 0, 0);
-  }
-  38% {
-    opacity: 1;
-    transform: translate3d(-4%, 1%, 0);
-  }
-  52% {
-    opacity: 0.7;
-    transform: translate3d(7%, -1%, 0);
-  }
-  68% {
-    opacity: 0.35;
-    transform: translate3d(-2%, 0, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
+  animation: story-sensory-smear 6s cubic-bezier(0.22, 0.08, 0.18, 1) forwards;
 }
 
 @keyframes story-sensory-smear {
   0% {
     text-shadow: none;
     transform: translate3d(0, 0, 0);
-    filter: none;
   }
-  /* twarde RGB / CMY kanały — ostre offsety, zero blur */
-  10% {
+  8% {
     text-shadow:
-      -6px 0 #ff1470,
-      6px 0 #00f0c8,
-      0 3px #beff00;
-    transform: translate3d(2px, 0, 0);
-    filter: contrast(1.2) saturate(1.35);
+      -2px 0 rgb(255 40 120 / 0.7),
+      2px 0 rgb(0 210 230 / 0.7);
+    transform: translate3d(0.5px, 0, 0);
   }
   18% {
     text-shadow:
-      -14px 0 #ff1470,
-      14px 0 #00e6ff,
-      -7px 4px #c8ff00,
-      9px -3px #ff6e00,
-      22px 0 rgb(255 20 112 / 0.35),
-      -22px 0 rgb(0 230 255 / 0.35);
-    transform: translate3d(-3px, 1px, 0);
-    filter: contrast(1.35) saturate(1.55);
+      -5px 0 rgb(255 40 120 / 0.85),
+      5px 0 rgb(0 210 230 / 0.85),
+      0 2px rgb(210 255 80 / 0.35);
+    transform: translate3d(-1px, 0, 0);
   }
-  28% {
+  30% {
     text-shadow:
-      -18px 1px #ff0088,
-      16px -1px #00fff0,
-      -4px 6px #d4ff00,
-      12px 2px #ff5500,
-      28px 0 rgb(255 0 160 / 0.4),
-      -26px 1px rgb(0 200 255 / 0.4);
-    transform: translate3d(4px, -1px, 0);
-    filter: contrast(1.4) saturate(1.6);
+      -8px 0 rgb(255 30 110 / 0.9),
+      8px 0 rgb(0 220 240 / 0.9),
+      -3px 2px rgb(210 255 80 / 0.4),
+      3px -1px rgb(255 120 40 / 0.35);
+    transform: translate3d(1.5px, 0, 0);
   }
-  38% {
+  42% {
     text-shadow:
-      -10px 0 #ff1470,
-      20px 0 #00e6ff,
-      3px 5px #beff00,
-      -15px -2px #ff6e00;
-    transform: translate3d(-5px, 0, 0);
-    filter: contrast(1.3) saturate(1.45);
+      -6px 0 rgb(255 40 120 / 0.75),
+      7px 0 rgb(0 210 230 / 0.75),
+      2px 2px rgb(210 255 80 / 0.3);
+    transform: translate3d(-2px, 0.5px, 0);
   }
-  /* trzęsienie / snap-back (krokowe, nie rozmycie) */
-  48% {
+  52% {
     text-shadow:
-      -8px 0 #ff1470,
-      8px 0 #00e6ff,
-      0 3px #beff00;
-    transform: translate3d(3px, 1px, 0);
-    filter: contrast(1.2) saturate(1.25);
+      4px 0 rgb(255 40 120 / 0.55),
+      -4px 0 rgb(0 210 230 / 0.55);
+    transform: translate3d(2px, 0, 0);
   }
-  56% {
+  62% {
     text-shadow:
-      6px 0 #ff1470,
-      -6px 0 #00e6ff;
-    transform: translate3d(-4px, 0, 0);
-    filter: contrast(1.15);
-  }
-  64% {
-    text-shadow:
-      -4px 0 #ff1470,
-      5px 0 #00e6ff,
-      2px 2px rgb(200 255 0 / 0.55);
-    transform: translate3d(2px, -1px, 0);
-    filter: contrast(1.1);
+      -3px 0 rgb(255 40 120 / 0.4),
+      3px 0 rgb(0 210 230 / 0.4);
+    transform: translate3d(-1.5px, 0, 0);
   }
   74% {
     text-shadow:
-      3px 0 #ff1470,
-      -3px 0 #00e6ff;
-    transform: translate3d(-2px, 0, 0);
-    filter: none;
-  }
-  86% {
-    text-shadow:
-      -1px 0 rgb(255 20 112 / 0.45),
-      1px 0 rgb(0 230 255 / 0.45);
+      2px 0 rgb(255 40 120 / 0.25),
+      -2px 0 rgb(0 210 230 / 0.25);
     transform: translate3d(1px, 0, 0);
-    filter: none;
+  }
+  88% {
+    text-shadow:
+      -1px 0 rgb(255 40 120 / 0.12),
+      1px 0 rgb(0 210 230 / 0.12);
+    transform: translate3d(-0.5px, 0, 0);
   }
   100% {
     text-shadow: none;
     transform: translate3d(0, 0, 0);
-    filter: none;
   }
 }
 
@@ -1485,12 +1333,6 @@ body::before {
   }
 
   .story-prose.is-smearing .story-prose-inner {
-    animation: none;
-  }
-
-  .story-prose.is-smearing .story-prose-inner::before,
-  .story-prose.is-smearing .story-prose-inner::after {
-    content: none;
     animation: none;
   }
 

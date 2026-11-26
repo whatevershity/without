@@ -92,7 +92,7 @@ Exact same crossfade as the old sound yes/no: two stacked **wybór** answers, op
 - Schema: same 12-col + `--side` as hero; copy in **cols 1–5**, left-aligned, continuous paragraphs (not split across images)
 - Type like **Ok, so.** (PT Mono); no image placeholders / panels
 - Same word-by-word `.w` reveal as apology / Ok, so.; optional one-shot glitch on final sentence; honor `prefers-reduced-motion`
-- Word reveal driven by **scroll**; **sensory glitch (~6s)** at **3rd paragraph** with dull ceiling thumps (`sound/ceiling-thumps.mp3`) — hard RGB/CMY channel split + horizontal color bands/black blocks (no soft blur), then snap back (autism distraction joke)
+- Story unlocks **right after „Ok, so.”**; words write with **scroll** (tight mapping). **Sensory glitch (~6s)** at **3rd paragraph** + ceiling thumps — chromatic magenta/cyan on the letters only (no blur, no overlay bands), then settles
 
 ## Link mechanism — FINAL LOCK (do not touch)
 
