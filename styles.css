@@ -188,6 +188,46 @@ body::before {
   text-align: center;
 }
 
+/* „u r here” — ~1cm nad „frames”, trochę w lewo; Farsan + odręczna strzałka */
+.word-frames {
+  position: relative;
+  display: inline-block;
+}
+
+.ur-here {
+  position: absolute;
+  left: -0.55em;
+  bottom: calc(100% + 0.85cm);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  color: rgb(245 245 245 / 0.72);
+  pointer-events: none;
+  user-select: none;
+  z-index: 3;
+}
+
+.ur-here-text {
+  font-family: Farsan, "Comic Sans MS", cursive;
+  font-size: clamp(15px, 1.2vw + 0.55rem, 18px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  transform: rotate(-6deg);
+  transform-origin: left bottom;
+}
+
+.ur-here-arrow {
+  display: block;
+  margin-left: 0.55em;
+  margin-top: -2px;
+  color: inherit;
+  transform: rotate(4deg);
+  opacity: 0.85;
+}
+
 /*
   Opcje + wybór (pod tytułem) — crossfade jak dawny sound (no↔yes):
   opacity + lekki drift + blur ~420ms. Wiersze ze staggerem (--i).
